@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, propTypes } from 'redux-form';
+import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import { Link } from 'react-router';
 import { forgotPasswordFetch } from '../actions/auth';
 import { isEmail, isRequired } from '../utils/validator';
+import getImmutableData from '../utils/getImmutableData';
 import Input from '../components/Input';
 
-const validate = ({ email }) => {
+const validate = (values) => {
   const errors = {};
+  const { email } = getImmutableData(values, ['email']);
 
   errors.email = isRequired(email) || isEmail(email);
   return errors;

@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, propTypes } from 'redux-form';
+import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import profileUpdateFetch from '../actions/profile';
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
 
-@connect(({ user, user: { bio, firstname, lastname } }) => ({
+@connect(state => ({
   initialValues: {
-    bio,
-    firstname,
-    lastname,
+    bio: state.getIn(['user', 'bio']),
+    firstname: state.getIn(['user', 'firstname']),
+    lastname: state.getIn(['user', 'lastname']),
   },
-  user,
+  user: state.get('user'),
 }))
 @reduxForm({
   form: 'Profile',
@@ -30,7 +30,7 @@ export default class Profile extends Component {
 
   onProfileUpdate(values) {
     const { dispatch, user } = this.props;
-    return dispatch(profileUpdateFetch(values, user.id));
+    return dispatch(profileUpdateFetch(values, user.get('id')));
   }
 
   render() {

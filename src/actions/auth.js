@@ -1,8 +1,8 @@
 import store from 'store';
-import { SubmissionError } from 'redux-form';
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED } from '../constants/actions';
 import { API_URL } from '../constants/application';
+import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
 function signupLoginSuccess(user) {
@@ -18,9 +18,10 @@ function logoutSuccess() {
   };
 }
 
-function emailConfirmSuccess() {
+function emailConfirmSuccess(user) {
   return {
     type: EMAIL_CONFIRM_SUCCESS,
+    user,
   };
 }
 
@@ -51,14 +52,14 @@ export function signupFetch(values, router) {
     }).then(() =>
       authenticate(values, dispatch, router)
     ).catch(err =>
-      Promise.reject(new SubmissionError({ _error: err.message }))
+      Promise.reject(parseErrors(err))
     );
 }
 
 export function loginFetch(values, router) {
   return dispatch =>
     authenticate(values, dispatch, router).catch(err =>
-      Promise.reject(new SubmissionError({ _error: err.message }))
+      Promise.reject(parseErrors(err))
     );
 }
 
@@ -76,7 +77,7 @@ export function forgotPasswordFetch(values) {
       method: 'POST',
       body: JSON.stringify(values),
     }).catch(err =>
-      Promise.reject(new SubmissionError({ _error: err.message }))
+      Promise.reject(parseErrors(err))
     );
 }
 
@@ -88,7 +89,7 @@ export function changePasswordFetch(values, callback) {
     }).then(() => {
       if (typeof callback === 'function') callback();
     }).catch(err =>
-      Promise.reject(new SubmissionError({ _error: err.message }))
+      Promise.reject(parseErrors(err))
     );
 }
 
@@ -98,9 +99,20 @@ export function emailConfirmFetch(values, callback) {
       method: 'POST',
       body: JSON.stringify(values),
     }).then(() => {
-      dispatch(emailConfirmSuccess());
+      const user = store.get('user');
+      user.confirmed = true;
+      store.set('user', user);
+      dispatch(emailConfirmSuccess(user));
       if (typeof callback === 'function') callback();
     }).catch(err =>
       dispatch(emailConfirmFailed(err.message))
     );
+}
+
+export function emailResendFetch(values) {
+  return () =>
+    fetch(`${API_URL}/resendConfirmation`, {
+      method: 'POST',
+      body: JSON.stringify(values),
+    });
 }

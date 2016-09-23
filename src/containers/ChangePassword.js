@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, propTypes } from 'redux-form';
+import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import { withRouter } from 'react-router';
 import { changePasswordFetch } from '../actions/auth';
 import { isEqual, isPassword, isRequired } from '../utils/validator';
 import { REDIRECTION } from '../constants/application';
+import getImmutableData from '../utils/getImmutableData';
 import Input from '../components/Input';
 
-const validate = ({ password, confirmation }) => {
+const validate = (values) => {
   const errors = {};
+  const { password, confirmation } = getImmutableData(values,
+    ['password', 'confirmation']);
 
   errors.password = isRequired(password) || isPassword(password);
   errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||
@@ -35,12 +38,16 @@ export default class ChangePassword extends Component {
     this.onChangePassword = this.onChangePassword.bind(this);
   }
 
-  onChangePassword({ password }) {
+  onChangePassword(values) {
     const { dispatch, params, router } = this.props;
-    return dispatch(changePasswordFetch({ password, token: params.code },
-      () =>
-        setTimeout(() => router.push('/login'), REDIRECTION)
-      ));
+    const fetchParams = {
+      password: values.get('password'),
+      token: params.code,
+    };
+
+    return dispatch(changePasswordFetch(fetchParams, () =>
+      setTimeout(() => router.push('/login'), REDIRECTION)
+    ));
   }
 
   render() {

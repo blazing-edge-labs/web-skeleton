@@ -15,7 +15,7 @@ const checkStatus = (res) => {
 export default function (url, options) {
   return fetch(url, Object.assign({}, {
     headers: {
-      Authorization: store.get('token'),
+      Authorization: store.get('token') || '',
       'Content-Type': 'application/json',
     } }, options))
     .then(parseJSON)

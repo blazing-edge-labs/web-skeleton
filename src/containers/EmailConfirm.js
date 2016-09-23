@@ -4,8 +4,8 @@ import { withRouter } from 'react-router';
 import { emailConfirmFetch } from '../actions/auth';
 import { REDIRECTION } from '../constants/application';
 
-@connect(({ auth }) => ({
-  auth,
+@connect(state => ({
+  auth: state.get('auth'),
 }))
 @withRouter
 export default class EmailConfirm extends Component {
@@ -29,10 +29,10 @@ export default class EmailConfirm extends Component {
     return (
       <article>
         <p>Checking your email...</p>
-        {auth.emailConfirmationSuccess &&
+        {auth.get('emailConfirmationSuccess') &&
           <p>Email successfully checked. Redirecting...</p>
         }
-        {auth.emailConfirmationError &&
+        {auth.get('emailConfirmationError') &&
           <p>{auth.emailConfirmationError}</p>
         }
       </article>
