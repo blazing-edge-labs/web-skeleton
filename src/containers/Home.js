@@ -13,10 +13,10 @@ export default class Home extends Component {
 
   constructor() {
     super();
-    this.onEmailResend = this.onEmailResend.bind(this);
+    this.handleEmailResend = this.handleEmailResend.bind(this);
   }
 
-  onEmailResend(e) {
+  handleEmailResend(e) {
     e.preventDefault();
     const { dispatch, user } = this.props;
     return dispatch(emailResendFetch({ email: user.get('email') }));
@@ -30,7 +30,7 @@ export default class Home extends Component {
         {!user.get('confirmed') &&
           <p>
             You have to confirm your email. Please open email to follow link
-            or <a href onClick={this.onEmailResend}>resend</a> email again.
+            or <a href onClick={this.handleEmailResend}>resend</a> email again.
           </p>
         }
         <p>Home Page</p>
