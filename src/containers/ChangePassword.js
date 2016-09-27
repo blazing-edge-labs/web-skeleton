@@ -35,10 +35,10 @@ export default class ChangePassword extends Component {
 
   constructor() {
     super();
-    this.onChangePassword = this.onChangePassword.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
-  onChangePassword(values) {
+  handleChangePassword(values) {
     const { dispatch, params, router } = this.props;
     const fetchParams = {
       password: values.get('password'),
@@ -54,7 +54,7 @@ export default class ChangePassword extends Component {
     const { error, handleSubmit, submitSucceeded, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onChangePassword)} noValidate>
+      <form onSubmit={handleSubmit(this.handleChangePassword)} noValidate>
         <Field
           name="password"
           component={Input}

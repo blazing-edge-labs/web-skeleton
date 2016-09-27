@@ -25,10 +25,10 @@ export default class Profile extends Component {
 
   constructor() {
     super();
-    this.onProfileUpdate = this.onProfileUpdate.bind(this);
+    this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
   }
 
-  onProfileUpdate(values) {
+  handleProfileUpdate(values) {
     const { dispatch, user } = this.props;
     return dispatch(profileUpdateFetch(values, user.get('id')));
   }
@@ -37,7 +37,7 @@ export default class Profile extends Component {
     const { error, handleSubmit, submitSucceeded, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onProfileUpdate)} noValidate>
+      <form onSubmit={handleSubmit(this.handleProfileUpdate)} noValidate>
         <Field
           name="firstname"
           component={Input}
