@@ -4,11 +4,17 @@ import { API_URL } from '../constants/application';
 import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
-function profileUpdateSuccess(user) {
-  return {
-    type: PROFILE_UPDATE_SUCCESS,
-    user,
-  };
+const profileUpdateSuccess = user => ({
+  type: PROFILE_UPDATE_SUCCESS,
+  user,
+});
+
+export function profileGetFetch(userId) {
+  return dispatch =>
+    fetch(`${API_URL}/users/${userId}`).then((resp) => {
+      store.set('user', resp);
+      return dispatch(profileUpdateSuccess(resp));
+    });
 }
 
 export function profileUpdateFetch(values, userId) {
@@ -26,13 +32,14 @@ export function profileUpdateFetch(values, userId) {
 
 
 export function changeEmailFetch(values) {
-  return dispatch =>
+  return () =>
     fetch(`${API_URL}/changeEmail`, {
       method: 'POST',
       body: JSON.stringify(values),
-    }).then((resp) => {
-      store.set('user', resp);
-      return dispatch(changeEmailSuccess(resp));
+    }).then(() => {
+      const user = store.get('user');
+      user.newEmail = values.get('newEmail');
+      return store.set('user', user);
     }).catch(err =>
       Promise.reject(parseErrors(err))
     );

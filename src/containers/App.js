@@ -14,10 +14,10 @@ export default class App extends Component {
 
   constructor() {
     super();
-    this.onLogout = this.onLogout.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
-  onLogout(e) {
+  handleLogout(e) {
     e.preventDefault();
     const { dispatch, router } = this.props;
     dispatch(logoutAction(router));
@@ -30,7 +30,7 @@ export default class App extends Component {
       <div>
         <nav>
           <Link to="/profile">Profile</Link>
-          <a href onClick={this.onLogout}>Logout</a>
+          <a href onClick={this.handleLogout}>Logout</a>
         </nav>
         <main>{children}</main>
       </div>

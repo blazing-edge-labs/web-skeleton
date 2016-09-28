@@ -31,10 +31,10 @@ export default class Signup extends Component {
 
   constructor() {
     super();
-    this.onSignup = this.onSignup.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
-  onSignup(values) {
+  handleSignup(values) {
     const { dispatch, router } = this.props;
     return dispatch(signupFetch(values, router));
   }
@@ -44,7 +44,7 @@ export default class Signup extends Component {
 
     return (
       <article>
-        <form onSubmit={handleSubmit(this.onSignup)} noValidate>
+        <form onSubmit={handleSubmit(this.handleSignup)} noValidate>
           <Field
             name="email"
             component={Input}

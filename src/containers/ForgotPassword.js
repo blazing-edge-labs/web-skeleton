@@ -28,10 +28,10 @@ export default class ForgotPassword extends Component {
 
   constructor() {
     super();
-    this.onSend = this.onSend.bind(this);
+    this.handleSend = this.handleSend.bind(this);
   }
 
-  onSend(values) {
+  handleSend(values) {
     const { dispatch } = this.props;
     return dispatch(forgotPasswordFetch(values));
   }
@@ -41,7 +41,7 @@ export default class ForgotPassword extends Component {
 
     return (
       <article>
-        <form onSubmit={handleSubmit(this.onSend)} noValidate>
+        <form onSubmit={handleSubmit(this.handleSend)} noValidate>
           <Field
             name="email"
             component={Input}

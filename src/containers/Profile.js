@@ -1,15 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { changeEmailFetch, profileUpdateFetch } from '../actions/profile';
-import ProfileForm from '../components/ProfileForm';
-import ChangeEmailForm from '../components/ChangeEmailForm';
+import { Link } from 'react-router';
+import { profileGetFetch } from '../actions/profile';
+import getImmutableData from '../utils/getImmutableData';
 
 @connect(state => ({
-  initialValues: {
-    bio: state.getIn(['user', 'bio']),
-    firstname: state.getIn(['user', 'firstname']),
-    lastname: state.getIn(['user', 'lastname']),
-  },
   user: state.get('user'),
 }))
 export default class Profile extends Component {
@@ -18,27 +13,30 @@ export default class Profile extends Component {
     user: PropTypes.object.isRequired,
   };
 
-  constructor() {
-    super();
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onProfileUpdate = this.onProfileUpdate.bind(this);
-  }
-
-  onChangeEmail(values) {
-    const { dispatch } = this.props;
-    return dispatch(changeEmailFetch(values));
-  }
-
-  onProfileUpdate(values) {
+  componentDidMount() {
     const { dispatch, user } = this.props;
-    return dispatch(profileUpdateFetch(values, user.get('id')));
+    return dispatch(profileGetFetch(user.get('id')));
   }
 
   render() {
+    const { user } = this.props;
+    const { bio, firstname, lastname } = getImmutableData(user, ['bio',
+      'firstname', 'lastname']);
+
     return (
       <section>
-        <ProfileForm onProfileUpdate={this.onProfileUpdate} />
-        <ChangeEmailForm onChangeEmail={this.onChangeEmail} />
+        {bio || firstname || lastname ?
+          <dl>
+            {bio && <dt>Bio</dt>}
+            {bio && <dd>{bio}</dd>}
+            {firstname && <dt>Bio</dt>}
+            {firstname && <dd>{firstname}</dd>}
+            {lastname && <dt>Bio</dt>}
+            {lastname && <dd>{lastname}</dd>}
+          </dl> :
+          <p>No info to show.</p>
+        }
+        <Link to="/editProfile">Edit Profile</Link>
       </section>
     );
   }

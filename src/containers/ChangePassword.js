@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import { withRouter } from 'react-router';
 import { changePasswordFetch } from '../actions/auth';
-import { isEqual, isPassword, isRequired } from '../utils/validator';
+import { isPassword, isRequired, isSamePassword } from '../utils/validator';
 import { REDIRECTION } from '../constants/application';
 import getImmutableData from '../utils/getImmutableData';
 import Input from '../components/Input';
@@ -15,7 +15,7 @@ const validate = (values) => {
 
   errors.password = isRequired(password) || isPassword(password);
   errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||
-    isEqual(confirmation, password);
+    isSamePassword(confirmation, password);
   return errors;
 };
 
@@ -35,10 +35,10 @@ export default class ChangePassword extends Component {
 
   constructor() {
     super();
-    this.onChangePassword = this.onChangePassword.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
-  onChangePassword(values) {
+  handleChangePassword(values) {
     const { dispatch, params, router } = this.props;
     const fetchParams = {
       password: values.get('password'),
@@ -54,7 +54,7 @@ export default class ChangePassword extends Component {
     const { error, handleSubmit, submitSucceeded, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onChangePassword)} noValidate>
+      <form onSubmit={handleSubmit(this.handleChangePassword)} noValidate>
         <Field
           name="password"
           component={Input}
