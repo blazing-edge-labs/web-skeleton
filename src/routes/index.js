@@ -4,11 +4,13 @@ import { Router, Route, IndexRoute } from 'react-router';
 import App from '../containers/App';
 import Home from '../containers/Home';
 import Profile from '../containers/Profile';
+import EditProfile from '../containers/EditProfile';
 import Login from '../containers/Login';
 import Signup from '../containers/Signup';
 import ForgotPassword from '../containers/ForgotPassword';
 import ChangePassword from '../containers/ChangePassword';
 import EmailConfirm from '../containers/EmailConfirm';
+import Page404 from '../containers/Page404';
 
 const Routes = ({ store, history }) =>
   <Provider store={store}>
@@ -16,13 +18,15 @@ const Routes = ({ store, history }) =>
       <Route path="/">
         <Route component={App}>
           <IndexRoute component={Home} />
-          <Route path="profile" component={Profile} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/editProfile" component={EditProfile} />
         </Route>
         <Route path="login" component={Login} />
         <Route path="signup" component={Signup} />
         <Route path="forgotPassword" component={ForgotPassword} />
         <Route path="changePassword/:code" component={ChangePassword} />
         <Route path="emailConfirm/:code" component={EmailConfirm} />
+        <Route path="*" component={Page404} />
       </Route>
     </Router>
   </Provider>;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import { withRouter } from 'react-router';
 import { changePasswordFetch } from '../actions/auth';
-import { isEqual, isPassword, isRequired } from '../utils/validator';
+import { isPassword, isRequired, isSamePassword } from '../utils/validator';
 import { REDIRECTION } from '../constants/application';
 import getImmutableData from '../utils/getImmutableData';
 import Input from '../components/Input';
@@ -15,7 +15,7 @@ const validate = (values) => {
 
   errors.password = isRequired(password) || isPassword(password);
   errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||
-    isEqual(confirmation, password);
+    isSamePassword(confirmation, password);
   return errors;
 };
 

@@ -1,17 +1,23 @@
 import store from 'store';
-import { SubmissionError } from 'redux-form';
 import { PROFILE_UPDATE_SUCCESS } from '../constants/actions';
 import { API_URL } from '../constants/application';
+import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
-function profileUpdateSuccess(user) {
-  return {
-    type: PROFILE_UPDATE_SUCCESS,
-    user,
-  };
+const profileUpdateSuccess = user => ({
+  type: PROFILE_UPDATE_SUCCESS,
+  user,
+});
+
+export function profileGetFetch(userId) {
+  return dispatch =>
+    fetch(`${API_URL}/users/${userId}`).then((resp) => {
+      store.set('user', resp);
+      return dispatch(profileUpdateSuccess(resp));
+    });
 }
 
-export default function profileUpdateFetch(values, userId) {
+export function profileUpdateFetch(values, userId) {
   return dispatch =>
     fetch(`${API_URL}/users/${userId}`, {
       method: 'POST',
@@ -20,6 +26,21 @@ export default function profileUpdateFetch(values, userId) {
       store.set('user', resp);
       return dispatch(profileUpdateSuccess(resp));
     }).catch(err =>
-      Promise.reject(new SubmissionError({ _error: err.message }))
+      Promise.reject(parseErrors(err))
+    );
+}
+
+
+export function changeEmailFetch(values) {
+  return () =>
+    fetch(`${API_URL}/changeEmail`, {
+      method: 'POST',
+      body: JSON.stringify(values),
+    }).then(() => {
+      const user = store.get('user');
+      user.newEmail = values.get('newEmail');
+      return store.set('user', user);
+    }).catch(err =>
+      Promise.reject(parseErrors(err))
     );
 }

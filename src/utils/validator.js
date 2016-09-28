@@ -1,6 +1,9 @@
 import validator from 'validator';
-import { confirmPasswordMsg, emailMsg, passwordMsg, requiredMsg }
- from '../constants/errors';
+import { confirmPasswordMsg, emailMsg, notUsedEmailMsg, passwordMsg,
+  requiredMsg, usedEmailMsg } from '../constants/errors';
+
+const isEqual = (value, comparison) =>
+  validator.equals(String(value), String(comparison));
 
 export function isRequired(value) {
   return value !== undefined ? null : requiredMsg;
@@ -15,7 +18,12 @@ export function isPassword(value) {
     (/[0-9]/).test(value) ? null : passwordMsg;
 }
 
-export function isEqual(value, comparison) {
-  return validator.equals(String(value), String(comparison)) ? null :
-    confirmPasswordMsg;
+export function isSamePassword(value, comparison) {
+  return isEqual(String(value), String(comparison)) ? null : confirmPasswordMsg;
+}
+
+export function isUsedEmail(newEmail, oldEmail, shouldBeUsed) {
+  const isEql = isEqual(newEmail, oldEmail);
+  if (shouldBeUsed) return isEql ? null : notUsedEmailMsg;
+  return isEql ? usedEmailMsg : null;
 }

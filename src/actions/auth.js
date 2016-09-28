@@ -1,39 +1,37 @@
 import store from 'store';
-import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
-  EMAIL_CONFIRM_FAILED } from '../constants/actions';
+import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, NEW_EMAIL_CONFIRM_SUCCESS,
+  EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_FAILED } from '../constants/actions';
 import { API_URL } from '../constants/application';
 import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
-function signupLoginSuccess(user) {
-  return {
-    type: SIGNUP_LOGIN_SUCCESS,
-    user,
-  };
-}
+const signupLoginSuccess = user => ({
+  type: SIGNUP_LOGIN_SUCCESS,
+  user,
+});
 
-function logoutSuccess() {
-  return {
-    type: LOGOUT_SUCCESS,
-  };
-}
+const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
+});
 
-function emailConfirmSuccess(user) {
-  return {
-    type: EMAIL_CONFIRM_SUCCESS,
-    user,
-  };
-}
+const newEmailConfirmSuccess = (user, deleteKey) => ({
+  type: NEW_EMAIL_CONFIRM_SUCCESS,
+  user,
+  deleteKey,
+});
 
-function emailConfirmFailed(error) {
-  return {
-    type: EMAIL_CONFIRM_FAILED,
-    error,
-  };
-}
+const emailConfirmSuccess = user => ({
+  type: EMAIL_CONFIRM_SUCCESS,
+  user,
+});
 
-function authenticate(values, dispatch, router) {
-  return fetch(`${API_URL}/authenticate`, {
+const emailConfirmFailed = error => ({
+  type: EMAIL_CONFIRM_FAILED,
+  error,
+});
+
+const authenticate = (values, dispatch, router) =>
+  fetch(`${API_URL}/authenticate`, {
     method: 'POST',
     body: JSON.stringify(values),
   }).then((resp) => {
@@ -42,7 +40,6 @@ function authenticate(values, dispatch, router) {
     dispatch(signupLoginSuccess(resp.user));
     return router.push('/');
   });
-}
 
 export function signupFetch(values, router) {
   return dispatch =>
@@ -100,9 +97,15 @@ export function emailConfirmFetch(values, callback) {
       body: JSON.stringify(values),
     }).then(() => {
       const user = store.get('user');
-      user.confirmed = true;
+      if (user.newEmail) {
+        user.email = user.newEmail;
+        delete user.newEmail;
+        dispatch(newEmailConfirmSuccess(user, 'newEmail'));
+      } else {
+        user.confirmed = true;
+        dispatch(emailConfirmSuccess(user));
+      }
       store.set('user', user);
-      dispatch(emailConfirmSuccess(user));
       if (typeof callback === 'function') callback();
     }).catch(err =>
       dispatch(emailConfirmFailed(err.message))

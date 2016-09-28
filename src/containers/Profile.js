@@ -1,70 +1,43 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, propTypes } from 'redux-form/immutable';
-import profileUpdateFetch from '../actions/profile';
-import Input from '../components/Input';
-import Textarea from '../components/Textarea';
+import { Link } from 'react-router';
+import { profileGetFetch } from '../actions/profile';
+import getImmutableData from '../utils/getImmutableData';
 
 @connect(state => ({
-  initialValues: {
-    bio: state.getIn(['user', 'bio']),
-    firstname: state.getIn(['user', 'firstname']),
-    lastname: state.getIn(['user', 'lastname']),
-  },
   user: state.get('user'),
 }))
-@reduxForm({
-  form: 'Profile',
-})
 export default class Profile extends Component {
   static propTypes = {
-    ...propTypes,
     dispatch: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
   };
 
-  constructor() {
-    super();
-    this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
-  }
-
-  handleProfileUpdate(values) {
+  componentDidMount() {
     const { dispatch, user } = this.props;
-    return dispatch(profileUpdateFetch(values, user.get('id')));
+    return dispatch(profileGetFetch(user.get('id')));
   }
 
   render() {
-    const { error, handleSubmit, submitSucceeded, submitting } = this.props;
+    const { user } = this.props;
+    const { bio, firstname, lastname } = getImmutableData(user, ['bio',
+      'firstname', 'lastname']);
 
     return (
-      <form onSubmit={handleSubmit(this.handleProfileUpdate)} noValidate>
-        <Field
-          name="firstname"
-          component={Input}
-          label="First Name"
-          type="text"
-          placeholder="First Name"
-          maxLength="30"
-        />
-        <Field
-          name="lastname"
-          component={Input}
-          label="Last Name"
-          type="text"
-          placeholder="Last Name"
-          maxLength="30"
-        />
-        <Field
-          name="bio"
-          component={Textarea}
-          label="Bio"
-          placeholder="Bio"
-          maxLength="1000"
-        />
-        {submitSucceeded && !submitting && <p>Profile Updated</p>}
-        {error && <p>{error}</p>}
-        <button type="submit" disabled={submitting}>Update</button>
-      </form>
+      <section>
+        {bio || firstname || lastname ?
+          <dl>
+            {bio && <dt>Bio</dt>}
+            {bio && <dd>{bio}</dd>}
+            {firstname && <dt>Bio</dt>}
+            {firstname && <dd>{firstname}</dd>}
+            {lastname && <dt>Bio</dt>}
+            {lastname && <dd>{lastname}</dd>}
+          </dl> :
+          <p>No info to show.</p>
+        }
+        <Link to="/editProfile">Edit Profile</Link>
+      </section>
     );
   }
 }

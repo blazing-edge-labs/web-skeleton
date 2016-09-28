@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
-import { EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_FAILED }
-  from '../constants/actions';
+import { NEW_EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_SUCCESS,
+  EMAIL_CONFIRM_FAILED } from '../constants/actions';
 
 const initialState = fromJS({
   emailConfirmationError: null,
@@ -10,6 +10,7 @@ const initialState = fromJS({
 export default (state = initialState, action) => {
   switch (action.type) {
     case EMAIL_CONFIRM_SUCCESS:
+    case NEW_EMAIL_CONFIRM_SUCCESS:
       return state.merge(fromJS({
         emailConfirmationError: null,
         emailConfirmationSuccess: true,
