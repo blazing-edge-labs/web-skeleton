@@ -1,7 +1,7 @@
 {
   "name": "web-skeleton",
   "version": "1.0.0",
-  "description": "ECP skeleton for React/Redux web applications",
+  "description": "ECP skeleton for React/Redux web application",
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --profile --colors",
     "start": "node server.js"
