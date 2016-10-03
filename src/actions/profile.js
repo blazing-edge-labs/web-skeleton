@@ -30,7 +30,6 @@ export function profileUpdateFetch(values, userId) {
     );
 }
 
-
 export function changeEmailFetch(values) {
   return () =>
     fetch(`${API_URL}/changeEmail`, {
@@ -40,6 +39,16 @@ export function changeEmailFetch(values) {
       const user = store.get('user');
       user.newEmail = values.get('newEmail');
       return store.set('user', user);
+    }).catch(err =>
+      Promise.reject(parseErrors(err))
+    );
+}
+
+export function changePasswordFetch(values) {
+  return () =>
+    fetch(`${API_URL}/changePassword`, {
+      method: 'POST',
+      body: JSON.stringify(values),
     }).catch(err =>
       Promise.reject(parseErrors(err))
     );
