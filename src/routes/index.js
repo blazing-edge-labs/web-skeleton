@@ -8,7 +8,7 @@ import EditProfile from '../containers/EditProfile';
 import Login from '../containers/Login';
 import Signup from '../containers/Signup';
 import ForgotPassword from '../containers/ForgotPassword';
-import ChangePassword from '../containers/ChangePassword';
+import RecoverPassword from '../containers/RecoverPassword';
 import EmailConfirm from '../containers/EmailConfirm';
 import Page404 from '../containers/Page404';
 
@@ -24,7 +24,7 @@ const Routes = ({ store, history }) =>
         <Route path="login" component={Login} />
         <Route path="signup" component={Signup} />
         <Route path="forgotPassword" component={ForgotPassword} />
-        <Route path="changePassword/:code" component={ChangePassword} />
+        <Route path="recoverPassword/:code" component={RecoverPassword} />
         <Route path="emailConfirm/:code" component={EmailConfirm} />
         <Route path="*" component={Page404} />
       </Route>
