@@ -3,12 +3,10 @@ import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import { withProps } from 'recompose';
 import { isEmail, isPassword, isRequired, isUsedEmail }
   from '../utils/validator';
-import getImmutableData from '../utils/getImmutableData';
 import Input from '../components/Input';
 
 const validate = (values, { initialValues }) => {
-  const { oldEmail, newEmail, password } = getImmutableData(values,
-    ['oldEmail', 'newEmail', 'password']);
+  const { oldEmail, newEmail, password } = values.toJS();
   const currentEmail = initialValues.get('oldEmail');
   const errors = {};
 

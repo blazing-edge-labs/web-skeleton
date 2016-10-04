@@ -11,6 +11,12 @@ const ProfileForm = (props) => {
   return (
     <form onSubmit={handleSubmit(handleProfileUpdate)} noValidate>
       <Field
+        name="image"
+        component={Input}
+        label="Profile Image"
+        type="file"
+      />
+      <Field
         name="firstname"
         component={Input}
         label="First Name"

@@ -1,6 +1,7 @@
 import store from 'store';
 import { PROFILE_UPDATE_SUCCESS } from '../constants/actions';
 import { API_URL } from '../constants/application';
+import createFormData from '../utils/createFormData';
 import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
@@ -21,7 +22,7 @@ export function profileUpdateFetch(values, userId) {
   return dispatch =>
     fetch(`${API_URL}/users/${userId}`, {
       method: 'POST',
-      body: JSON.stringify(values),
+      body: createFormData(values),
     }).then((resp) => {
       store.set('user', resp);
       return dispatch(profileUpdateSuccess(resp));
