@@ -5,13 +5,11 @@ import { withRouter } from 'react-router';
 import { changePasswordFetch } from '../actions/auth';
 import { isPassword, isRequired, isSamePassword } from '../utils/validator';
 import { REDIRECTION } from '../constants/application';
-import getImmutableData from '../utils/getImmutableData';
 import Input from '../components/Input';
 
 const validate = (values) => {
   const errors = {};
-  const { password, confirmation } = getImmutableData(values,
-    ['password', 'confirmation']);
+  const { password, confirmation } = values.toJS();
 
   errors.password = isRequired(password) || isPassword(password);
   errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||

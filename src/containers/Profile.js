@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { profileGetFetch } from '../actions/profile';
-import getImmutableData from '../utils/getImmutableData';
 
 @connect(state => ({
   user: state.get('user'),
@@ -20,12 +19,17 @@ export default class Profile extends Component {
 
   render() {
     const { user } = this.props;
-    const { bio, email, firstname, lastname } = getImmutableData(user, ['bio',
-      'email', 'firstname', 'lastname']);
+    const { bio, email, firstname, image, lastname } = user.toJS();
 
     return (
       <section>
         <dl>
+          {image && <dt>Profile Image</dt>}
+          {image &&
+            <dd>
+              <img src={image} alt="Personal Profile" />
+            </dd>
+          }
           <dt>Email</dt>
           <dd>{email}</dd>
           {firstname && <dt>First Name</dt>}
