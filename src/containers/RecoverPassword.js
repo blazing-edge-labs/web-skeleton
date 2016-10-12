@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, propTypes } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { withRouter } from 'react-router';
-import { changePasswordFetch } from '../actions/auth';
+import { recoverPasswordFetch } from '../actions/auth';
 import { isPassword, isRequired, isSamePassword } from '../utils/validator';
 import { REDIRECTION } from '../constants/application';
 import Input from '../components/Input';
 
-const validate = (values) => {
+export const validate = (values) => {
   const errors = {};
   const { password, confirmation } = values.toJS();
 
@@ -17,33 +17,30 @@ const validate = (values) => {
   return errors;
 };
 
-@connect()
-@withRouter
-@reduxForm({
-  form: 'ChangePassword',
-  validate,
-})
-export default class ChangePassword extends Component {
+export class RecoverPasswordComponent extends Component {
   static propTypes = {
-    ...propTypes,
     dispatch: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
     router: PropTypes.object.isRequired,
+    submitSucceeded: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired,
   };
 
   constructor() {
     super();
-    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleRecoverPassword = this.handleRecoverPassword.bind(this);
   }
 
-  handleChangePassword(values) {
+  handleRecoverPassword(values) {
     const { dispatch, params, router } = this.props;
     const fetchParams = {
       password: values.get('password'),
       token: params.code,
     };
 
-    return dispatch(changePasswordFetch(fetchParams, () =>
+    return dispatch(recoverPasswordFetch(fetchParams, () =>
       setTimeout(() => router.push('/login'), REDIRECTION)
     ));
   }
@@ -52,7 +49,7 @@ export default class ChangePassword extends Component {
     const { error, handleSubmit, submitSucceeded, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleChangePassword)} noValidate>
+      <form onSubmit={handleSubmit(this.handleRecoverPassword)} noValidate>
         <Field
           name="password"
           component={Input}
@@ -74,3 +71,10 @@ export default class ChangePassword extends Component {
     );
   }
 }
+
+export default connect()(withRouter(
+  reduxForm({
+    form: 'ChangePassword',
+    validate,
+  })(RecoverPasswordComponent)
+));

@@ -4,11 +4,7 @@ import { withRouter } from 'react-router';
 import { emailConfirmFetch } from '../actions/auth';
 import { REDIRECTION } from '../constants/application';
 
-@connect(state => ({
-  auth: state.get('auth'),
-}))
-@withRouter
-export default class EmailConfirm extends Component {
+export class EmailConfirmComponent extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -33,9 +29,13 @@ export default class EmailConfirm extends Component {
           <p>Email successfully checked. Redirecting...</p>
         }
         {auth.get('emailConfirmationError') &&
-          <p>{auth.emailConfirmationError}</p>
+          <p>{auth.get('emailConfirmationError')}</p>
         }
       </article>
     );
   }
 }
+
+export default connect(state => ({
+  auth: state.get('auth'),
+}))(withRouter(EmailConfirmComponent));

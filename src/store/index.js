@@ -4,11 +4,7 @@ import rootReducer from '../reducers';
 
 let createStoreWithMiddleware;
 
-if (process.env.NODE_ENV === 'production') {
-  createStoreWithMiddleware = compose(
-    applyMiddleware(thunk)
-  )(createStore);
-} else {
+if (process.env.NODE_ENV === 'development') {
   createStoreWithMiddleware = compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -20,6 +16,10 @@ if (process.env.NODE_ENV === 'production') {
       createStoreWithMiddleware.replaceReducer(rootReducer);
     });
   }
+} else {
+  createStoreWithMiddleware = compose(
+    applyMiddleware(thunk)
+  )(createStore);
 }
 
 const store = createStoreWithMiddleware(rootReducer);

@@ -2,10 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { emailResendFetch } from '../actions/auth';
 
-@connect(state => ({
-  user: state.get('user'),
-}))
-export default class Home extends Component {
+export class HomeComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
@@ -38,3 +35,7 @@ export default class Home extends Component {
     );
   }
 }
+
+export default connect(state => ({
+  user: state.get('user'),
+}))(HomeComponent);

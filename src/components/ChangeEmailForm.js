@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import { Field, reduxForm, propTypes } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { withProps } from 'recompose';
 import { isEmail, isPassword, isRequired, isUsedEmail }
   from '../utils/validator';
 import Input from '../components/Input';
 
-const validate = (values, { initialValues }) => {
+export const validate = (values, { initialValues }) => {
   const { oldEmail, newEmail, password } = values.toJS();
   const currentEmail = initialValues.get('oldEmail');
   const errors = {};
@@ -18,7 +18,7 @@ const validate = (values, { initialValues }) => {
   return errors;
 };
 
-const ChangeEmailForm = (props) => {
+export const ChangeEmailFormComponent = (props) => {
   const { error, handleChangeEmail, handleSubmit, submitSucceeded,
     submitting } = props;
 
@@ -52,9 +52,12 @@ const ChangeEmailForm = (props) => {
   );
 };
 
-ChangeEmailForm.propTypes = {
-  ...propTypes,
+ChangeEmailFormComponent.propTypes = {
+  error: PropTypes.string,
   handleChangeEmail: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitSucceeded: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 export default withProps(({ user }) => ({
@@ -64,4 +67,4 @@ export default withProps(({ user }) => ({
 }))(reduxForm({
   form: 'ChangeEmailForm',
   validate,
-})(ChangeEmailForm));
+})(ChangeEmailFormComponent));

@@ -1,0 +1,29 @@
+exports[`EmailConfirm component snapshot renders with error 1`] = `
+<article>
+  <p>
+    Checking your email...
+  </p>
+  <p>
+    Token not found
+  </p>
+</article>
+`;
+
+exports[`EmailConfirm component snapshot renders with pending request 1`] = `
+<article>
+  <p>
+    Checking your email...
+  </p>
+</article>
+`;
+
+exports[`EmailConfirm component snapshot renders with success 1`] = `
+<article>
+  <p>
+    Checking your email...
+  </p>
+  <p>
+    Email successfully checked. Redirecting...
+  </p>
+</article>
+`;

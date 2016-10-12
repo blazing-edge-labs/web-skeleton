@@ -5,32 +5,32 @@ import { API_URL } from '../constants/application';
 import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
-const signupLoginSuccess = user => ({
+export const signupLoginSuccess = user => ({
   type: SIGNUP_LOGIN_SUCCESS,
   user,
 });
 
-const logoutSuccess = () => ({
+export const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS,
 });
 
-const newEmailConfirmSuccess = (user, deleteKey) => ({
+export const newEmailConfirmSuccess = (user, deleteKey) => ({
   type: NEW_EMAIL_CONFIRM_SUCCESS,
   user,
   deleteKey,
 });
 
-const emailConfirmSuccess = user => ({
+export const emailConfirmSuccess = user => ({
   type: EMAIL_CONFIRM_SUCCESS,
   user,
 });
 
-const emailConfirmFailed = error => ({
+export const emailConfirmFailed = error => ({
   type: EMAIL_CONFIRM_FAILED,
   error,
 });
 
-const authenticate = (values, dispatch, router) =>
+export const authenticate = (values, dispatch, router) =>
   fetch(`${API_URL}/authenticate`, {
     method: 'POST',
     body: JSON.stringify(values),
@@ -78,7 +78,7 @@ export function forgotPasswordFetch(values) {
     );
 }
 
-export function changePasswordFetch(values, callback) {
+export function recoverPasswordFetch(values, callback) {
   return () =>
     fetch(`${API_URL}/changePassword`, {
       method: 'POST',

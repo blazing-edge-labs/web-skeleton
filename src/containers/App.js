@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import { logoutAction } from '../actions/auth';
 
-@connect()
-@withRouter
-export default class App extends Component {
+export class AppComponent extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -37,3 +35,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default connect()(withRouter(AppComponent));

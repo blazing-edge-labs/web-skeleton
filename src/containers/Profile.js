@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { profileGetFetch } from '../actions/profile';
 
-@connect(state => ({
-  user: state.get('user'),
-}))
-export default class Profile extends Component {
+export class ProfileComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
@@ -44,3 +41,7 @@ export default class Profile extends Component {
     );
   }
 }
+
+export default connect(state => ({
+  user: state.get('user'),
+}))(ProfileComponent);

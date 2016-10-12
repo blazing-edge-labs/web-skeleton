@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, propTypes } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { Link, withRouter } from 'react-router';
 import { signupFetch } from '../actions/auth';
 import { isEmail, isPassword, isRequired } from '../utils/validator';
 import Input from '../components/Input';
 
-const validate = (values) => {
+export const validate = (values) => {
   const errors = {};
   const { email, password } = values.toJS();
 
@@ -15,17 +15,13 @@ const validate = (values) => {
   return errors;
 };
 
-@connect()
-@withRouter
-@reduxForm({
-  form: 'Signup',
-  validate,
-})
-export default class Signup extends Component {
+export class SignupComponent extends Component {
   static propTypes = {
-    ...propTypes,
     dispatch: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
+    submitting: PropTypes.bool.isRequired,
   };
 
   constructor() {
@@ -66,3 +62,10 @@ export default class Signup extends Component {
     );
   }
 }
+
+export default connect()(withRouter(
+  reduxForm({
+    form: 'Signup',
+    validate,
+  })(SignupComponent)
+));
