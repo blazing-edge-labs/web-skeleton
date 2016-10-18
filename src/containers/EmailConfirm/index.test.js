@@ -21,7 +21,7 @@ describe('EmailConfirm component', () => {
     />
   );
   const instance = wrapper.instance();
-  Actions.emailConfirmFetch = jest.fn((values, cb) => { cb(); return {} });
+  Actions.emailConfirmFetch = jest.fn((values, cb) => { cb(); return {}; });
 
   it('componentDidMount method', () => {
     instance.componentDidMount();

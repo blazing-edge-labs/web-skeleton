@@ -17,18 +17,18 @@ describe('ForgotPassword component', () => {
     />
   );
   const instance = wrapper.instance();
-  Actions.forgotPasswordFetch = jest.fn(values => ({}));
+  Actions.forgotPasswordFetch = jest.fn(() => ({}));
 
   it('validate function success', () => {
-    const values = fromJS({ email: 'test@email.com' });
-    const errors = validate(values);
+    const newValues = fromJS({ email: 'test@email.com' });
+    const errors = validate(newValues);
 
     expect(errors).toEqual({ email: null });
   });
 
   it('validate function fails', () => {
-    const values = fromJS({ email: 'notAnEmail' });
-    const errors = validate(values);
+    const newValues = fromJS({ email: 'notAnEmail' });
+    const errors = validate(newValues);
 
     expect(errors).toEqual({ email: 'Invalid e-mail address.' });
   });

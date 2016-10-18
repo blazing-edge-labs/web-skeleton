@@ -2,9 +2,6 @@ import * as auth from './auth';
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, NEW_EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_FAILED } from '../constants/actions';
 
-jest.mock('../utils/fetch');
-import fetch from '../utils/fetch';
-
 const user = {
   bio: null,
   confirmed: false,

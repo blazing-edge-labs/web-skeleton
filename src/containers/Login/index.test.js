@@ -15,7 +15,7 @@ describe('Login component', () => {
     />
   );
   const instance = wrapper.instance();
-  Actions.loginFetch = jest.fn(values => ({}));
+  Actions.loginFetch = jest.fn(() => ({}));
 
   it('validate function success', () => {
     const values = fromJS({

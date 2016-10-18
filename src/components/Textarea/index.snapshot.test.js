@@ -88,7 +88,8 @@ describe('Textarea component snapshot', () => {
         label="Email"
         type="email"
         placeholder="Email"
-        maxLength="1000" />
+        maxLength="1000"
+      />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();

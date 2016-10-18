@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { ProfileFormComponent } from './';
 
 describe('ProfileForm component', () => {

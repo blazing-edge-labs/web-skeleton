@@ -1,5 +1,5 @@
-import parseErrors from './parseErrors';
 import { SubmissionError } from 'redux-form';
+import parseErrors from './parseErrors';
 
 describe('parseErrors util', () => {
   it('returns error without debugInfo', () => {

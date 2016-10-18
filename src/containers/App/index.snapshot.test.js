@@ -7,10 +7,9 @@ describe('App component snapshot', () => {
     const children = <div>Test</div>;
     const tree = renderer.create(
       <AppComponent
-        children={children}
         dispatch={() => {}}
         router={{}}
-      />
+      >{children}</AppComponent>
     );
 
     expect(tree.toJSON()).toMatchSnapshot();

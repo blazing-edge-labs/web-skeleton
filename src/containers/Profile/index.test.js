@@ -10,7 +10,7 @@ describe('Profile component', () => {
     <ProfileComponent dispatch={mockDispatch} user={fromJS({ id: 1 })} />
   );
   const instance = wrapper.instance();
-  Actions.profileGetFetch = jest.fn(id => ({}));
+  Actions.profileGetFetch = jest.fn(() => ({}));
 
   it('componentDidMount method', () => {
     instance.componentDidMount();

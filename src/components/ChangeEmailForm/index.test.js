@@ -15,7 +15,7 @@ describe('ChangeEmailForm component', () => {
     });
     const errors = validate(values, { initialValues });
 
-    expect(errors).toEqual({ oldEmail: null, newEmail: null, password: null, });
+    expect(errors).toEqual({ oldEmail: null, newEmail: null, password: null });
   });
 
   it('validate function fails', () => {

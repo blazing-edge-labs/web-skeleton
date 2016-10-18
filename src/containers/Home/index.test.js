@@ -13,7 +13,7 @@ describe('Home component', () => {
     />
   );
   const instance = wrapper.instance();
-  Actions.emailResendFetch = jest.fn(values => ({}));
+  Actions.emailResendFetch = jest.fn(() => ({}));
 
   it('handleEmailResend method', () => {
     const event = {

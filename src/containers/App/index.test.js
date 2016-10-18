@@ -8,13 +8,12 @@ describe('App component', () => {
   const mockDispatch = jest.fn();
   const wrapper = shallow(
     <AppComponent
-      children={children}
       dispatch={mockDispatch}
       router={{}}
-    />
+    >{children}</AppComponent>
   );
   const instance = wrapper.instance();
-  Actions.logoutAction = jest.fn(router => ({}));
+  Actions.logoutAction = jest.fn(() => ({}));
 
   it('handleLogout method', () => {
     const mockPreventDefault = jest.fn();

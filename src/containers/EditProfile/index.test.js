@@ -10,9 +10,9 @@ describe('EditProfile component', () => {
     <EditProfileComponent user={fromJS({ id: '1' })} dispatch={mockDispatch} />
   );
   const instance = wrapper.instance();
-  Actions.profileUpdateFetch = jest.fn((values, id) => ({}));
-  Actions.changeEmailFetch = jest.fn((values) => ({}));
-  Actions.changePasswordFetch = jest.fn((values) => ({}));
+  Actions.profileUpdateFetch = jest.fn(() => ({}));
+  Actions.changeEmailFetch = jest.fn(() => ({}));
+  Actions.changePasswordFetch = jest.fn(() => ({}));
 
   it('handleProfileUpdate method', () => {
     const values = fromJS({

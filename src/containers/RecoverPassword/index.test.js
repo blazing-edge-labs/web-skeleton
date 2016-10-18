@@ -20,7 +20,7 @@ describe('RecoverPassword component', () => {
     />
   );
   const instance = wrapper.instance();
-  Actions.recoverPasswordFetch = jest.fn((values, cb) => { cb(); return {} });
+  Actions.recoverPasswordFetch = jest.fn((values, cb) => { cb(); return {}; });
 
   it('validate function success', () => {
     const values = fromJS({

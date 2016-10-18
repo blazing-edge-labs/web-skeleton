@@ -85,7 +85,8 @@ describe('Input component snapshot', () => {
         input={input}
         label="Email"
         type="email"
-        placeholder="Email" />
+        placeholder="Email"
+      />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();

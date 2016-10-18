@@ -13,7 +13,7 @@ describe('ChangePasswordForm component', () => {
     const errors = validate(values);
 
     expect(errors).toEqual({
-      oldPassword: null, newPassword: null, confirmation: null
+      oldPassword: null, newPassword: null, confirmation: null,
     });
   });
 
