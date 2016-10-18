@@ -4,8 +4,10 @@
   "description": "ECP skeleton for React/Redux web application",
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --profile --colors",
+    "prod": "node prod.js",
+    "snapshots": "jest -u",
     "start": "node server.js",
-    "test": "NODE_ENV=test jest"
+    "test": "jest"
   },
   "author": "ECP",
   "license": "MIT",

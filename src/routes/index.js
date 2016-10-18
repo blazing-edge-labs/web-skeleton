@@ -18,8 +18,8 @@ const Routes = ({ store, history }) =>
       <Route path="/">
         <Route component={App}>
           <IndexRoute component={Home} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/editProfile" component={EditProfile} />
+          <Route path="profile" component={Profile} />
+          <Route path="editProfile" component={EditProfile} />
         </Route>
         <Route path="login" component={Login} />
         <Route path="signup" component={Signup} />
