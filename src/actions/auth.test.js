@@ -65,11 +65,4 @@ describe('auth action creators', () => {
 
     expect(auth.emailConfirmFailed(error)).toEqual(expectedAction);
   });
-
-  it('should authenticate successfully', () => {
-    console.log(auth.authenticate({}, () => {}, {}).then);
-    return auth.authenticate({}, () => {}, {}).then(() => {
-      console.log('hey');
-    });
-  });
 });
