@@ -2,15 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { profileUpdateFetch, changeEmailFetch, changePasswordFetch }
-  from '../actions/profile';
-import ProfileForm from '../components/ProfileForm';
-import ChangeEmailForm from '../components/ChangeEmailForm';
-import ChangePasswordForm from '../components/ChangePasswordForm';
+  from '../../actions/profile';
+import ProfileForm from '../../components/ProfileForm';
+import ChangeEmailForm from '../../components/ChangeEmailForm';
+import ChangePasswordForm from '../../components/ChangePasswordForm';
 
-@connect(state => ({
-  user: state.get('user'),
-}))
-export default class EditProfile extends Component {
+export class EditProfileComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
@@ -58,3 +55,7 @@ export default class EditProfile extends Component {
     );
   }
 }
+
+export default connect(state => ({
+  user: state.get('user'),
+}))(EditProfileComponent);

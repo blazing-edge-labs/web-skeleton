@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import { Field, reduxForm, propTypes } from 'redux-form/immutable';
-import { isPassword, isRequired, isSamePassword } from '../utils/validator';
-import Input from './Input';
+import { Field, reduxForm } from 'redux-form/immutable';
+import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
+import Input from '../Input';
 
-const validate = (values) => {
+export const validate = (values) => {
   const { oldPassword, newPassword, confirmation } = values.toJS();
   const errors = {};
 
@@ -14,8 +14,8 @@ const validate = (values) => {
   return errors;
 };
 
-const ChangePasswordForm = (props) => {
-  const { error, handleSubmit, handleChangePassword, submitSucceeded,
+export const ChangePasswordFormComponent = (props) => {
+  const { error, handleChangePassword, handleSubmit, submitSucceeded,
     submitting } = props;
 
   return (
@@ -48,12 +48,15 @@ const ChangePasswordForm = (props) => {
   );
 };
 
-ChangePasswordForm.propTypes = {
-  ...propTypes,
+ChangePasswordFormComponent.propTypes = {
+  error: PropTypes.string,
   handleChangePassword: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitSucceeded: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({
   form: 'ChangePasswordForm',
   validate,
-})(ChangePasswordForm);
+})(ChangePasswordFormComponent);

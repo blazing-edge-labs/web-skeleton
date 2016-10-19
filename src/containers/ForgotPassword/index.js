@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, propTypes } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { Link } from 'react-router';
-import { forgotPasswordFetch } from '../actions/auth';
-import { isEmail, isRequired } from '../utils/validator';
-import Input from '../components/Input';
+import { forgotPasswordFetch } from '../../actions/auth';
+import { isEmail, isRequired } from '../../utils/validator';
+import Input from '../../components/Input';
 
-const validate = (values) => {
+export const validate = (values) => {
   const errors = {};
   const { email } = values.toJS();
 
@@ -14,15 +14,13 @@ const validate = (values) => {
   return errors;
 };
 
-@connect()
-@reduxForm({
-  form: 'ForgotPassword',
-  validate,
-})
-export default class ForgotPassword extends Component {
+export class ForgotPasswordComponent extends Component {
   static propTypes = {
-    ...propTypes,
     dispatch: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired,
+    submitSucceeded: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired,
   };
 
   constructor() {
@@ -57,3 +55,8 @@ export default class ForgotPassword extends Component {
     );
   }
 }
+
+export default connect()(reduxForm({
+  form: 'ForgotPassword',
+  validate,
+})(ForgotPasswordComponent));

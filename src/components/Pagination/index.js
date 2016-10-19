@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 export default class Pagination extends Component {
   static propTypes = {
-    currentPage: PropTypes.number,
+    currentPage: PropTypes.number.isRequired,
     itemsPerPage: PropTypes.number.isRequired,
     onPaginationChange: PropTypes.func.isRequired,
     total: PropTypes.number.isRequired,
@@ -27,7 +27,7 @@ export default class Pagination extends Component {
   }
 
   clickHandler(i) {
-    return () => this.changePage(i);
+    return () => this.handleChangePage(i);
   }
 
   renderPages() {
@@ -42,7 +42,7 @@ export default class Pagination extends Component {
       i = 1;
       j = 5;
     } else if (currentPage + 2 > this.numOfPages) {
-      i = this.numOfPages - 5;
+      i = this.numOfPages - 4;
       j = this.numOfPages;
     } else {
       i = currentPage - 2;
@@ -75,7 +75,8 @@ export default class Pagination extends Component {
     if (this.numOfPages <= 1) return `Showing all of ${total} results`;
 
     const currentStart = 1 + ((currentPage - 1) * itemsPerPage);
-    const currentEnd = itemsPerPage + ((currentPage - 1) * itemsPerPage);
+    let currentEnd = itemsPerPage + ((currentPage - 1) * itemsPerPage);
+    currentEnd = currentEnd > total ? total : currentEnd;
     return `Showing ${currentStart}-${currentEnd} of ${total} results`;
   }
 

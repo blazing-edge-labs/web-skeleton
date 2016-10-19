@@ -5,7 +5,7 @@ import createFormData from '../utils/createFormData';
 import parseErrors from '../utils/parseErrors';
 import fetch from '../utils/fetch';
 
-const profileUpdateSuccess = user => ({
+export const profileUpdateSuccess = user => ({
   type: PROFILE_UPDATE_SUCCESS,
   user,
 });

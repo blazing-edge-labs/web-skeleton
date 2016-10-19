@@ -2,7 +2,7 @@ import validator from 'validator';
 import { confirmPasswordMsg, emailMsg, notUsedEmailMsg, passwordMsg,
   requiredMsg, usedEmailMsg } from '../constants/errors';
 
-const isEqual = (value, comparison) =>
+export const isEqual = (value, comparison) =>
   validator.equals(String(value), String(comparison));
 
 export function isRequired(value) {

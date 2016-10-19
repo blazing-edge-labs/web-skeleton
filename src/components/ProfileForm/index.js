@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Field, reduxForm, propTypes } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { withProps } from 'recompose';
-import Input from '../components/Input';
-import Textarea from '../components/Textarea';
+import Input from '../Input';
+import Textarea from '../Textarea';
 
-const ProfileForm = (props) => {
+export const ProfileFormComponent = (props) => {
   const { error, handleProfileUpdate, handleSubmit, submitSucceeded,
     submitting } = props;
 
@@ -46,9 +46,12 @@ const ProfileForm = (props) => {
   );
 };
 
-ProfileForm.propTypes = {
-  ...propTypes,
+ProfileFormComponent.propTypes = {
+  error: PropTypes.string,
   handleProfileUpdate: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitSucceeded: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 export default withProps(({ user }) => ({
@@ -59,4 +62,4 @@ export default withProps(({ user }) => ({
   },
 }))(reduxForm({
   form: 'ProfileForm',
-})(ProfileForm));
+})(ProfileFormComponent));

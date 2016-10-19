@@ -14,7 +14,7 @@ export default (state = initialState(), action) => {
     case NEW_EMAIL_CONFIRM_SUCCESS:
       return state.merge(fromJS(action.user)).delete(action.deleteKey);
     case LOGOUT_SUCCESS:
-      return state.merge(initialState());
+      return initialState();
     default:
       return state;
   }
