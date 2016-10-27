@@ -277,7 +277,7 @@ Rich text editor component is implemented using draft-js module. Main component 
 
     <RichTextEditor />
 
-Component has only functionality, without styling. To include styles, or more than initial functionalities, follow examples on [DraftJS](facebook.github.io/draft-js/docs/overview.html#content), and adjust files in following folders: *__BlockStyleControls__*, *__InlineStyleControls__* or *__StyleButton__* accordingly.
+Component has only functionality, without styling. To include styles, or more than initial functionalities, follow examples on [DraftJS](https://facebook.github.io/draft-js/docs/overview.html#content), and adjust files in following folders: *__BlockStyleControls__*, *__InlineStyleControls__* or *__StyleButton__* accordingly.
 
 ## TESTS
 
