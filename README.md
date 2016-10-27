@@ -29,8 +29,9 @@ The repository contains simple startup application with authentication and user 
   - [validator.js](#validatorjs)
 10. [LOCAL STORAGE](#local-storage)
 11. [GENERIC FORM FUNCTIONALITY](#generic-form-functionality)
-12. [TESTS](#tests)
-13. [ISSUES](#issues)
+12. [RICH TEXT EDITOR](#rich-text-editor)
+13. [TESTS](#tests)
+14. [ISSUES](#issues)
 
 
 ## INSTALLATION
@@ -186,6 +187,7 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 
 ### Dependencies
 * babel-polyfill - provides polyfills for full ES6 environment
+* draft-js - library for rich text component
 * es6-promise - provides Promise polyfill
 * font-awesome - Font Awesome library, imported in project entry file and served by Webpack
 * immutable - library which allows immutable persistent data collections
@@ -268,6 +270,14 @@ All forms should follow predefined functionalities and flow described here. All 
 
 If forms are valid and the request has been made we should show appropriate spinners and disable submit button in the process. When we get the response from the API, spinners should disappear and the button should be enabled again. In a case of a successful request, we could optionally show success message which gets removed in case of form resubmission. In a case of failed request, we need to create Redux Form's SubmissionError object out of error object returned by a response. That object will construct generic error message that gets shown beneath form and is directly connected to the form as whole and it also constructs error for each field in case API has created one. These errors get removed in the same way as validation errors do and generic form error disappears if form gets touched.
 
+
+## RICH TEXT EDITOR
+
+Rich text editor component is implemented using draft-js module. Main component is in *__RichTextEditor__* inside *__components__* folder. To include rich text editor, import it in component and include with following:
+
+    <RichTextEditor />
+
+Component has only functionality, without styling. To include styles, or more than initial functionalities, follow examples on [DraftJS](facebook.github.io/draft-js/docs/overview.html#content), and adjust files in following folders: *__BlockStyleControls__*, *__InlineStyleControls__* or *__StyleButton__* accordingly.
 
 ## TESTS
 
