@@ -41,8 +41,8 @@ export const authenticate = (values, dispatch, router) =>
     return router.push('/');
   });
 
-export function signupFetch(values, router) {
-  return dispatch =>
+export const signupFetch = (values, router) =>
+  dispatch =>
     fetch(`${API_URL}/users`, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -51,35 +51,31 @@ export function signupFetch(values, router) {
     ).catch(err =>
       Promise.reject(parseErrors(err))
     );
-}
 
-export function loginFetch(values, router) {
-  return dispatch =>
+export const loginFetch = (values, router) =>
+  dispatch =>
     authenticate(values, dispatch, router).catch(err =>
       Promise.reject(parseErrors(err))
     );
-}
 
-export function logoutAction(router) {
-  return (dispatch) => {
+export const logoutAction = router =>
+  (dispatch) => {
     store.clear();
     dispatch(logoutSuccess());
     return router.push('/login');
   };
-}
 
-export function forgotPasswordFetch(values) {
-  return () =>
+export const forgotPasswordFetch = values =>
+  () =>
     fetch(`${API_URL}/resetPassword`, {
       method: 'POST',
       body: JSON.stringify(values),
     }).catch(err =>
       Promise.reject(parseErrors(err))
     );
-}
 
-export function recoverPasswordFetch(values, callback) {
-  return () =>
+export const recoverPasswordFetch = (values, callback) =>
+  () =>
     fetch(`${API_URL}/changePassword`, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -88,10 +84,9 @@ export function recoverPasswordFetch(values, callback) {
     }).catch(err =>
       Promise.reject(parseErrors(err))
     );
-}
 
-export function emailConfirmFetch(values, callback) {
-  return dispatch =>
+export const emailConfirmFetch = (values, callback) =>
+  dispatch =>
     fetch(`${API_URL}/emailConfirm`, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -110,12 +105,10 @@ export function emailConfirmFetch(values, callback) {
     }).catch(err =>
       dispatch(emailConfirmFailed(err.message))
     );
-}
 
-export function emailResendFetch(values) {
-  return () =>
+export const emailResendFetch = values =>
+  () =>
     fetch(`${API_URL}/resendConfirmation`, {
       method: 'POST',
       body: JSON.stringify(values),
     });
-}

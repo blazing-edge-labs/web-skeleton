@@ -33,7 +33,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel-loader', 'eslint-loader'],
+        loaders: ['babel', 'eslint'],
         exclude: /node_modules/,
       }, {
         test: /\.css$/,
