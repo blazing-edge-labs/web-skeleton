@@ -8,7 +8,7 @@
     "snapshots": "jest -u",
     "dev-start": "node server.js",
     "test": "jest",
-    "postinstall": "npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "author": "ECP",
   "license": "MIT",
