@@ -4,10 +4,11 @@
   "description": "ECP skeleton for React/Redux web application",
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js --progress --profile --colors",
-    "prod": "node prod.js",
+    "start": "node prod.js",
     "snapshots": "jest -u",
-    "start": "node server.js",
-    "test": "jest"
+    "dev-start": "node server.js",
+    "test": "jest",
+    "postinstall": "npm run build"
   },
   "author": "ECP",
   "license": "MIT",
@@ -77,5 +78,8 @@
     "testEnvironment": "node",
     "timers": "fake",
     "rootDir": "src"
+  },
+  "engines": {
+    "node": ">=6.7 <7"
   }
 }
