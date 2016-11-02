@@ -1,12 +1,6 @@
 import React, { PropTypes } from 'react';
 import StyleButton from '../StyleButton';
-
-const INLINE_STYLES = [
-  { label: 'Bold', style: 'BOLD' },
-  { label: 'Italic', style: 'ITALIC' },
-  { label: 'Underline', style: 'UNDERLINE' },
-  { label: 'Monospace', style: 'CODE' },
-];
+import { INLINE_STYLES } from '../../constants/richTextEditor';
 
 const InlineStyleControls = (props) => {
   const { editorState, onToggle } = props;
@@ -28,7 +22,7 @@ const InlineStyleControls = (props) => {
 };
 
 InlineStyleControls.propTypes = {
-  editorState: PropTypes.object,
+  editorState: PropTypes.object.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
 
