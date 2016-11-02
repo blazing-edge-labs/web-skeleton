@@ -1,18 +1,6 @@
 import React, { PropTypes } from 'react';
 import StyleButton from '../StyleButton';
-
-const BLOCK_TYPES = [
-  { label: 'H1', style: 'header-one' },
-  { label: 'H2', style: 'header-two' },
-  { label: 'H3', style: 'header-three' },
-  { label: 'H4', style: 'header-four' },
-  { label: 'H5', style: 'header-five' },
-  { label: 'H6', style: 'header-six' },
-  { label: 'Blockquote', style: 'blockquote' },
-  { label: 'UL', style: 'unordered-list-item' },
-  { label: 'OL', style: 'ordered-list-item' },
-  { label: 'Code Block', style: 'code-block' },
-];
+import BLOCK_TYPES from '../../constants/richTextEditor';
 
 const BlockStyleControls = (props) => {
   const { editorState, onToggle } = props;
@@ -23,7 +11,7 @@ const BlockStyleControls = (props) => {
     .getType();
 
   return (
-    <div className="RichEditor-controls">
+    <div>
       {BLOCK_TYPES.map(type =>
         <StyleButton
           key={type.label}
@@ -38,7 +26,7 @@ const BlockStyleControls = (props) => {
 };
 
 BlockStyleControls.propTypes = {
-  editorState: PropTypes.object,
+  editorState: PropTypes.object.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
 
