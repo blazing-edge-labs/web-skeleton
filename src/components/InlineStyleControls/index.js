@@ -13,7 +13,7 @@ const InlineStyleControls = (props) => {
   const currentStyle = editorState.getCurrentInlineStyle();
 
   return (
-    <div className="RichEditor-controls">
+    <div>
       {INLINE_STYLES.map(type =>
         <StyleButton
           key={type.label}
