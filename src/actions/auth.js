@@ -30,7 +30,7 @@ export const emailConfirmFailed = error => ({
   error,
 });
 
-export const authenticate = (values, dispatch, router) =>
+export const authenticate = (values, dispatch, cb) =>
   fetch(`${API_URL}/authenticate`, {
     method: 'POST',
     body: JSON.stringify(values),
@@ -38,31 +38,31 @@ export const authenticate = (values, dispatch, router) =>
     store.set('token', `Bearer ${resp.token}`);
     store.set('user', resp.user);
     dispatch(signupLoginSuccess(resp.user));
-    return router.push('/');
+    return typeof cb === 'function' && cb();
   });
 
-export const signupFetch = (values, router) =>
+export const signupFetch = (values, cb) =>
   dispatch =>
     fetch(`${API_URL}/users`, {
       method: 'POST',
       body: JSON.stringify(values),
     }).then(() =>
-      authenticate(values, dispatch, router)
+      authenticate(values, dispatch, cb),
     ).catch(err =>
-      Promise.reject(parseErrors(err))
+      Promise.reject(parseErrors(err)),
     );
 
-export const loginFetch = (values, router) =>
+export const loginFetch = (values, cb) =>
   dispatch =>
-    authenticate(values, dispatch, router).catch(err =>
-      Promise.reject(parseErrors(err))
+    authenticate(values, dispatch, cb).catch(err =>
+      Promise.reject(parseErrors(err)),
     );
 
-export const logoutAction = router =>
+export const logoutAction = cb =>
   (dispatch) => {
     store.clear();
     dispatch(logoutSuccess());
-    return router.push('/login');
+    return typeof cb === 'function' && cb();
   };
 
 export const forgotPasswordFetch = values =>
@@ -71,21 +71,21 @@ export const forgotPasswordFetch = values =>
       method: 'POST',
       body: JSON.stringify(values),
     }).catch(err =>
-      Promise.reject(parseErrors(err))
+      Promise.reject(parseErrors(err)),
     );
 
-export const recoverPasswordFetch = (values, callback) =>
+export const recoverPasswordFetch = (values, cb) =>
   () =>
     fetch(`${API_URL}/changePassword`, {
       method: 'POST',
       body: JSON.stringify(values),
-    }).then(() => {
-      if (typeof callback === 'function') callback();
-    }).catch(err =>
-      Promise.reject(parseErrors(err))
+    }).then(() =>
+      typeof cd === 'function' && cb(),
+    ).catch(err =>
+      Promise.reject(parseErrors(err)),
     );
 
-export const emailConfirmFetch = (values, callback) =>
+export const emailConfirmFetch = (values, cb) =>
   dispatch =>
     fetch(`${API_URL}/emailConfirm`, {
       method: 'POST',
@@ -101,9 +101,9 @@ export const emailConfirmFetch = (values, callback) =>
         dispatch(emailConfirmSuccess(user));
       }
       store.set('user', user);
-      if (typeof callback === 'function') callback();
+      return typeof cb === 'function' && cb();
     }).catch(err =>
-      dispatch(emailConfirmFailed(err.message))
+      dispatch(emailConfirmFailed(err.message)),
     );
 
 export const emailResendFetch = values =>

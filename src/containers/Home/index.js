@@ -14,8 +14,9 @@ export class HomeComponent extends Component {
   }
 
   handleEmailResend(e) {
-    e.preventDefault();
     const { dispatch, user } = this.props;
+
+    e.preventDefault();
     return dispatch(emailResendFetch({ email: user.get('email') }));
   }
 
@@ -23,7 +24,7 @@ export class HomeComponent extends Component {
     const { user } = this.props;
 
     return (
-      <article>
+      <main>
         {!user.get('confirmed') &&
           <p>
             You have to confirm your email. Please open email to follow link
@@ -31,7 +32,7 @@ export class HomeComponent extends Component {
           </p>
         }
         <p>Home Page</p>
-      </article>
+      </main>
     );
   }
 }

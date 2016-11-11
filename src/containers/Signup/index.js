@@ -5,6 +5,8 @@ import { Link, withRouter } from 'react-router';
 import { signupFetch } from '../../actions/auth';
 import { isEmail, isPassword, isRequired } from '../../utils/validator';
 import Input from '../../components/Input';
+import ErrorMsg from '../../components/ErrorMsg';
+import Button from '../../components/Button';
 
 export const validate = (values) => {
   const errors = {};
@@ -31,14 +33,14 @@ export class SignupComponent extends Component {
 
   handleSignup(values) {
     const { dispatch, router } = this.props;
-    return dispatch(signupFetch(values, router));
+    return dispatch(signupFetch(values, () => router.push('/')));
   }
 
   render() {
     const { error, handleSubmit, submitting } = this.props;
 
     return (
-      <article>
+      <main>
         <form onSubmit={handleSubmit(this.handleSignup)} noValidate>
           <Field
             name="email"
@@ -54,11 +56,11 @@ export class SignupComponent extends Component {
             type="password"
             placeholder="Password"
           />
-          {error && <p>{error}</p>}
-          <button type="submit" disabled={submitting}>Signup</button>
+          {error && <ErrorMsg>{error}</ErrorMsg>}
+          <Button type="submit" disabled={submitting}>Signup</Button>
         </form>
         <p>Already have an account? <Link to="/login">Log in here</Link></p>
-      </article>
+      </main>
     );
   }
 }
@@ -67,5 +69,5 @@ export default connect()(withRouter(
   reduxForm({
     form: 'Signup',
     validate,
-  })(SignupComponent)
+  })(SignupComponent),
 ));

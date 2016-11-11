@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { withProps } from 'recompose';
 import { isEmail, isPassword, isRequired, isUsedEmail }
   from '../../utils/validator';
 import Input from '../Input';
+import ErrorMsg from '../ErrorMsg';
+import Button from '../Button';
 
 export const validate = (values, { initialValues }) => {
   const { oldEmail, newEmail, password } = values.toJS();
@@ -46,8 +48,8 @@ export const ChangeEmailFormComponent = (props) => {
         placeholder="Password"
       />
       {submitSucceeded && !submitting && <p>Open new email and confirm!</p>}
-      {error && <p>{error}</p>}
-      <button type="submit" disabled={submitting}>Change</button>
+      {error && <ErrorMsg>{error}</ErrorMsg>}
+      <Button type="submit" disabled={submitting}>Change</Button>
     </form>
   );
 };
@@ -60,9 +62,9 @@ ChangeEmailFormComponent.propTypes = {
   submitting: PropTypes.bool.isRequired,
 };
 
-export default withProps(({ user }) => ({
+export default connect(state => ({
   initialValues: {
-    oldEmail: user.get('email'),
+    oldEmail: state.getIn(['user', 'email']),
   },
 }))(reduxForm({
   form: 'ChangeEmailForm',

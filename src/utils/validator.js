@@ -1,29 +1,30 @@
 import validator from 'validator';
-import { confirmPasswordMsg, emailMsg, notUsedEmailMsg, passwordMsg,
-  requiredMsg, usedEmailMsg } from '../constants/errors';
+import { CONFIRM_PASSWORD_MSG, EMAIL_MSG, PASSWORD_MSG, REQUIRED_MSG,
+  UNUSED_EMAIL_MSG, USED_EMAIL_MSG } from '../constants/errors';
 
 export const isEqual = (value, comparison) =>
   validator.equals(String(value), String(comparison));
 
 export function isRequired(value) {
-  return value !== undefined ? null : requiredMsg;
+  return value !== undefined ? null : REQUIRED_MSG;
 }
 
 export function isEmail(value) {
-  return validator.isEmail(String(value)) ? null : emailMsg;
+  return validator.isEmail(String(value)) ? null : EMAIL_MSG;
 }
 
 export function isPassword(value) {
   return value.length >= 8 && (/[A-Z]/).test(value) && (/[a-z]/).test(value) &&
-    (/[0-9]/).test(value) ? null : passwordMsg;
+    (/[0-9]/).test(value) ? null : PASSWORD_MSG;
 }
 
 export function isSamePassword(value, comparison) {
-  return isEqual(String(value), String(comparison)) ? null : confirmPasswordMsg;
+  return isEqual(String(value), String(comparison)) ? null :
+    CONFIRM_PASSWORD_MSG;
 }
 
 export function isUsedEmail(newEmail, oldEmail, shouldBeUsed) {
   const isEql = isEqual(newEmail, oldEmail);
-  if (shouldBeUsed) return isEql ? null : notUsedEmailMsg;
-  return isEql ? usedEmailMsg : null;
+  if (shouldBeUsed) return isEql ? null : UNUSED_EMAIL_MSG;
+  return isEql ? USED_EMAIL_MSG : null;
 }

@@ -6,6 +6,8 @@ import { recoverPasswordFetch } from '../../actions/auth';
 import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
 import { REDIRECTION } from '../../constants/application';
 import Input from '../../components/Input';
+import ErrorMsg from '../../components/ErrorMsg';
+import Button from '../../components/Button';
 
 export const validate = (values) => {
   const errors = {};
@@ -35,13 +37,13 @@ export class RecoverPasswordComponent extends Component {
 
   handleRecoverPassword(values) {
     const { dispatch, params, router } = this.props;
+
     const fetchParams = {
       password: values.get('password'),
       token: params.code,
     };
-
     return dispatch(recoverPasswordFetch(fetchParams, () =>
-      setTimeout(() => router.push('/login'), REDIRECTION)
+      setTimeout(() => router.push('/login'), REDIRECTION),
     ));
   }
 
@@ -49,25 +51,27 @@ export class RecoverPasswordComponent extends Component {
     const { error, handleSubmit, submitSucceeded, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleRecoverPassword)} noValidate>
-        <Field
-          name="password"
-          component={Input}
-          label="New Password"
-          type="password"
-          placeholder="New Email"
-        />
-        <Field
-          name="confirmation"
-          component={Input}
-          label="Confirm Password"
-          type="password"
-          placeholder="Confirm Password"
-        />
-        {submitSucceeded && <p>Password Changed. Redirecting...</p>}
-        {error && <p>{error}</p>}
-        <button type="submit" disabled={submitting}>Change</button>
-      </form>
+      <main>
+        <form onSubmit={handleSubmit(this.handleRecoverPassword)} noValidate>
+          <Field
+            name="password"
+            component={Input}
+            label="New Password"
+            type="password"
+            placeholder="New Email"
+          />
+          <Field
+            name="confirmation"
+            component={Input}
+            label="Confirm Password"
+            type="password"
+            placeholder="Confirm Password"
+          />
+          {submitSucceeded && <p>Password Changed. Redirecting...</p>}
+          {error && <ErrorMsg>{error}</ErrorMsg>}
+          <Button type="submit" disabled={submitting}>Change</Button>
+        </form>
+      </main>
     );
   }
 }
@@ -76,5 +80,5 @@ export default connect()(withRouter(
   reduxForm({
     form: 'ChangePassword',
     validate,
-  })(RecoverPasswordComponent)
+  })(RecoverPasswordComponent),
 ));

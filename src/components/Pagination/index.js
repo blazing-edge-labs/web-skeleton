@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Button from '../Button';
 
 export default class Pagination extends Component {
   static propTypes = {
@@ -58,10 +59,14 @@ export default class Pagination extends Component {
     for (i; i <= j; i += 1) {
       elems.push(
         <li key={i}>
-          {i === currentPage ? i :
-            <button type="button" onClick={this.clickHandler(i)}>{i}</button>
+          {i !== currentPage ?
+            <Button
+              empty
+              type="button"
+              onClick={this.clickHandler(i)}
+            >{i}</Button> : i
           }
-        </li>
+        </li>,
       );
     }
 
@@ -91,43 +96,47 @@ export default class Pagination extends Component {
             <ul>
               { currentPage > 3 && this.numOfPages > 5 &&
                 <li>
-                  <button
+                  <Button
+                    empty
                     type="button"
                     onClick={() => this.handleChangePage(1)}
                   >
                     <i className="fa fa-angle-double-left" />
-                  </button>
+                  </Button>
                 </li>
               }
               { currentPage !== 1 &&
                 <li>
-                  <button
+                  <Button
+                    empty
                     type="button"
                     onClick={() => this.handleChangePage(currentPage - 1)}
                   >
                     <i className="fa fa-angle-left" />
-                  </button>
+                  </Button>
                 </li>
               }
               {this.renderPages()}
               {currentPage !== this.numOfPages &&
                 <li>
-                  <button
+                  <Button
+                    empty
                     type="button"
                     onClick={() => this.handleChangePage(currentPage + 1)}
                   >
                     <i className="fa fa-angle-right" />
-                  </button>
+                  </Button>
                 </li>
               }
               {currentPage < this.numOfPages - 2 && this.numOfPages > 5 &&
                 <li>
-                  <button
+                  <Button
+                    empty
                     type="button"
                     onClick={() => this.handleChangePage(this.numOfPages)}
                   >
                     <i className="fa fa-angle-double-right" />
-                  </button>
+                  </Button>
                 </li>
               }
             </ul>

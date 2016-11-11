@@ -16,9 +16,10 @@ export class AppComponent extends Component {
   }
 
   handleLogout(e) {
-    e.preventDefault();
     const { dispatch, router } = this.props;
-    dispatch(logoutAction(router));
+
+    e.preventDefault();
+    dispatch(logoutAction(() => router.push('/login')));
   }
 
   render() {
@@ -30,7 +31,7 @@ export class AppComponent extends Component {
           <Link to="/profile">Profile</Link>
           <a href onClick={this.handleLogout}>Logout</a>
         </nav>
-        <main>{children}</main>
+        <div>{children}</div>
       </div>
     );
   }

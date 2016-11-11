@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
 import Input from '../Input';
+import ErrorMsg from '../ErrorMsg';
+import Button from '../Button';
 
 export const validate = (values) => {
   const { oldPassword, newPassword, confirmation } = values.toJS();
@@ -42,8 +44,8 @@ export const ChangePasswordFormComponent = (props) => {
         placeholder="Confirm Password"
       />
       {submitSucceeded && <p>Password Changed.</p>}
-      {error && <p>{error}</p>}
-      <button type="submit" disabled={submitting}>Change</button>
+      {error && <ErrorMsg>{error}</ErrorMsg>}
+      <Button type="submit" disabled={submitting}>Change</Button>
     </form>
   );
 };

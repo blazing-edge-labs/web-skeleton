@@ -10,7 +10,7 @@ import ChangePasswordForm from '../../components/ChangePasswordForm';
 export class EditProfileComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    userId: PropTypes.string.isRequired,
   };
 
   constructor() {
@@ -21,8 +21,8 @@ export class EditProfileComponent extends Component {
   }
 
   handleProfileUpdate(values) {
-    const { dispatch, user } = this.props;
-    return dispatch(profileUpdateFetch(values, user.get('id')));
+    const { dispatch, userId } = this.props;
+    return dispatch(profileUpdateFetch(values, userId));
   }
 
   handleChangeEmail(values) {
@@ -32,30 +32,23 @@ export class EditProfileComponent extends Component {
 
   handleChangePassword(values) {
     const { dispatch } = this.props;
+
     const newValues = values.delete('confirmation');
     return dispatch(changePasswordFetch(newValues));
   }
 
   render() {
-    const { user } = this.props;
-
     return (
-      <section>
-        <ProfileForm
-          handleProfileUpdate={this.handleProfileUpdate}
-          user={user}
-        />
-        <ChangeEmailForm
-          handleChangeEmail={this.handleChangeEmail}
-          user={user}
-        />
+      <main>
+        <ProfileForm handleProfileUpdate={this.handleProfileUpdate} />
+        <ChangeEmailForm handleChangeEmail={this.handleChangeEmail} />
         <ChangePasswordForm handleChangePassword={this.handleChangePassword} />
         <Link to="/profile">View Profile</Link>
-      </section>
+      </main>
     );
   }
 }
 
 export default connect(state => ({
-  user: state.get('user'),
+  userId: state.getIn(['user', 'id']),
 }))(EditProfileComponent);

@@ -2,25 +2,26 @@ import 'whatwg-fetch';
 import store from 'store';
 import { browserHistory } from 'react-router';
 
-const defaultHeaders = {
+const defaultHeaders = () => ({
   Authorization: store.get('token') || '',
   'Content-Type': 'application/json',
-};
+});
 
-const mergeDefaults = (options = {}) => {
-  if (options.body instanceof FormData) delete defaultHeaders['Content-Type'];
+export const mergeDefaults = (options = {}) => {
+  const headers = defaultHeaders();
+  if (options.body instanceof FormData) delete headers['Content-Type'];
   return Object.assign({}, options, {
-    headers: Object.assign({}, defaultHeaders, options.headers || {}),
+    headers: Object.assign({}, headers, options.headers || {}),
   });
 };
 
-const parseJSON = res => res.json();
+const parseJSON = resp => resp.json();
 
-const checkStatus = (res) => {
-  if (!res.error) return res;
+export const checkStatus = (resp) => {
+  if (!resp.error) return resp;
 
-  const error = new Error(res.message);
-  error.response = res;
+  const error = new Error(resp.message);
+  Object.assign(error, resp);
   return Promise.reject(error);
 };
 
@@ -29,13 +30,7 @@ export default function (url, options) {
     .then(parseJSON)
     .then(checkStatus)
     .catch((err) => {
-      const { response } = err;
-
-      switch (response.error.status) {
-        case 401:
-          return browserHistory.push('/login');
-        default:
-          return Promise.reject(err);
-      }
+      if (err.error.status === 401) browserHistory.push('/login');
+      return Promise.reject(err);
     });
 }
