@@ -44,7 +44,7 @@ describe('ChangePasswordForm component', () => {
     const wrapper = shallow(
       <ChangePasswordFormComponent {...reduxFormProps} />
     );
-    wrapper.find('button').simulate('click');
+    wrapper.find('form').simulate('submit');
 
     expect(reduxFormProps.handleSubmit)
       .toHaveBeenCalledWith(reduxFormProps.handleChangePassword);

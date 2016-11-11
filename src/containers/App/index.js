@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
+import { withRouter, IndexLink, Link } from 'react-router';
 import { logoutAction } from '../../actions/auth';
 
 export class AppComponent extends Component {
@@ -28,6 +28,7 @@ export class AppComponent extends Component {
     return (
       <div>
         <nav>
+          <IndexLink to="/">Home</IndexLink>
           <Link to="/profile">Profile</Link>
           <a href onClick={this.handleLogout}>Logout</a>
         </nav>

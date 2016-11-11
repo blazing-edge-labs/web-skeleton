@@ -1,12 +1,11 @@
 exports[`Input component snapshot renders basic required data 1`] = `
 <div>
   <label
-    htmlFor="email">
-    <input
-      id="email"
-      name="email"
-      value="" />
-  </label>
+    htmlFor="email" />
+  <input
+    id="email"
+    name="email"
+    value="" />
 </div>
 `;
 
@@ -15,13 +14,13 @@ exports[`Input component snapshot renders extra info and it is active and invali
   <label
     htmlFor="email">
     Email
-    <input
-      id="email"
-      name="email"
-      placeholder="Email"
-      type="email"
-      value="notAnEmail" />
   </label>
+  <input
+    id="email"
+    name="email"
+    placeholder="Email"
+    type="email"
+    value="notAnEmail" />
 </div>
 `;
 
@@ -30,12 +29,14 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
   <label
     htmlFor="email">
     Email
-    <input
-      id="email"
-      name="email"
-      value="notAnEmail" />
   </label>
+  <input
+    id="email"
+    name="email"
+    value="notAnEmail" />
   <p>
+    <i
+      className="fa fa-exclamation-triangle" />
     Input is invalid
   </p>
 </div>
@@ -46,12 +47,14 @@ exports[`Input component snapshot renders label and input is required 1`] = `
   <label
     htmlFor="email">
     Email
-    <input
-      id="email"
-      name="email"
-      value="" />
   </label>
+  <input
+    id="email"
+    name="email"
+    value="" />
   <p>
+    <i
+      className="fa fa-exclamation-triangle" />
     Input required
   </p>
 </div>
@@ -62,10 +65,10 @@ exports[`Input component snapshot renders label and is focused 1`] = `
   <label
     htmlFor="email">
     Email
-    <input
-      id="email"
-      name="email"
-      value="test@email.com" />
   </label>
+  <input
+    id="email"
+    name="email"
+    value="test@email.com" />
 </div>
 `;

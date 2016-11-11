@@ -1,6 +1,7 @@
 import * as auth from './auth';
-import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, NEW_EMAIL_CONFIRM_SUCCESS,
-  EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_FAILED } from '../constants/actions';
+import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
+  EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
+  EMAIL_RESEND_FAILED } from '../constants/actions';
 
 const user = {
   bio: null,
@@ -32,18 +33,6 @@ describe('auth action creators', () => {
     expect(auth.logoutSuccess()).toEqual(expectedAction);
   });
 
-  it('should create an action for successful new email confirmation', () => {
-    const deleteKey = 'newEmail';
-    const expectedAction = {
-      type: NEW_EMAIL_CONFIRM_SUCCESS,
-      user,
-      deleteKey,
-    };
-
-    expect(auth.newEmailConfirmSuccess(user, deleteKey))
-      .toEqual(expectedAction);
-  });
-
   it('should create an action for successfull email confirmation', () => {
     const expectedAction = {
       type: EMAIL_CONFIRM_SUCCESS,
@@ -61,5 +50,31 @@ describe('auth action creators', () => {
     };
 
     expect(auth.emailConfirmFailed(error)).toEqual(expectedAction);
+  });
+
+  it('should create an action for email resend fetching', () => {
+    const expectedAction = {
+      type: EMAIL_RESEND_FETCHING,
+    };
+
+    expect(auth.emailResendFetching()).toEqual(expectedAction);
+  });
+
+  it('should create an action for successfull email resend', () => {
+    const expectedAction = {
+      type: EMAIL_RESEND_SUCCESS,
+    };
+
+    expect(auth.emailResendSuccess()).toEqual(expectedAction);
+  });
+
+  it('should create an anction for failed email resend', () => {
+    const error = 'Resend failed';
+    const expectedAction = {
+      type: EMAIL_RESEND_FAILED,
+      error,
+    };
+
+    expect(auth.emailResendFailed(error)).toEqual(expectedAction);
   });
 });

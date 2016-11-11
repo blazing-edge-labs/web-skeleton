@@ -7,15 +7,12 @@ import Input from '../Input';
 import ErrorMsg from '../ErrorMsg';
 import Button from '../Button';
 
-export const validate = (values, { initialValues }) => {
-  const { oldEmail, newEmail, password } = values.toJS();
-  const currentEmail = initialValues.get('oldEmail');
+export const validate = (values, { currentEmail }) => {
+  const { newEmail, password } = values.toJS();
   const errors = {};
 
-  errors.oldEmail = isRequired(oldEmail) || isEmail(oldEmail) ||
-    isUsedEmail(oldEmail, currentEmail, true);
   errors.newEmail = isRequired(newEmail) || isEmail(newEmail) ||
-    isUsedEmail(newEmail, currentEmail, false);
+    isUsedEmail(newEmail, currentEmail);
   errors.password = isRequired(password) || isPassword(password);
   return errors;
 };
@@ -26,13 +23,6 @@ export const ChangeEmailFormComponent = (props) => {
 
   return (
     <form onSubmit={handleSubmit(handleChangeEmail)} noValidate>
-      <Field
-        name="oldEmail"
-        component={Input}
-        label="Old Email"
-        type="email"
-        placeholder="Old Email"
-      />
       <Field
         name="newEmail"
         component={Input}
@@ -63,9 +53,7 @@ ChangeEmailFormComponent.propTypes = {
 };
 
 export default connect(state => ({
-  initialValues: {
-    oldEmail: state.getIn(['user', 'email']),
-  },
+  currentEmail: state.getIn(['user', 'email']),
 }))(reduxForm({
   form: 'ChangeEmailForm',
   validate,

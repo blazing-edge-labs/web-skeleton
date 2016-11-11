@@ -1,5 +1,5 @@
 exports[`Profile component snapshot render all data 1`] = `
-<section>
+<main>
   <dl>
     <dt>
       Profile Image
@@ -39,11 +39,11 @@ exports[`Profile component snapshot render all data 1`] = `
     style={Object {}}>
     Edit Profile
   </a>
-</section>
+</main>
 `;
 
 exports[`Profile component snapshot render only required email 1`] = `
-<section>
+<main>
   <dl>
     <dt>
       Email
@@ -57,5 +57,5 @@ exports[`Profile component snapshot render only required email 1`] = `
     style={Object {}}>
     Edit Profile
   </a>
-</section>
+</main>
 `;

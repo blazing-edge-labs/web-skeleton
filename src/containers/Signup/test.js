@@ -6,16 +6,19 @@ import * as Actions from '../../actions/auth';
 
 describe('Signup component', () => {
   const mockDispatch = jest.fn();
+  const mockRouter = {
+    push: jest.fn(),
+  };
   const wrapper = shallow(
     <SignupComponent
       dispatch={mockDispatch}
       handleSubmit={() => {}}
-      router={{}}
+      router={mockRouter}
       submitting={false}
     />
   );
   const instance = wrapper.instance();
-  Actions.signupFetch = jest.fn(() => ({}));
+  Actions.signupFetch = jest.fn((values, cb) => cb());
 
   it('validate function success', () => {
     const values = fromJS({
@@ -47,7 +50,9 @@ describe('Signup component', () => {
     });
     instance.handleSignup(values);
 
-    expect(Actions.signupFetch).toHaveBeenCalledWith(values, {});
-    expect(mockDispatch).toHaveBeenCalledWith({});
+    expect(Actions.signupFetch)
+      .toHaveBeenCalledWith(values, jasmine.any(Function));
+    expect(mockRouter.push).toHaveBeenCalledWith('/');
+    expect(mockDispatch).toHaveBeenCalled();
   });
 });

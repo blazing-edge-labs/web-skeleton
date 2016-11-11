@@ -14,7 +14,7 @@ describe('ProfileForm component', () => {
     const wrapper = shallow(
       <ProfileFormComponent {...reduxFormProps} />
     );
-    wrapper.find('button').simulate('click');
+    wrapper.find('form').simulate('submit');
 
     expect(reduxFormProps.handleSubmit)
       .toHaveBeenCalledWith(reduxFormProps.handleProfileUpdate);

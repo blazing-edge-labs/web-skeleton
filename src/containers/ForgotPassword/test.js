@@ -6,8 +6,7 @@ import * as Actions from '../../actions/auth';
 
 describe('ForgotPassword component', () => {
   const mockDispatch = jest.fn();
-  const values = fromJS({ email: 'test@email.com' });
-  const mockHandleSubmit = jest.fn(cb => cb(values));
+  const mockHandleSubmit = jest.fn(cb => cb());
   const wrapper = shallow(
     <ForgotPasswordComponent
       dispatch={mockDispatch}
@@ -20,29 +19,24 @@ describe('ForgotPassword component', () => {
   Actions.forgotPasswordFetch = jest.fn(() => ({}));
 
   it('validate function success', () => {
-    const newValues = fromJS({ email: 'test@email.com' });
-    const errors = validate(newValues);
+    const values = fromJS({ email: 'test@email.com' });
+    const errors = validate(values);
 
     expect(errors).toEqual({ email: null });
   });
 
   it('validate function fails', () => {
-    const newValues = fromJS({ email: 'notAnEmail' });
-    const errors = validate(newValues);
+    const values = fromJS({ email: 'notAnEmail' });
+    const errors = validate(values);
 
     expect(errors).toEqual({ email: 'Invalid e-mail address.' });
   });
 
   it('handleSend method', () => {
+    const values = fromJS({ email: 'test@email.com' });
     instance.handleSend(values);
 
     expect(Actions.forgotPasswordFetch).toHaveBeenCalledWith(values);
-    expect(mockDispatch).toHaveBeenCalledWith({});
-  });
-
-  it('handleSend method on click', () => {
-    wrapper.find('button').simulate('click');
-
-    expect(mockHandleSubmit).toHaveBeenCalledWith(instance.handleSend);
+    expect(mockDispatch).toHaveBeenCalled();
   });
 });

@@ -63,5 +63,6 @@ export default connect(state => ({
     lastname: state.getIn(['user', 'lastname']),
   },
 }))(reduxForm({
+  enableReinitialize: true,
   form: 'ProfileForm',
 })(ProfileFormComponent));

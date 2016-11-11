@@ -21,7 +21,7 @@ describe('EmailConfirm component', () => {
     />
   );
   const instance = wrapper.instance();
-  Actions.emailConfirmFetch = jest.fn((values, cb) => { cb(); return {}; });
+  Actions.emailConfirmFetch = jest.fn((values, cb) => cb());
 
   it('componentDidMount method', () => {
     instance.componentDidMount();
@@ -30,6 +30,6 @@ describe('EmailConfirm component', () => {
     expect(mockRouter.push).toHaveBeenCalledWith('/');
     expect(Actions.emailConfirmFetch)
       .toHaveBeenCalledWith({ token: 'this.is.code' }, jasmine.any(Function));
-    expect(mockDispatch).toHaveBeenCalledWith({});
+    expect(mockDispatch).toHaveBeenCalled();
   });
 });

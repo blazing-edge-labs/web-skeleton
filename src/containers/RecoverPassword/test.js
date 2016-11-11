@@ -20,7 +20,7 @@ describe('RecoverPassword component', () => {
     />
   );
   const instance = wrapper.instance();
-  Actions.recoverPasswordFetch = jest.fn((values, cb) => { cb(); return {}; });
+  Actions.recoverPasswordFetch = jest.fn((values, code, cb) => cb());
 
   it('validate function success', () => {
     const values = fromJS({
@@ -51,16 +51,13 @@ describe('RecoverPassword component', () => {
       password: 'Aa123456',
       confirmation: 'Aa123456',
     });
-    const expected = {
-      password: 'Aa123456',
-      token: 'this.is.code',
-    };
+    const expected = values.delete('confirmation');
     instance.handleRecoverPassword(values);
 
     jest.runAllTimers();
     expect(Actions.recoverPasswordFetch)
-      .toHaveBeenCalledWith(expected, jasmine.any(Function));
-    expect(mockDispatch).toHaveBeenCalledWith({});
+      .toHaveBeenCalledWith(expected, 'this.is.code', jasmine.any(Function));
     expect(mockRouter.push).toHaveBeenCalledWith('/login');
+    expect(mockDispatch).toHaveBeenCalled();
   });
 });

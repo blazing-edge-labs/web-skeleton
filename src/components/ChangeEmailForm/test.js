@@ -6,31 +6,28 @@ import { ChangeEmailFormComponent, validate } from './';
 describe('ChangeEmailForm component', () => {
   it('validate function success', () => {
     const values = fromJS({
-      oldEmail: 'old@email.com',
       newEmail: 'new@email.com',
       password: 'Aa123456',
     });
-    const initialValues = fromJS({
-      oldEmail: 'old@email.com',
-    });
-    const errors = validate(values, { initialValues });
+    const props = {
+      currentEmail: 'old@email.com',
+    };
+    const errors = validate(values, props);
 
-    expect(errors).toEqual({ oldEmail: null, newEmail: null, password: null });
+    expect(errors).toEqual({ newEmail: null, password: null });
   });
 
   it('validate function fails', () => {
     const values = fromJS({
-      oldEmail: 'new@email.com',
       newEmail: 'old@email.com',
       password: 'wrong',
     });
-    const initialValues = fromJS({
-      oldEmail: 'old@email.com',
-    });
-    const errors = validate(values, { initialValues });
+    const props = {
+      currentEmail: 'old@email.com',
+    };
+    const errors = validate(values, props);
 
     expect(errors).toEqual({
-      oldEmail: 'This is not your current email.',
       newEmail: 'You are already using this email.',
       password: 'Password has to be at least 8 characters long and contain at' +
         ' least one uppercase, lowercase and numeric character.',
@@ -48,7 +45,7 @@ describe('ChangeEmailForm component', () => {
     const wrapper = shallow(
       <ChangeEmailFormComponent {...reduxFormProps} />
     );
-    wrapper.find('button').simulate('click');
+    wrapper.find('form').simulate('submit');
 
     expect(reduxFormProps.handleSubmit)
       .toHaveBeenCalledWith(reduxFormProps.handleChangeEmail);

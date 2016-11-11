@@ -7,7 +7,7 @@ import * as Actions from '../../actions/profile';
 describe('EditProfile component', () => {
   const mockDispatch = jest.fn();
   const wrapper = shallow(
-    <EditProfileComponent user={fromJS({ id: '1' })} dispatch={mockDispatch} />
+    <EditProfileComponent userId={1} dispatch={mockDispatch} />
   );
   const instance = wrapper.instance();
   Actions.profileUpdateFetch = jest.fn(() => ({}));
@@ -22,22 +22,19 @@ describe('EditProfile component', () => {
     });
     instance.handleProfileUpdate(values);
 
-    expect(Actions.profileUpdateFetch).toHaveBeenCalledWith(values, '1');
-    expect(mockDispatch).toHaveBeenCalledWith(
-      Actions.profileUpdateFetch(values, '1')
-    );
+    expect(Actions.profileUpdateFetch).toHaveBeenCalledWith(values, 1);
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
   it('handleChangeEmail method', () => {
     const values = fromJS({
-      oldEmail: 'test@email.com',
       newEmail: 'new@email.com',
       password: 'Aa123456',
     });
     instance.handleChangeEmail(values);
 
-    expect(Actions.changeEmailFetch).toHaveBeenCalledWith(values);
-    expect(mockDispatch).toHaveBeenCalledWith(Actions.changeEmailFetch(values));
+    expect(Actions.changeEmailFetch).toHaveBeenCalledWith(values, 1);
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
   it('handleChangePassword method', () => {
@@ -49,7 +46,7 @@ describe('EditProfile component', () => {
     const expected = values.delete('confirmation');
     instance.handleChangePassword(values);
 
-    expect(Actions.changePasswordFetch).toHaveBeenCalledWith(expected);
-    expect(mockDispatch).toHaveBeenCalledWith({});
+    expect(Actions.changePasswordFetch).toHaveBeenCalledWith(expected, 1);
+    expect(mockDispatch).toHaveBeenCalled();
   });
 });

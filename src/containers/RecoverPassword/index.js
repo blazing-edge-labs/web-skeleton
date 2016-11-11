@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 import { recoverPasswordFetch } from '../../actions/auth';
 import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
 import { REDIRECTION } from '../../constants/application';
@@ -36,13 +36,10 @@ export class RecoverPasswordComponent extends Component {
   }
 
   handleRecoverPassword(values) {
-    const { dispatch, params, router } = this.props;
+    const { dispatch, params: { code }, router } = this.props;
 
-    const fetchParams = {
-      password: values.get('password'),
-      token: params.code,
-    };
-    return dispatch(recoverPasswordFetch(fetchParams, () =>
+    const newValues = values.delete('confirmation');
+    return dispatch(recoverPasswordFetch(newValues, code, () =>
       setTimeout(() => router.push('/login'), REDIRECTION),
     ));
   }
@@ -71,6 +68,7 @@ export class RecoverPasswordComponent extends Component {
           {error && <ErrorMsg>{error}</ErrorMsg>}
           <Button type="submit" disabled={submitting}>Change</Button>
         </form>
+        <Link to="/login">Log In</Link>
       </main>
     );
   }

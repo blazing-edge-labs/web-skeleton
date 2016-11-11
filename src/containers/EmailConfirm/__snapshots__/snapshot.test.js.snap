@@ -1,29 +1,31 @@
 exports[`EmailConfirm component snapshot renders with error 1`] = `
-<article>
+<main>
   <p>
     Checking your email...
   </p>
   <p>
+    <i
+      className="fa fa-exclamation-triangle" />
     Token not found
   </p>
-</article>
+</main>
 `;
 
 exports[`EmailConfirm component snapshot renders with pending request 1`] = `
-<article>
+<main>
   <p>
     Checking your email...
   </p>
-</article>
+</main>
 `;
 
 exports[`EmailConfirm component snapshot renders with success 1`] = `
-<article>
+<main>
   <p>
     Checking your email...
   </p>
   <p>
     Email successfully checked. Redirecting...
   </p>
-</article>
+</main>
 `;

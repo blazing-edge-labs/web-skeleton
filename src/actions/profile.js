@@ -29,22 +29,18 @@ export const profileUpdateFetch = (values, userId) =>
       Promise.reject(parseErrors(err)),
     );
 
-export const changeEmailFetch = values =>
+export const changeEmailFetch = (values, userId) =>
   () =>
-    fetch(`${API_URL}/changeEmail`, {
+    fetch(`${API_URL}/users/${userId}/changeEmail`, {
       method: 'POST',
       body: JSON.stringify(values),
-    }).then(() => {
-      const user = store.get('user');
-      user.newEmail = values.get('newEmail');
-      return store.set('user', user);
     }).catch(err =>
       Promise.reject(parseErrors(err)),
     );
 
-export const changePasswordFetch = values =>
+export const changePasswordFetch = (values, userId) =>
   () =>
-    fetch(`${API_URL}/changePassword`, {
+    fetch(`${API_URL}/users/${userId}/changePassword`, {
       method: 'POST',
       body: JSON.stringify(values),
     }).catch(err =>
