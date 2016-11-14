@@ -3,14 +3,24 @@ import { shallow } from 'enzyme';
 import StyleButton from './';
 
 describe('StyleButton component', () => {
-  const onToggle = jest.genMockFunction();
+  const onToggle = jest.fn();
   const wrapper = shallow(
     <StyleButton
-      label="text"
+      label="H1"
       onToggle={onToggle}
-    />);
+      style="header-one"
+    />
+  );
+  const instance = wrapper.instance();
 
-  it('render StyleButton component', () => {
-    expect(wrapper).toBeTruthy();
+  it('onToggle method', () => {
+    const mockPreventDefault = jest.fn();
+    const event = {
+      preventDefault: mockPreventDefault,
+    };
+    instance.onToggle(event);
+
+    expect(mockPreventDefault).toHaveBeenCalledTimes(1);
+    expect(onToggle).toHaveBeenCalledWith('header-one');
   });
 });

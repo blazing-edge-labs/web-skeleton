@@ -4,14 +4,18 @@ import BlockStyleControls from '../BlockStyleControls';
 import InlineStyleControls from '../InlineStyleControls';
 
 export default class RichTextEditor extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    this.onChange = this.onChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.toggleBlockType = this.toggleBlockType.bind(this);
     this.toggleInlineStyle = this.toggleInlineStyle.bind(this);
 
     this.state = { editorState: EditorState.createEmpty() };
-    this.onChange = editorState => this.setState({ editorState });
+  }
+
+  onChange(editorState) {
+    this.setState({ editorState })
   }
 
   toggleBlockType(blockType) {

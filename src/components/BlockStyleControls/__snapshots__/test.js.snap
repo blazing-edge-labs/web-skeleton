@@ -1,0 +1,44 @@
+exports[`BlockStyleControls component snapshot renders basic required data 1`] = `
+<div>
+  <span
+    onMouseDown={[Function]}>
+    H1
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    H2
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    H3
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    H4
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    H5
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    H6
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    Blockquote
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    UL
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    OL
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    Code Block
+  </span>
+</div>
+`;

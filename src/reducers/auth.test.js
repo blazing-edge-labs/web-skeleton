@@ -37,4 +37,40 @@ describe('auth reducer', () => {
       emailResendSuccess: false,
     }));
   });
+
+  it('should handle EMAIL_RESEND_FETCHING', () => {
+    expect(reducer(undefined, {
+      type: EMAIL_RESEND_FETCHING,
+    })).toEqual(fromJS({
+      emailConfirmationError: null,
+      emailConfirmationSuccess: false,
+      emailResendError: null,
+      emailResendSuccess: false,
+    }));
+  });
+
+  it('should handle EMAIL_RESEND_SUCCESS', () => {
+    expect(reducer(undefined, {
+      type: EMAIL_RESEND_SUCCESS,
+    })).toEqual(fromJS({
+      emailConfirmationError: null,
+      emailConfirmationSuccess: false,
+      emailResendError: null,
+      emailResendSuccess: true,
+    }));
+  });
+
+  it('should handle EMAIL_RESEND_FAILED', () => {
+    const error = 'Resend Failed';
+
+    expect(reducer(undefined, {
+      type: EMAIL_RESEND_FAILED,
+      error,
+    })).toEqual(fromJS({
+      emailConfirmationError: null,
+      emailConfirmationSuccess: false,
+      emailResendError: error,
+      emailResendSuccess: false,
+    }));
+  });
 });

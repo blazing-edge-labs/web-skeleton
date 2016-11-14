@@ -2,25 +2,28 @@ import React, { Component, PropTypes } from 'react';
 
 export default class StyleButton extends Component {
   static propTypes = {
+    label: PropTypes.string,
     onToggle: PropTypes.func,
     style: PropTypes.string,
-    label: PropTypes.string,
   }
 
   constructor() {
     super();
-
-    this.onToggle = (e) => {
-      e.preventDefault();
-      this.props.onToggle(this.props.style);
-    };
+    this.onToggle = this.onToggle.bind(this);
   }
 
+  onToggle(e) {
+    const { onToggle, style } = this.props;
+
+    e.preventDefault();
+    onToggle(style);
+  };
+
   render() {
+    const { label } = this.props;
+
     return (
-      <span onMouseDown={this.onToggle}>
-        {this.props.label}
-      </span>
+      <span onMouseDown={this.onToggle}>{label}</span>
     );
   }
 }
