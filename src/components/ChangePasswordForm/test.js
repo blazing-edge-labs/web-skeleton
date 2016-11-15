@@ -36,6 +36,7 @@ describe('ChangePasswordForm component', () => {
   it('renders and submits on click', () => {
     const reduxFormProps = {
       error: null,
+      form: 'Form',
       handleChangePassword: jest.fn(),
       handleSubmit: jest.fn(cb => cb()),
       submitSucceeded: false,

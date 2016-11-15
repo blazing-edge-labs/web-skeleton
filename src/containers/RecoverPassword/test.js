@@ -12,6 +12,7 @@ describe('RecoverPassword component', () => {
   const wrapper = shallow(
     <RecoverPasswordComponent
       dispatch={mockDispatch}
+      form="Form"
       handleSubmit={() => {}}
       params={{ code: 'this.is.code' }}
       router={mockRouter}

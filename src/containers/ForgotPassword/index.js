@@ -20,6 +20,7 @@ export class ForgotPasswordComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.string,
+    form: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     submitSucceeded: PropTypes.bool.isRequired,
     submitting: PropTypes.bool.isRequired,
@@ -36,7 +37,8 @@ export class ForgotPasswordComponent extends Component {
   }
 
   render() {
-    const { error, handleSubmit, submitSucceeded, submitting } = this.props;
+    const { error, form, handleSubmit, submitSucceeded, submitting } =
+      this.props;
 
     return (
       <main>
@@ -44,6 +46,7 @@ export class ForgotPasswordComponent extends Component {
           <Field
             name="email"
             component={Input}
+            id={form}
             label="Email"
             type="email"
             placeholder="Email"

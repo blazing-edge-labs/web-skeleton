@@ -2,17 +2,17 @@ import React, { PropTypes } from 'react';
 import ErrorMsg from '../ErrorMsg';
 
 const Input = (props) => {
-  const { label, input, meta: { active, touched, error }, textarea,
+  const { id, label, input, meta: { active, touched, error }, textarea,
     ...rest } = props;
   const attributes = {
     ...input,
     ...rest,
-    id: input.name,
+    id: `${id}-${input.name}`,
   };
 
   return (
     <div>
-      <label htmlFor={input.name}>
+      <label htmlFor={`${id}-${input.name}`}>
         {label}
       </label>
       {textarea ? <textarea {...attributes} /> : <input {...attributes} />}
@@ -22,6 +22,7 @@ const Input = (props) => {
 };
 
 Input.propTypes = {
+  id: PropTypes.string.isRequired,
   label: PropTypes.string,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,

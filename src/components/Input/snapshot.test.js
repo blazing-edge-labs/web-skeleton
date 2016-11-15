@@ -13,7 +13,7 @@ describe('Input component snapshot', () => {
       name: 'email',
       value: '',
     };
-    const tree = renderer.create(<Input meta={meta} input={input} />);
+    const tree = renderer.create(<Input id="Form" meta={meta} input={input} />);
 
     expect(tree.toJSON()).toMatchSnapshot();
   });
@@ -29,7 +29,7 @@ describe('Input component snapshot', () => {
       value: 'test@email.com',
     };
     const tree = renderer.create(
-      <Input meta={meta} input={input} label="Email" />
+      <Input id="Form" meta={meta} input={input} label="Email" />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
@@ -46,7 +46,7 @@ describe('Input component snapshot', () => {
       value: '',
     };
     const tree = renderer.create(
-      <Input meta={meta} input={input} label="Email" />
+      <Input id="Form" meta={meta} input={input} label="Email" />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
@@ -63,7 +63,7 @@ describe('Input component snapshot', () => {
       value: 'notAnEmail',
     };
     const tree = renderer.create(
-      <Input meta={meta} input={input} label="Email" />
+      <Input id="Form" meta={meta} input={input} label="Email" />
     );
 
     expect(tree.toJSON()).toMatchSnapshot();
@@ -81,6 +81,7 @@ describe('Input component snapshot', () => {
     };
     const tree = renderer.create(
       <Input
+        id="Form"
         meta={meta}
         input={input}
         label="Email"

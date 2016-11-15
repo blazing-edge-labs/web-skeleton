@@ -23,6 +23,7 @@ export class RecoverPasswordComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     error: PropTypes.string,
+    form: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
     router: PropTypes.object.isRequired,
@@ -45,7 +46,8 @@ export class RecoverPasswordComponent extends Component {
   }
 
   render() {
-    const { error, handleSubmit, submitSucceeded, submitting } = this.props;
+    const { error, form, handleSubmit, submitSucceeded, submitting } =
+      this.props;
 
     return (
       <main>
@@ -53,6 +55,7 @@ export class RecoverPasswordComponent extends Component {
           <Field
             name="password"
             component={Input}
+            id={form}
             label="New Password"
             type="password"
             placeholder="New Email"
@@ -60,6 +63,7 @@ export class RecoverPasswordComponent extends Component {
           <Field
             name="confirmation"
             component={Input}
+            id={form}
             label="Confirm Password"
             type="password"
             placeholder="Confirm Password"

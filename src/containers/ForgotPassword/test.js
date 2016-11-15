@@ -10,6 +10,7 @@ describe('ForgotPassword component', () => {
   const wrapper = shallow(
     <ForgotPasswordComponent
       dispatch={mockDispatch}
+      form="Form"
       handleSubmit={mockHandleSubmit}
       submitSucceeded={false}
       submitting={false}

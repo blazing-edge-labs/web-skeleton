@@ -1,9 +1,9 @@
 exports[`Input component snapshot renders basic required data 1`] = `
 <div>
   <label
-    htmlFor="email" />
+    htmlFor="Form-email" />
   <input
-    id="email"
+    id="Form-email"
     name="email"
     value="" />
 </div>
@@ -12,11 +12,11 @@ exports[`Input component snapshot renders basic required data 1`] = `
 exports[`Input component snapshot renders extra info and it is active and invalid 1`] = `
 <div>
   <label
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
-    id="email"
+    id="Form-email"
     name="email"
     placeholder="Email"
     type="email"
@@ -27,11 +27,11 @@ exports[`Input component snapshot renders extra info and it is active and invali
 exports[`Input component snapshot renders label and input is invalid 1`] = `
 <div>
   <label
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
-    id="email"
+    id="Form-email"
     name="email"
     value="notAnEmail" />
   <p>
@@ -45,11 +45,11 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
 exports[`Input component snapshot renders label and input is required 1`] = `
 <div>
   <label
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
-    id="email"
+    id="Form-email"
     name="email"
     value="" />
   <p>
@@ -63,11 +63,11 @@ exports[`Input component snapshot renders label and input is required 1`] = `
 exports[`Input component snapshot renders label and is focused 1`] = `
 <div>
   <label
-    htmlFor="email">
+    htmlFor="Form-email">
     Email
   </label>
   <input
-    id="email"
+    id="Form-email"
     name="email"
     value="test@email.com" />
 </div>

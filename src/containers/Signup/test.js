@@ -12,6 +12,7 @@ describe('Signup component', () => {
   const wrapper = shallow(
     <SignupComponent
       dispatch={mockDispatch}
+      form="Form"
       handleSubmit={() => {}}
       router={mockRouter}
       submitting={false}

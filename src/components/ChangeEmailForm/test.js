@@ -37,6 +37,7 @@ describe('ChangeEmailForm component', () => {
   it('renders and submits on click', () => {
     const reduxFormProps = {
       error: null,
+      form: 'Form',
       handleChangeEmail: jest.fn(),
       handleSubmit: jest.fn(cb => cb()),
       submitSucceeded: false,
