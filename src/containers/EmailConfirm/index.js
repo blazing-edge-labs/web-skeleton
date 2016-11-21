@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { emailConfirmFetch } from '../../actions/auth';
 import { REDIRECTION } from '../../constants/application';
+import ErrorMsg from '../../components/ErrorMsg';
 
 export class EmailConfirmComponent extends Component {
   static propTypes = {
@@ -15,7 +16,7 @@ export class EmailConfirmComponent extends Component {
   componentDidMount() {
     const { dispatch, params, router } = this.props;
     return dispatch(emailConfirmFetch({ token: params.code }, () =>
-      setTimeout(() => router.push('/'), REDIRECTION)
+      setTimeout(() => router.push('/'), REDIRECTION),
     ));
   }
 
@@ -23,15 +24,15 @@ export class EmailConfirmComponent extends Component {
     const { auth } = this.props;
 
     return (
-      <article>
+      <main>
         <p>Checking your email...</p>
         {auth.get('emailConfirmationSuccess') &&
           <p>Email successfully checked. Redirecting...</p>
         }
         {auth.get('emailConfirmationError') &&
-          <p>{auth.get('emailConfirmationError')}</p>
+          <ErrorMsg>{auth.get('emailConfirmationError')}</ErrorMsg>
         }
-      </article>
+      </main>
     );
   }
 }

@@ -19,7 +19,7 @@ export class ProfileComponent extends Component {
     const { bio, email, firstname, image, lastname } = user.toJS();
 
     return (
-      <section>
+      <main>
         <dl>
           {image && <dt>Profile Image</dt>}
           {image &&
@@ -37,7 +37,7 @@ export class ProfileComponent extends Component {
           {bio && <dd>{bio}</dd>}
         </dl>
         <Link to="/editProfile">Edit Profile</Link>
-      </section>
+      </main>
     );
   }
 }

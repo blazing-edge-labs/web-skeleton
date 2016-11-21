@@ -1,0 +1,6 @@
+exports[`StyleButton component snapshot renders basic required data 1`] = `
+<span
+  onMouseDown={[Function]}>
+  H1
+</span>
+`;

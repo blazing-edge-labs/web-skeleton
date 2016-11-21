@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { withProps } from 'recompose';
 import Input from '../Input';
-import Textarea from '../Textarea';
+import ErrorMsg from '../ErrorMsg';
+import Button from '../Button';
 
 export const ProfileFormComponent = (props) => {
-  const { error, handleProfileUpdate, handleSubmit, submitSucceeded,
+  const { error, form, handleProfileUpdate, handleSubmit, submitSucceeded,
     submitting } = props;
 
   return (
@@ -13,12 +14,14 @@ export const ProfileFormComponent = (props) => {
       <Field
         name="image"
         component={Input}
+        id={form}
         label="Profile Image"
         type="file"
       />
       <Field
         name="firstname"
         component={Input}
+        id={form}
         label="First Name"
         type="text"
         placeholder="First Name"
@@ -27,6 +30,7 @@ export const ProfileFormComponent = (props) => {
       <Field
         name="lastname"
         component={Input}
+        id={form}
         label="Last Name"
         type="text"
         placeholder="Last Name"
@@ -34,32 +38,36 @@ export const ProfileFormComponent = (props) => {
       />
       <Field
         name="bio"
-        component={Textarea}
+        component={Input}
+        id={form}
         label="Bio"
         placeholder="Bio"
         maxLength="1000"
+        textarea
       />
       {submitSucceeded && !submitting && <p>Profile Updated</p>}
-      {error && <p>{error}</p>}
-      <button type="submit" disabled={submitting}>Update</button>
+      {error && <ErrorMsg>{error}</ErrorMsg>}
+      <Button type="submit" disabled={submitting}>Update</Button>
     </form>
   );
 };
 
 ProfileFormComponent.propTypes = {
   error: PropTypes.string,
+  form: PropTypes.string.isRequired,
   handleProfileUpdate: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
 
-export default withProps(({ user }) => ({
+export default connect(state => ({
   initialValues: {
-    bio: user.get('bio'),
-    firstname: user.get('firstname'),
-    lastname: user.get('lastname'),
+    bio: state.getIn(['user', 'bio']),
+    firstname: state.getIn(['user', 'firstname']),
+    lastname: state.getIn(['user', 'lastname']),
   },
 }))(reduxForm({
+  enableReinitialize: true,
   form: 'ProfileForm',
 })(ProfileFormComponent));

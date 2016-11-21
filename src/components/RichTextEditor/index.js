@@ -4,31 +4,38 @@ import BlockStyleControls from '../BlockStyleControls';
 import InlineStyleControls from '../InlineStyleControls';
 
 export default class RichTextEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { editorState: EditorState.createEmpty() };
-    this.onChange = editorState => this.setState({ editorState });
+  constructor() {
+    super();
+    this.onChange = this.onChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.toggleBlockType = this.toggleBlockType.bind(this);
     this.toggleInlineStyle = this.toggleInlineStyle.bind(this);
+
+    this.state = { editorState: EditorState.createEmpty() };
+  }
+
+  onChange(editorState) {
+    this.setState({ editorState })
   }
 
   toggleBlockType(blockType) {
     const { editorState } = this.state;
+
     this.onChange(
       RichUtils.toggleBlockType(
         editorState,
-        blockType
+        blockType,
       )
     );
   }
 
   toggleInlineStyle(inlineStyle) {
     const { editorState } = this.state;
+
     this.onChange(
       RichUtils.toggleInlineStyle(
         editorState,
-        inlineStyle
+        inlineStyle,
       )
     );
   }
@@ -36,9 +43,10 @@ export default class RichTextEditor extends Component {
   // handling key commands (cmd+B, cmd+I etc.)
   handleKeyCommand(command) {
     const { editorState } = this.state;
+
     const newState = RichUtils.handleKeyCommand(
       editorState,
-      command
+      command,
     );
 
     if (newState) {

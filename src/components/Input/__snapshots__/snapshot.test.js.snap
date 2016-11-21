@@ -1,0 +1,74 @@
+exports[`Input component snapshot renders basic required data 1`] = `
+<div>
+  <label
+    htmlFor="Form-email" />
+  <input
+    id="Form-email"
+    name="email"
+    value="" />
+</div>
+`;
+
+exports[`Input component snapshot renders extra info and it is active and invalid 1`] = `
+<div>
+  <label
+    htmlFor="Form-email">
+    Email
+  </label>
+  <input
+    id="Form-email"
+    name="email"
+    placeholder="Email"
+    type="email"
+    value="notAnEmail" />
+</div>
+`;
+
+exports[`Input component snapshot renders label and input is invalid 1`] = `
+<div>
+  <label
+    htmlFor="Form-email">
+    Email
+  </label>
+  <input
+    id="Form-email"
+    name="email"
+    value="notAnEmail" />
+  <p>
+    <i
+      className="fa fa-exclamation-triangle" />
+    Input is invalid
+  </p>
+</div>
+`;
+
+exports[`Input component snapshot renders label and input is required 1`] = `
+<div>
+  <label
+    htmlFor="Form-email">
+    Email
+  </label>
+  <input
+    id="Form-email"
+    name="email"
+    value="" />
+  <p>
+    <i
+      className="fa fa-exclamation-triangle" />
+    Input required
+  </p>
+</div>
+`;
+
+exports[`Input component snapshot renders label and is focused 1`] = `
+<div>
+  <label
+    htmlFor="Form-email">
+    Email
+  </label>
+  <input
+    id="Form-email"
+    name="email"
+    value="test@email.com" />
+</div>
+`;

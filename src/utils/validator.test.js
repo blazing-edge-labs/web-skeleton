@@ -50,14 +50,11 @@ describe('validator util', () => {
   });
 
   it('isUsedEmail method returns no error', () => {
-    expect(isUsedEmail('test2@email.com', 'test@email.com', false)).toBeNull();
-    expect(isUsedEmail('test@email.com', 'test@email.com', true)).toBeNull();
+    expect(isUsedEmail('test2@email.com', 'test@email.com')).toBeNull();
   });
 
   it('isUsedEmail method returns error', () => {
-    expect(isUsedEmail('test2@email.com', 'test@email.com', true))
-      .toBe('This is not your current email.');
-    expect(isUsedEmail('test@email.com', 'test@email.com', false))
+    expect(isUsedEmail('test@email.com', 'test@email.com'))
       .toBe('You are already using this email.');
   });
 });

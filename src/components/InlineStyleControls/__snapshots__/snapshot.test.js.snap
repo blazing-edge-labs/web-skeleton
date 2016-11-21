@@ -1,0 +1,20 @@
+exports[`InlineStyleControls component snapshot renders basic required data 1`] = `
+<div>
+  <span
+    onMouseDown={[Function]}>
+    Bold
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    Italic
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    Underline
+  </span>
+  <span
+    onMouseDown={[Function]}>
+    Monospace
+  </span>
+</div>
+`;

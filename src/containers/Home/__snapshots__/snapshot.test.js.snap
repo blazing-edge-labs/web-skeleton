@@ -1,0 +1,72 @@
+exports[`Home component snapshot render with confirm message 1`] = `
+<main>
+  <div>
+    <p>
+      You have to confirm your email. Please open email to follow link or 
+      <a
+        href={true}
+        onClick={[Function]}>
+        resend
+      </a>
+       email.
+    </p>
+  </div>
+  <p>
+    Home Page
+  </p>
+</main>
+`;
+
+exports[`Home component snapshot render with confirm message and email resend error 1`] = `
+<main>
+  <div>
+    <p>
+      You have to confirm your email. Please open email to follow link or 
+      <a
+        href={true}
+        onClick={[Function]}>
+        resend
+      </a>
+       email.
+    </p>
+    <p>
+      <i
+        className="fa fa-exclamation-triangle" />
+      Something went wrong
+    </p>
+  </div>
+  <p>
+    Home Page
+  </p>
+</main>
+`;
+
+exports[`Home component snapshot render with confirm message and email resent 1`] = `
+<main>
+  <div>
+    <p>
+      You have to confirm your email. Please open email to follow link or 
+      <a
+        href={true}
+        onClick={[Function]}>
+        resend
+      </a>
+       email.
+    </p>
+    <p>
+      Email sent!
+    </p>
+  </div>
+  <p>
+    Home Page
+  </p>
+</main>
+`;
+
+exports[`Home component snapshot render without confirm message 1`] = `
+<main>
+  <p>
+    Home Page
+  </p>
+</main>
+`;

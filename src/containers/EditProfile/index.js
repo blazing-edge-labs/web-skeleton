@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { profileUpdateFetch, changeEmailFetch, changePasswordFetch }
   from '../../actions/profile';
 import ProfileForm from '../../components/ProfileForm';
@@ -10,7 +9,7 @@ import ChangePasswordForm from '../../components/ChangePasswordForm';
 export class EditProfileComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    userId: PropTypes.number.isRequired,
   };
 
   constructor() {
@@ -21,41 +20,33 @@ export class EditProfileComponent extends Component {
   }
 
   handleProfileUpdate(values) {
-    const { dispatch, user } = this.props;
-    return dispatch(profileUpdateFetch(values, user.get('id')));
+    const { dispatch, userId } = this.props;
+    return dispatch(profileUpdateFetch(values, userId));
   }
 
   handleChangeEmail(values) {
-    const { dispatch } = this.props;
-    return dispatch(changeEmailFetch(values));
+    const { dispatch, userId } = this.props;
+    return dispatch(changeEmailFetch(values, userId));
   }
 
   handleChangePassword(values) {
-    const { dispatch } = this.props;
+    const { dispatch, userId } = this.props;
+
     const newValues = values.delete('confirmation');
-    return dispatch(changePasswordFetch(newValues));
+    return dispatch(changePasswordFetch(newValues, userId));
   }
 
   render() {
-    const { user } = this.props;
-
     return (
-      <section>
-        <ProfileForm
-          handleProfileUpdate={this.handleProfileUpdate}
-          user={user}
-        />
-        <ChangeEmailForm
-          handleChangeEmail={this.handleChangeEmail}
-          user={user}
-        />
+      <main>
+        <ProfileForm handleProfileUpdate={this.handleProfileUpdate} />
+        <ChangeEmailForm handleChangeEmail={this.handleChangeEmail} />
         <ChangePasswordForm handleChangePassword={this.handleChangePassword} />
-        <Link to="/profile">View Profile</Link>
-      </section>
+      </main>
     );
   }
 }
 
 export default connect(state => ({
-  user: state.get('user'),
+  userId: state.getIn(['user', 'id']),
 }))(EditProfileComponent);

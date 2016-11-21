@@ -5,7 +5,6 @@ describe('parseErrors util', () => {
   it('returns error without debugInfo', () => {
     const error = {
       message: 'Something went wrong',
-      response: {},
     };
     const submissionError = parseErrors(error);
 
@@ -16,12 +15,10 @@ describe('parseErrors util', () => {
   it('returns error with debugInfo', () => {
     const error = {
       message: 'Something went wrong',
-      response: {
-        debugInfo: [
-          { path: 'email', error: 'has to be valid email' },
-          { path: 'password', error: 'has to be at least 8 characters long' },
-        ],
-      },
+      debugInfo: [
+        { path: 'email', error: 'has to be valid email' },
+        { path: 'password', error: 'has to be at least 8 characters long' },
+      ],
     };
     const submissionError = parseErrors(error);
     const expected = new SubmissionError({

@@ -1,0 +1,7 @@
+exports[`ErrorMsg component snapshot renders basic required data 1`] = `
+<p>
+  <i
+    className="fa fa-exclamation-triangle" />
+  Something went wrong.
+</p>
+`;

@@ -30,13 +30,14 @@ The repository contains simple startup application with authentication and user 
 10. [LOCAL STORAGE](#local-storage)
 11. [GENERIC FORM FUNCTIONALITY](#generic-form-functionality)
 12. [RICH TEXT EDITOR](#rich-text-editor)
-13. [TESTS](#tests)
-14. [ISSUES](#issues)
+13. [STYLES](#styles)
+14. [TESTS](#tests)
+15. [ISSUES](#issues)
 
 
 ## INSTALLATION
 
-Recommended way to run this project would be to pull [Skeleton](https://github.com/EastCoastProduct/skeleton) repository and follow instructions to setup local environment. Following those steps wouldn't require a user to make any manual steps to run this project.
+Recommended way to run this project would be to pull [Skeleton](https://github.com/EastCoastProduct/skeleton) repository and follow instructions to setup local environment through Docker. Following those steps wouldn't require a user to make any manual steps to run this project.
 
 This project can also be run as standalone but it depends on existing [API](https://github.com/EastCoastProduct/api-skeleton) to make requests. API should be pulled, installed and configured along with this repository or all requests should be replaced. API requests are held inside */src/actions* folder.
 
@@ -47,7 +48,7 @@ In case of standalone setup, machine needs to have installed:
 Pull or download repo to local machine and run these commands from project's root directory:
 
     npm install
-    npm start
+    npm run dev-start
 
 Open browser on link [http://localhost:7000/login](http://localhost:7000/login).
 
@@ -67,12 +68,18 @@ Output folder in our case is *dist* folder. In this case, we won't have that fol
 
 Plugins section contains optimization plugin along with hot module replacement plugin needed for hot reloading feature. We also define HTML Webpack plugin which creates *index.html* file automatically based out of template file held in *src/index.tpl.html*. This is helpful for us to automatically add bundled script at the end of the body tag and allows us to hash those files like we do in production mode. The last plugin we use defines 3 global variables, 2 of which we use in our app as constants and one that notifies React and other modules that we are running this bundle in development mode. This enables PropTypes validation, hot reloading and some other features that are not needed in production mode.
 
-List of loaders manipulates certain file types and does specific alterations on them. Most important ones are Babel and Eslint loader run on top of all our JS files that are included in a project. Babel transpiles our ES6 code into ES5 and enables it to work for older browsers that don't fully support ES6 features. Eslint checks out syntax and errors out defined by *.eslintrc* configuration file. All other loaders are currently used just to load our Font Awesome library and embed it in a project through JS. This way we save one HTTP request prefetching fonts from the server.
+List of loaders manipulates certain file types and does specific alterations on them. Most important ones are Babel and Eslint loader run on top of all our JS files that are included in a project. Babel transpiles our ES6 code into ES5 and enables it to work for older browsers that don't fully support ES6 features. Eslint checks out syntax and errors out defined by the *.eslintrc* configuration file. All other loaders are currently used to load our Font Awesome library and embed it in a project through JS and to add our base styles and normalize.css into head tag dynamically. This way we save HTTP requests prefetching fonts and styles from the server.
+
+PostCss and node rules at the end are just there to allow prefixing of our default styles and fix PostCss issues with fs.
 
 ### webpack.prod.config.js
 Production configuration is similar to development one. The difference is that our output file is going to be hashed so we can prevent file caching in production mode. Source maps are also different from development mode which is defined by *devtool* property.
 
 There're few more plugins in production mode as we want to enable chunking of common files from other project files, lose the duplicate code, minimize our code and allow aggressive merging policy to get more optimized and minified file that we wouldn't in the case of development mode. In this case, one of our global variables we send is notifying React and other modules that we're running code in production mode so we can get rid of hot reloading and any other unnecessary checking and validation that we use in development mode.
+
+Loaders are doing a similar job as in development mode. Some of the differences are that we don't use linting loader and we are minimizing default styles and adding them to the same style tag.
+
+PostCss and node rules at the end are just there to allow prefixing of our default styles and fix PostCss issues with fs.
 
 ### .babelrc
 This file holds configuration for Babel loader. We have presets defined to allow us to use modern ES6 syntax along with basic React best practices. As a last configuration point, we are defining React hot module replacement preset in case of development mode.
@@ -91,11 +98,10 @@ Some data should be changed corresponding to your project. Generic information l
 ### webpack.config.js | webpack.prod.config.js
 
     new webpack.DefinePlugin({
-      __APP_URL__: JSON.stringify('http://192.168.50.4:7000'),
       __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
     }),
 
-These lines define global variables that get passed to bundled project. We are passing *__APP_URL__* and *__API_URL__* as global variables which we use inside the application as Web and API constants. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
+These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as global variable which we use inside the application as Web and API constant. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
 
 ### src/index.tpl.html
 Title inside template should be updated to the corresponding one instead of generic one. Favicon link doesn't exist with skeleton example which should probably be added manually.
@@ -135,13 +141,18 @@ This serves production ready code from *dist* folder and allows it to be tested 
     │   ├── reducers             # root reducer setup importing individual reducers
     │   ├── routes               # React Router setup
     │   ├── store                # store setup for development and production
+    │   ├── styles               # default styles, mixins and style variables
     │   ├── utils                # reusable modules like validator, error parser...
     │   ├── index.js             # entry point for our React/Redux application
-    │   └── index.tpl.html       # template html from which html-webpack-plugin creates output html file including hashed JS files
+    │   ├── index.tpl.html       # template html from which html-webpack-plugin creates output html file including hashed JS files
+    │   └── setupTests.js        # setup testing environment prior to executing tests
+    ├── test                     # folder which contains Jest testing cache and coverage reports
     ├── .babelrc                 # babel configuration including ES6 syntax
     ├── .eslintrc                # eslint configuration based on airbnb setup
+    ├── .git                     # git configuration file
     ├── .gitignore               # ignore setup for git
-    ├── .docker-start.sh         # automated script that runs after Docker configuration
+    ├── circle.yml               # Circle CI configuration file
+    ├── docker-start.sh          # automated script that runs after Docker configuration
     ├── Dockerfile               # Docker configuration file
     ├── package.json             # module dependancy
     ├── prod.js                  # express server to test production-ready bundle
@@ -156,6 +167,7 @@ This serves production ready code from *dist* folder and allows it to be tested 
 Modules list is defined in *package.json*. Purpose of each module in project is listed:
 
 ### DevDependencies
+* autoprefixer - parses CSS and adds vendor prefixes
 * babel-core - Babel compiler core module
 * babel-eslint - module allows linting of all valid Babel code
 * babel-jest - Babel plugin for Jest
@@ -174,11 +186,16 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * eslint-plugin-jsx-a11y - Airbnb's config dependency, static analysis linter of JSX and accessibility with screen readers
 * eslint-plugin-react - Airbnb's config dependency, provides React specific linting rules
 * express - minimalistic Node framework used to serve files in development and allow hot reloading feature
+* fetch-mock - library to mock fetch calls in testing environment
+* file-api - library that mocks browser's File API for tests that run in node environment
 * file-loader - Webpack file loader, constructs MD5 hash filename and emits files
 * html-webpack-plugin - simplifies creation of *index.html* file through Webpack
 * jest - JS testing framework, best tool to rest React/Redux applications
+* postcss-js - PostCss library for CSS-in-JS default styles
+* postcss-loader - Webpack PostCss loader
 * react-addons-test-utils - package provides React TestUtils add-on, it is also dependency of Enzyme
 * react-test-renderer - React package used for snapshot testing
+* redux-mock-store - library to mock Redux store for test environment
 * style-loader - Webpack style loader, adds CSS to DOM by injecting style tags
 * url-loader - Webpack URL loader, returns Data URL if file is smaller than limit
 * webpack - JS bundler for tasks automation
@@ -186,16 +203,17 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * webpack-hot-middleware - Webpack hot reloading attached to express server
 
 ### Dependencies
+* aphrodite - library to write inline styles
 * babel-polyfill - provides polyfills for full ES6 environment
-* draft-js - library for rich text component
+* draft-js - library for text editors
 * es6-promise - provides Promise polyfill
 * font-awesome - Font Awesome library, imported in project entry file and served by Webpack
 * immutable - library which allows immutable persistent data collections
+* normalize.css - library which collects cross-browser alternative to resets
 * react - JS framework for building user interfaces
 * react-dom - React package, allows working with DOM, used to hook up React application to template DOM served by *index.html*
 * react-redux - React bindings for Redux
 * react-router - React routing library
-* recompose - HOC wrapper to allow passing data from connected components to components wrapped by Redux Form decorator
 * redux - persistent state management library
 * redux-form - HOC wrapper for form components, allows basic form functionality and reduces boilerplate
 * redux-immutablejs - provides integration between Immutable and Redux
@@ -278,6 +296,14 @@ Rich text editor component is implemented using draft-js module. Main component 
     <RichTextEditor />
 
 Component has only functionality, without styling. To include styles, or more than initial functionalities, follow examples on [DraftJS](https://facebook.github.io/draft-js/docs/overview.html#content), and adjust files in following folders: *__BlockStyleControls__*, *__InlineStyleControls__* or *__StyleButton__* accordingly.
+
+
+## STYLES
+
+Styling is done using Aphrodite module. This is a library that allows writing styles with JS and style each component separately. Each style for each component is held in the same directory. Some reusable styles are held inside *src/styles* folder in mixins file. Also, we are holding all colors, fonts, sizes, etc. in variables file. From here we can import any of these variables and mixins to any of our component styling files and reuse same rules and definitions. Aphrodite inserts style tag in the head of HTML page asynchronously after HTML gets generated. This makes all CSS pseudo-elements workable and no bad JS fixes are needed.
+
+To insert default styles like *normalize.css* and resets we need to use something other than Aphrodite. In this case, we have PostCss loader and some other modules (postcss-js, autoprefixer...) wrapped together to parse default styles that are held inside *src/styles* folder. We have configured to parse *default.base.styles.js* file to CSS and insert it along with *normalize.css* into style tag held inside head tag. All of this is configured through Webpack.
+
 
 ## TESTS
 

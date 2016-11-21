@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
 import Input from '../Input';
+import ErrorMsg from '../ErrorMsg';
+import Button from '../Button';
 
 export const validate = (values) => {
   const { oldPassword, newPassword, confirmation } = values.toJS();
@@ -15,7 +17,7 @@ export const validate = (values) => {
 };
 
 export const ChangePasswordFormComponent = (props) => {
-  const { error, handleChangePassword, handleSubmit, submitSucceeded,
+  const { error, form, handleChangePassword, handleSubmit, submitSucceeded,
     submitting } = props;
 
   return (
@@ -23,6 +25,7 @@ export const ChangePasswordFormComponent = (props) => {
       <Field
         name="oldPassword"
         component={Input}
+        id={form}
         label="Current Password"
         type="password"
         placeholder="Current Password"
@@ -30,6 +33,7 @@ export const ChangePasswordFormComponent = (props) => {
       <Field
         name="newPassword"
         component={Input}
+        id={form}
         label="New Password"
         type="password"
         placeholder="New Password"
@@ -37,19 +41,21 @@ export const ChangePasswordFormComponent = (props) => {
       <Field
         name="confirmation"
         component={Input}
+        id={form}
         label="Confirm Password"
         type="password"
         placeholder="Confirm Password"
       />
       {submitSucceeded && <p>Password Changed.</p>}
-      {error && <p>{error}</p>}
-      <button type="submit" disabled={submitting}>Change</button>
+      {error && <ErrorMsg>{error}</ErrorMsg>}
+      <Button type="submit" disabled={submitting}>Change</Button>
     </form>
   );
 };
 
 ChangePasswordFormComponent.propTypes = {
   error: PropTypes.string,
+  form: PropTypes.string.isRequired,
   handleChangePassword: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,

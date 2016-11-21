@@ -10,16 +10,15 @@ export const profileUpdateSuccess = user => ({
   user,
 });
 
-export function profileGetFetch(userId) {
-  return dispatch =>
+export const profileGetFetch = userId =>
+  dispatch =>
     fetch(`${API_URL}/users/${userId}`).then((resp) => {
       store.set('user', resp);
       return dispatch(profileUpdateSuccess(resp));
     });
-}
 
-export function profileUpdateFetch(values, userId) {
-  return dispatch =>
+export const profileUpdateFetch = (values, userId) =>
+  dispatch =>
     fetch(`${API_URL}/users/${userId}`, {
       method: 'POST',
       body: createFormData(values),
@@ -27,30 +26,23 @@ export function profileUpdateFetch(values, userId) {
       store.set('user', resp);
       return dispatch(profileUpdateSuccess(resp));
     }).catch(err =>
-      Promise.reject(parseErrors(err))
+      Promise.reject(parseErrors(err)),
     );
-}
 
-export function changeEmailFetch(values) {
-  return () =>
-    fetch(`${API_URL}/changeEmail`, {
-      method: 'POST',
-      body: JSON.stringify(values),
-    }).then(() => {
-      const user = store.get('user');
-      user.newEmail = values.get('newEmail');
-      return store.set('user', user);
-    }).catch(err =>
-      Promise.reject(parseErrors(err))
-    );
-}
-
-export function changePasswordFetch(values) {
-  return () =>
-    fetch(`${API_URL}/changePassword`, {
+export const changeEmailFetch = (values, userId) =>
+  () =>
+    fetch(`${API_URL}/users/${userId}/changeEmail`, {
       method: 'POST',
       body: JSON.stringify(values),
     }).catch(err =>
-      Promise.reject(parseErrors(err))
+      Promise.reject(parseErrors(err)),
     );
-}
+
+export const changePasswordFetch = (values, userId) =>
+  () =>
+    fetch(`${API_URL}/users/${userId}/changePassword`, {
+      method: 'POST',
+      body: JSON.stringify(values),
+    }).catch(err =>
+      Promise.reject(parseErrors(err)),
+    );
