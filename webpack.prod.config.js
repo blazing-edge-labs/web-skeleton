@@ -46,7 +46,7 @@ module.exports = {
       }, {
         test: /\.json$/,
         loader: 'json',
-      }{
+      }, {
         test: /\.css$/,
         loaders: ['style?singleton', 'css?minimize'],
       }, {

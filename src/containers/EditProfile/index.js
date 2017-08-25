@@ -32,7 +32,7 @@ export class EditProfileComponent extends Component {
   handleChangePassword(values) {
     const { dispatch, userId } = this.props;
 
-    const newValues = values.delete('confirmation');
+    const newValues = { ...values, confirmation: undefined };
     return dispatch(changePasswordFetch(newValues, userId));
   }
 
@@ -48,5 +48,5 @@ export class EditProfileComponent extends Component {
 }
 
 export default connect(state => ({
-  userId: state.getIn(['user', 'id']),
+  userId: state.user.id,
 }))(EditProfileComponent);

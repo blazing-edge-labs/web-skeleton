@@ -19,7 +19,7 @@ export class HomeComponent extends Component {
     const { dispatch, user } = this.props;
 
     e.preventDefault();
-    return dispatch(emailResendFetch(user.get('id')));
+    return dispatch(emailResendFetch(user.id));
   }
 
   render() {
@@ -27,15 +27,15 @@ export class HomeComponent extends Component {
 
     return (
       <main>
-        {!user.get('confirmed') &&
+        {!user.confirmed &&
           <div>
             <p>
               You have to confirm your email. Please open email to follow link
               or <a href onClick={this.handleEmailResend}>resend</a> email.
             </p>
-            {auth.get('emailResendSuccess') && <p>Email sent!</p>}
-            {auth.get('emailResendError') &&
-              <ErrorMsg>{auth.get('emailResendError')}</ErrorMsg>
+            {auth.emailResendSuccess && <p>Email sent!</p>}
+            {auth.emailResendError &&
+              <ErrorMsg>{auth.emailResendError}</ErrorMsg>
             }
           </div>
         }
@@ -46,6 +46,6 @@ export class HomeComponent extends Component {
 }
 
 export default connect(state => ({
-  auth: state.get('auth'),
-  user: state.get('user'),
+  auth: state.auth,
+  user: state.user,
 }))(HomeComponent);

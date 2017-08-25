@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
 import Input from '../Input';
 import ErrorMsg from '../ErrorMsg';
 import Button from '../Button';
 
 export const validate = (values) => {
-  const { oldPassword, newPassword, confirmation } = values.toJS();
+  const { oldPassword, newPassword, confirmation } = values;
   const errors = {};
 
   errors.oldPassword = isRequired(oldPassword) || isPassword(oldPassword);

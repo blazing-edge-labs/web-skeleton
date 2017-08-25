@@ -1,10 +1,9 @@
 import { createStore } from 'redux';
-import { fromJS } from 'immutable';
 import { LOGOUT_SUCCESS } from '../constants/actions';
 import rootReducer from './';
 
 describe('root reducer', () => {
-  const initialState = fromJS({
+  const initialState = {
     auth: {
       emailConfirmationError: null,
       emailConfirmationSuccess: false,
@@ -13,7 +12,7 @@ describe('root reducer', () => {
     },
     form: {},
     user: {},
-  });
+  };
 
   it('should return initial state for combined reducers', () => {
     const store = createStore(rootReducer);
@@ -21,7 +20,7 @@ describe('root reducer', () => {
   });
 
   it('should return initial state for logout action', () => {
-    const newState = fromJS({
+    const newState = {
       auth: {
         emailConfirmationError: 'Token doesn\'t exist',
         emailConfirmationSuccess: false,
@@ -43,7 +42,7 @@ describe('root reducer', () => {
         email: 'firstname4.lastname4@mail.com',
         confirmed: true,
       },
-    });
+    };
     expect(rootReducer(newState, { type: LOGOUT_SUCCESS }))
       .toEqual(initialState);
   });

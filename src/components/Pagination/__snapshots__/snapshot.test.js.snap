@@ -11,7 +11,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         2
@@ -19,7 +19,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         3
@@ -27,7 +27,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         4
@@ -35,7 +35,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         5
@@ -43,7 +43,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -52,7 +52,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -71,7 +71,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
   <ul>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -80,7 +80,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -89,7 +89,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         3
@@ -97,7 +97,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         4
@@ -108,7 +108,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         6
@@ -116,7 +116,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         7
@@ -124,7 +124,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -133,7 +133,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -152,7 +152,7 @@ exports[`Pagination component snapshot renders data with current page being last
   <ul>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -161,7 +161,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -170,7 +170,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         4
@@ -178,7 +178,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         5
@@ -186,7 +186,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         6
@@ -194,7 +194,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         7
@@ -215,7 +215,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
   <ul>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i
@@ -224,7 +224,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         1
@@ -235,7 +235,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         3
@@ -243,7 +243,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
     </li>
     <li>
       <button
-        className="empty_1b6lvt9"
+        className="empty_6ajk08"
         onClick={[Function]}
         type="button">
         <i

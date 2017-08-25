@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { AppComponent } from './';
 import * as Actions from '../../actions/auth';
 

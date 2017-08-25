@@ -1,4 +1,3 @@
-import { fromJS } from 'immutable';
 import reducer from './user';
 import { SIGNUP_LOGIN_SUCCESS, EMAIL_CONFIRM_SUCCESS, PROFILE_UPDATE_SUCCESS }
   from '../constants/actions';
@@ -17,11 +16,11 @@ const defaultUser = {
 
 describe('user reducer', () => {
   it('should return empty initial state', () => {
-    expect(reducer(undefined, {})).toEqual(fromJS({}));
+    expect(reducer(undefined, {})).toEqual({});
   });
 
   it('should return initial state', () => {
-    expect(reducer(fromJS(defaultUser), {})).toEqual(fromJS({
+    expect(reducer(defaultUser, {})).toEqual({
       bio: null,
       confirmed: false,
       createdAt: '2016-10-06T14:55:40.708Z',
@@ -31,14 +30,14 @@ describe('user reducer', () => {
       lastname: null,
       resourceId: null,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    }));
+    });
   });
 
   it('should handle SIGNUP_LOGIN_SUCCESS', () => {
     expect(reducer(undefined, {
       type: SIGNUP_LOGIN_SUCCESS,
       user: defaultUser,
-    })).toEqual(fromJS({
+    })).toEqual({
       bio: null,
       confirmed: false,
       createdAt: '2016-10-06T14:55:40.708Z',
@@ -48,16 +47,16 @@ describe('user reducer', () => {
       lastname: null,
       resourceId: null,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    }));
+    });
   });
 
   it('should handle EMAIL_CONFIRM_SUCCESS', () => {
-    const user = fromJS(defaultUser).set('confirmed', true);
+    const user = { ...defaultUser, confirmed: true };
 
     expect(reducer(undefined, {
       type: EMAIL_CONFIRM_SUCCESS,
       user,
-    })).toEqual(fromJS({
+    })).toEqual({
       bio: null,
       confirmed: true,
       createdAt: '2016-10-06T14:55:40.708Z',
@@ -67,23 +66,24 @@ describe('user reducer', () => {
       lastname: null,
       resourceId: null,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    }));
+    });
   });
 
   it('should handle PROFILE_UPDATE_SUCCESS', () => {
-    const user = fromJS(defaultUser).merge(fromJS({
+    const user = {
+      ...defaultUser,
       bio: 'This is my bio',
       confirmed: true,
       firstname: 'John',
       image: 'link.to.image',
       lastname: 'Doe',
       resourceId: 1,
-    }));
+    };
 
     expect(reducer(undefined, {
       type: PROFILE_UPDATE_SUCCESS,
       user,
-    })).toEqual(fromJS({
+    })).toEqual({
       bio: 'This is my bio',
       confirmed: true,
       createdAt: '2016-10-06T14:55:40.708Z',
@@ -94,6 +94,6 @@ describe('user reducer', () => {
       lastname: 'Doe',
       resourceId: 1,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    }));
+    });
   });
 });

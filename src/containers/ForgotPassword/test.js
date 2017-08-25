@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { ForgotPasswordComponent, validate } from './';
 import * as Actions from '../../actions/auth';
 
@@ -20,21 +19,21 @@ describe('ForgotPassword component', () => {
   Actions.forgotPasswordFetch = jest.fn(() => ({}));
 
   it('validate function success', () => {
-    const values = fromJS({ email: 'test@email.com' });
+    const values = { email: 'test@email.com' };
     const errors = validate(values);
 
     expect(errors).toEqual({ email: null });
   });
 
   it('validate function fails', () => {
-    const values = fromJS({ email: 'notAnEmail' });
+    const values = { email: 'notAnEmail' };
     const errors = validate(values);
 
     expect(errors).toEqual({ email: 'Invalid e-mail address.' });
   });
 
   it('handleSend method', () => {
-    const values = fromJS({ email: 'test@email.com' });
+    const values = { email: 'test@email.com' };
     instance.handleSend(values);
 
     expect(Actions.forgotPasswordFetch).toHaveBeenCalledWith(values);

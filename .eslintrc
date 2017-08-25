@@ -4,7 +4,9 @@
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "jest": true,
+    "jasmine": true
   },
   "globals": {
     "__API_URL__": true
@@ -29,6 +31,16 @@
     }],
     "react/forbid-prop-types": 0,
     "react/jsx-filename-extension": 0,
-    "strict": 0
+    "strict": 0,
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore"
+    }],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["server.js", "**/*.test.js", "**/test.js"]
+    }]
   }
 }

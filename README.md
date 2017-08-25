@@ -208,7 +208,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * draft-js - library for text editors
 * es6-promise - provides Promise polyfill
 * font-awesome - Font Awesome library, imported in project entry file and served by Webpack
-* immutable - library which allows immutable persistent data collections
 * normalize.css - library which collects cross-browser alternative to resets
 * react - JS framework for building user interfaces
 * react-dom - React package, allows working with DOM, used to hook up React application to template DOM served by *index.html*
@@ -216,7 +215,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * react-router - React routing library
 * redux - persistent state management library
 * redux-form - HOC wrapper for form components, allows basic form functionality and reduces boilerplate
-* redux-immutablejs - provides integration between Immutable and Redux
 * redux-thunk - Redux middleware which allows async actions
 * store - localStorage wrapper for all browsers, simplifies writing to and reading from localStorage
 * validator - provides data validation
@@ -251,7 +249,7 @@ Main differences between them are reusability, state access, and route represent
 
 Redux ecosystem is based on Flux proposition. Redux is used as state container and allows us to manage state through actions and reducers. State of the application is held inside the store. The configuration of store depends on our reducers which represent our state.
 
-All reducers are held in *reducers* folder and each one of them represents part of state held under specific property in immutable Map. All reducers are combined in *index.js* file and we also add Redux Form reducer under *form* property name where all forms are held. This configuration returns immutable Map as root reducer to our store configuration. Because we are using immutable data we are importing *combineReducer* function from *redux-immutablejs* module instead of official React bindings for Redux (*react-redux* module).
+All reducers are held in *reducers* folder and each one of them represents part of state held under specific property. All reducers are combined in *index.js* file and we also add Redux Form reducer under *form* property name where all forms are held. 
 
 Redux by design can only dispatch synchronous actions which is why we import *redux-thunk* module that allows us to dispatch asynchronous actions while making requests. Our store configuration is different depending on environment mode. In a case of the production mode we are creating store applying thunk middleware to allow async actions, but in a case of any other environment, we are also applying Redux DevTools extension and hot module replacement for reducers. Configured store is exported and used inside Provider which is the top component of our application provided by React bindings for Redux. Provider component makes state available to connect decorator which in the end passes parts of the state to our container components.
 
@@ -265,7 +263,7 @@ All actions have to be unique so we keep them in the same file as constants, *sr
 Folder contains shareable files that provide functionality on top of current React and Redux logic which is spread across all other folders:
 
 ### createFormData.js
-A module that creates FormData object used in multipart API POST request and returns it. The function takes iterable as a parameter. Data in our app is immutable and it can be iterated to construct FormData object out of all values that our iterable contains.
+A module that creates FormData object used in multipart API POST request and returns it. The function takes iterable as a parameter.
 
 ### fetch.js
 A module which exports Fetch API. We don't call Fetch API immediately from our actions because with every request there is a bunch of repeatable processes through which our request needs to go. That is why this module contains all reusable functionality and configuration. Prior to every request, we have *Authorization* header and usually *Content-Type* header to set. We merge those default headers with other options passed to the module. Upon every successful response we need to parse JSON data into readable objects and we need to check the status of our request. By specification, Fetch API Promises reject only in case of exceptions so we need to manually check the status of response and manually reject in case our API responded with the error. The last thing to check is when our Fetch API Promise gets rejected. In that case, we want to make sure that we redirect all 401 statuses back to Login page because the user doesn't have permissions to access our application.

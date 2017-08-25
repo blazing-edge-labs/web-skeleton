@@ -7,7 +7,7 @@ exports[`Button component snapshot renders basic required data 1`] = `
 
 exports[`Button component snapshot renders empty button 1`] = `
 <button
-  className="empty_1b6lvt9">
+  className="empty_6ajk08">
   Login
 </button>
 `;

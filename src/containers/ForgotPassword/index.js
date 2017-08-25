@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import { forgotPasswordFetch } from '../../actions/auth';
 import { isEmail, isRequired } from '../../utils/validator';
@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 
 export const validate = (values) => {
   const errors = {};
-  const email = values.get('email');
+  const { email } = values;
 
   errors.email = isRequired(email) || isEmail(email);
   return errors;

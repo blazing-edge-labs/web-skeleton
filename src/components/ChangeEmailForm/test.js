@@ -1,14 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { ChangeEmailFormComponent, validate } from './';
 
 describe('ChangeEmailForm component', () => {
   it('validate function success', () => {
-    const values = fromJS({
+    const values = {
       newEmail: 'new@email.com',
       password: 'Aa123456',
-    });
+    };
     const props = {
       currentEmail: 'old@email.com',
     };
@@ -18,10 +17,10 @@ describe('ChangeEmailForm component', () => {
   });
 
   it('validate function fails', () => {
-    const values = fromJS({
+    const values = {
       newEmail: 'old@email.com',
       password: 'wrong',
-    });
+    };
     const props = {
       currentEmail: 'old@email.com',
     };

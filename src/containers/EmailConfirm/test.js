@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { EmailConfirmComponent } from './';
 import * as Actions from '../../actions/auth';
 
@@ -11,10 +10,10 @@ describe('EmailConfirm component', () => {
   };
   const wrapper = shallow(
     <EmailConfirmComponent
-      auth={fromJS({
+      auth={{
         emailConfirmationSuccess: false,
         emailConfirmationError: false,
-      })}
+      }}
       dispatch={mockDispatch}
       params={{ code: 'this.is.code' }}
       router={mockRouter}

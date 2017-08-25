@@ -1,15 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { fromJS } from 'immutable';
 import { HomeComponent } from './';
 
 describe('Home component snapshot', () => {
   it('render without confirm message', () => {
     const tree = renderer.create(
       <HomeComponent
-        auth={fromJS({ emailResendError: null, emailResendSuccess: false })}
+        auth={{ emailResendError: null, emailResendSuccess: false }}
         dispatch={() => {}}
-        user={fromJS({ confirmed: true })}
+        user={{ confirmed: true }}
       />
     );
 
@@ -19,9 +18,9 @@ describe('Home component snapshot', () => {
   it('render with confirm message', () => {
     const tree = renderer.create(
       <HomeComponent
-        auth={fromJS({ emailResendError: null, emailResendSuccess: false })}
+        auth={{ emailResendError: null, emailResendSuccess: false }}
         dispatch={() => {}}
-        user={fromJS({ confirmed: false })}
+        user={{ confirmed: false }}
       />
     );
 
@@ -31,9 +30,9 @@ describe('Home component snapshot', () => {
   it('render with confirm message and email resent', () => {
     const tree = renderer.create(
       <HomeComponent
-        auth={fromJS({ emailResendError: null, emailResendSuccess: true })}
+        auth={{ emailResendError: null, emailResendSuccess: true }}
         dispatch={() => {}}
-        user={fromJS({ confirmed: false })}
+        user={{ confirmed: false }}
       />
     );
 
@@ -44,9 +43,9 @@ describe('Home component snapshot', () => {
     const error = 'Something went wrong';
     const tree = renderer.create(
       <HomeComponent
-        auth={fromJS({ emailResendError: error, emailResendSuccess: false })}
+        auth={{ emailResendError: error, emailResendSuccess: false }}
         dispatch={() => {}}
-        user={fromJS({ confirmed: false })}
+        user={{ confirmed: false }}
       />
     );
 

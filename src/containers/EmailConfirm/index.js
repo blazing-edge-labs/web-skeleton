@@ -26,11 +26,11 @@ export class EmailConfirmComponent extends Component {
     return (
       <main>
         <p>Checking your email...</p>
-        {auth.get('emailConfirmationSuccess') &&
+        {auth.emailConfirmationSuccess &&
           <p>Email successfully checked. Redirecting...</p>
         }
-        {auth.get('emailConfirmationError') &&
-          <ErrorMsg>{auth.get('emailConfirmationError')}</ErrorMsg>
+        {auth.emailConfirmationError &&
+          <ErrorMsg>{auth.emailConfirmationError}</ErrorMsg>
         }
       </main>
     );
@@ -38,5 +38,5 @@ export class EmailConfirmComponent extends Component {
 }
 
 export default connect(state => ({
-  auth: state.get('auth'),
+  auth: state.auth,
 }))(withRouter(EmailConfirmComponent));

@@ -2,7 +2,6 @@ import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import store from 'store';
-import { fromJS } from 'immutable';
 import * as profile from './profile';
 import * as parseErrors from '../utils/parseErrors';
 import * as createFormData from '../utils/createFormData';
@@ -26,7 +25,7 @@ describe('profile action creators', () => {
     updatedAt: '2016-10-06T14:55:40.722Z',
   };
   const userId = 1;
-  const mockStore = configureMockStore([ thunk ]);
+  const mockStore = configureMockStore([thunk]);
   const expectedAction = {
     type: PROFILE_UPDATE_SUCCESS,
     user,
@@ -40,7 +39,7 @@ describe('profile action creators', () => {
     const resp = { ...user };
     store.set = jest.fn();
     fetchMock.get(`${API_URL}/users/${userId}`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
 
     return reduxStore.dispatch(profile.profileGetFetch(userId)).then(() => {
       expect(store.set).toHaveBeenCalledWith('user', resp);
@@ -49,14 +48,14 @@ describe('profile action creators', () => {
   });
 
   it('should make successful profileUpdate fetch', () => {
-    const values = fromJS({
+    const values = {
       firstname: 'John',
       lastname: 'Doe',
-    });
+    };
     const resp = { ...user };
     store.set = jest.fn();
     fetchMock.post(`${API_URL}/users/${userId}`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
     spyOn(createFormData, 'default');
 
     return reduxStore.dispatch(profile.profileUpdateFetch(values, userId))
@@ -68,10 +67,10 @@ describe('profile action creators', () => {
   });
 
   it('should fail to make profileUpdate fetch', () => {
-    const values = fromJS({
+    const values = {
       firstname: 'John',
       lastname: 'Doe',
-    });
+    };
     const resp = {
       error: {
         message: 'Something went wrong',
@@ -80,7 +79,7 @@ describe('profile action creators', () => {
       message: 'Something went wrong',
     };
     fetchMock.post(`${API_URL}/users/${userId}`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
     spyOn(createFormData, 'default');
     spyOn(parseErrors, 'default');
 
@@ -93,10 +92,10 @@ describe('profile action creators', () => {
   });
 
   it('should fail to make changeEmail fetch', () => {
-    const values = fromJS({
+    const values = {
       email: 'test@mail.com',
       password: 'Aa123456',
-    });
+    };
     const resp = {
       error: {
         message: 'Email not found',
@@ -105,7 +104,7 @@ describe('profile action creators', () => {
       message: 'Email not found',
     };
     fetchMock.post(`${API_URL}/users/${userId}/changeEmail`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(profile.changeEmailFetch(values, userId))
@@ -116,10 +115,10 @@ describe('profile action creators', () => {
   });
 
   it('should fail to make changePassword fetch', () => {
-    const values = fromJS({
+    const values = {
       oldPassword: 'Aa123456',
       newPassword: 'Bb123456',
-    });
+    };
     const resp = {
       error: {
         message: 'Wrong password',
@@ -128,7 +127,7 @@ describe('profile action creators', () => {
       message: 'Wrong password',
     };
     fetchMock.post(`${API_URL}/users/${userId}/changePassword`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(profile.changePasswordFetch(values, userId))

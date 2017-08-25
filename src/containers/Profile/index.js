@@ -11,12 +11,12 @@ export class ProfileComponent extends Component {
 
   componentDidMount() {
     const { dispatch, user } = this.props;
-    return dispatch(profileGetFetch(user.get('id')));
+    return dispatch(profileGetFetch(user.id));
   }
 
   render() {
     const { user } = this.props;
-    const { bio, email, firstname, image, lastname } = user.toJS();
+    const { bio, email, firstname, image, lastname } = user;
 
     return (
       <main>
@@ -43,5 +43,5 @@ export class ProfileComponent extends Component {
 }
 
 export default connect(state => ({
-  user: state.get('user'),
+  user: state.user,
 }))(ProfileComponent);

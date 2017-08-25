@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import Input from '../Input';
 import ErrorMsg from '../ErrorMsg';
 import Button from '../Button';
@@ -63,9 +63,8 @@ ProfileFormComponent.propTypes = {
 
 export default connect(state => ({
   initialValues: {
-    bio: state.getIn(['user', 'bio']),
-    firstname: state.getIn(['user', 'firstname']),
-    lastname: state.getIn(['user', 'lastname']),
+    firstname: state.user.firstname,
+    lastname: state.user.lastname,
   },
 }))(reduxForm({
   enableReinitialize: true,

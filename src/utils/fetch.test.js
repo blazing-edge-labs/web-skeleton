@@ -1,6 +1,5 @@
 import store from 'store';
 import * as RR from 'react-router';
-import { fromJS } from 'immutable';
 import createFormData from './createFormData';
 import fetch, { mergeDefaults, checkStatus } from './fetch';
 
@@ -31,11 +30,11 @@ describe('fetch util', () => {
   });
 
   it('mergeDefaults method with FormData', () => {
-    const formData = createFormData(fromJS({
+    const formData = createFormData({
       bio: 'This is my bio.',
       firstname: 'John',
       lastname: 'Doe',
-    }));
+    });
     const options = {
       body: formData,
     };
@@ -75,7 +74,7 @@ describe('fetch util', () => {
       push: jest.fn(),
     };
 
-    return fetch('/users', {}).catch(err =>
+    return fetch('/users', {}).catch(() =>
       expect(RR.browserHistory.push).toHaveBeenCalledWith('/login')
     );
   });

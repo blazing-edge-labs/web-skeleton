@@ -1,6 +1,5 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { fromJS } from 'immutable';
 import { ProfileComponent } from './';
 
 describe('Profile component snapshot', () => {
@@ -8,13 +7,13 @@ describe('Profile component snapshot', () => {
     const tree = renderer.create(
       <ProfileComponent
         dispatch={() => {}}
-        user={fromJS({
+        user={{
           bio: 'My bio',
           email: 'test@email.com',
           firstname: 'John',
           image: 'http://linkToImage',
           lastname: 'Doe',
-        })}
+        }}
       />
     );
 
@@ -25,7 +24,7 @@ describe('Profile component snapshot', () => {
     const tree = renderer.create(
       <ProfileComponent
         dispatch={() => {}}
-        user={fromJS({ email: 'test@email.com' })}
+        user={{ email: 'test@email.com' }}
       />
     );
 

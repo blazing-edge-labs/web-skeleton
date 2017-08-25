@@ -2,7 +2,6 @@ import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import store from 'store';
-import { fromJS } from 'immutable';
 import * as auth from './auth';
 import * as parseErrors from '../utils/parseErrors';
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
@@ -88,15 +87,15 @@ describe('auth action creators', () => {
   });
 
   it('should make successsful authenticate fetch', () => {
-    const values = fromJS({
+    const values = {
       email: 'test@mail.com',
       password: 'Aa123456',
-    });
+    };
     store.set = jest.fn();
     const cb = jest.fn();
     const resp = {
       token: 'this.is.token',
-      user: user,
+      user,
     };
     fetchMock.post(`${API_URL}/authenticate`, resp);
 
@@ -111,19 +110,19 @@ describe('auth action creators', () => {
   });
 
   it('should make successsful signup fetch', () => {
-    const values = fromJS({
+    const values = {
       email: 'test@mail.com',
       password: 'Aa123456',
-    });
+    };
     const cb = jest.fn();
     const resp = { message: 'User created' };
     const respAuth = {
       token: 'this.is.token',
-      user: user,
+      user,
     };
     fetchMock.post(`${API_URL}/users`, resp);
     fetchMock.post(`${API_URL}/authenticate`, respAuth);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
 
     return reduxStore.dispatch(auth.signupFetch(values, cb)).then(() => {
       expect(fetchMock.lastCall()[0]).toEqual(`${API_URL}/authenticate`);
@@ -131,10 +130,10 @@ describe('auth action creators', () => {
   });
 
   it('should fail to make login fetch', () => {
-    const values = fromJS({
+    const values = {
       email: 'test@mail.com',
       password: 'Aa123456',
-    });
+    };
     const resp = {
       error: {
         message: 'User already exists',
@@ -143,7 +142,7 @@ describe('auth action creators', () => {
       message: 'User already exists',
     };
     fetchMock.post(`${API_URL}/users`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(auth.signupFetch(values)).catch(() => {
@@ -153,11 +152,10 @@ describe('auth action creators', () => {
   });
 
   it('should fail to make login fetch', () => {
-    const values = fromJS({
+    const values = {
       email: 'test@mail.com',
       password: 'Aa123456',
-    });
-    const cb = jest.fn();
+    };
     const resp = {
       error: {
         message: 'Wrong password',
@@ -166,7 +164,7 @@ describe('auth action creators', () => {
       message: 'Wrong password',
     };
     fetchMock.post(`${API_URL}/authenticate`, resp);
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(auth.loginFetch(values)).catch(() => {
@@ -178,7 +176,7 @@ describe('auth action creators', () => {
   it('should make call to logout action', () => {
     store.clear = jest.fn();
     const cb = jest.fn();
-    const reduxStore = mockStore(fromJS({ user: {} }));
+    const reduxStore = mockStore({ user: {} });
     reduxStore.dispatch(auth.logoutAction(cb));
 
     expect(store.clear).toHaveBeenCalled();
@@ -187,9 +185,9 @@ describe('auth action creators', () => {
   });
 
   it('should fail to make call to forgotPassword fetch', () => {
-    const values = fromJS({
+    const values = {
       email: 'test@mail.com',
-    });
+    };
     const resp = {
       error: {
         message: 'Email doesn\'t exist',
@@ -198,7 +196,7 @@ describe('auth action creators', () => {
       message: 'Email doesn\'t exist',
     };
     fetchMock.post(`${API_URL}/recoverPassword`, resp);
-    const reduxStore = mockStore(fromJS({ auth: {} }));
+    const reduxStore = mockStore({ auth: {} });
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(auth.forgotPasswordFetch(values)).catch(() => {
@@ -208,15 +206,15 @@ describe('auth action creators', () => {
   });
 
   it('should make successsful recoverPassword fetch', () => {
-    const values = fromJS({
+    const values = {
       oldPassword: 'Aa123456',
       newPassword: 'Bb123456',
-    });
+    };
     const code = 'this.is.code';
     const cb = jest.fn();
     const resp = { message: 'Password changed.' };
     fetchMock.post(`${API_URL}/recoverPassword/${code}`, resp);
-    const reduxStore = mockStore(fromJS({ auth: {} }));
+    const reduxStore = mockStore({ auth: {} });
 
     return reduxStore.dispatch(auth.recoverPasswordFetch(values, code, cb))
       .then(() => {
@@ -225,10 +223,10 @@ describe('auth action creators', () => {
   });
 
   it('should fail to make call to recoverPassword fetch', () => {
-    const values = fromJS({
+    const values = {
       oldPassword: 'Aa123456',
       newPassword: 'Bb123456',
-    });
+    };
     const code = 'this.is.code';
     const resp = {
       error: {
@@ -238,7 +236,7 @@ describe('auth action creators', () => {
       message: 'Password doesn\'t exist',
     };
     fetchMock.post(`${API_URL}/recoverPassword/${code}`, resp);
-    const reduxStore = mockStore(fromJS({ auth: {} }));
+    const reduxStore = mockStore({ auth: {} });
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(auth.recoverPasswordFetch(values, code))
@@ -249,15 +247,15 @@ describe('auth action creators', () => {
   });
 
   it('should make successsful emailConfirm fetch', () => {
-    const values = fromJS({
+    const values = {
       token: 'this.is.token',
-    });
+    };
     store.get = jest.fn(() => user);
     store.set = jest.fn();
     const cb = jest.fn();
     const resp = { email: 'new@mail.com' };
     fetchMock.post(`${API_URL}/emailConfirm`, resp);
-    const reduxStore = mockStore(fromJS({ auth: {} }));
+    const reduxStore = mockStore({ auth: {} });
 
 
     return reduxStore.dispatch(auth.emailConfirmFetch(values, cb))
@@ -280,9 +278,9 @@ describe('auth action creators', () => {
   });
 
   it('should fail to make call to emailConfirm fetch', () => {
-    const values = fromJS({
+    const values = {
       token: 'this.is.token',
-    });
+    };
     const resp = {
       error: {
         message: 'Wrong code',
@@ -291,7 +289,7 @@ describe('auth action creators', () => {
       message: 'Wrong code',
     };
     fetchMock.post(`${API_URL}/emailConfirm`, resp);
-    const reduxStore = mockStore(fromJS({ auth: {} }));
+    const reduxStore = mockStore({ auth: {} });
     spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(auth.emailConfirmFetch(values))
@@ -305,7 +303,7 @@ describe('auth action creators', () => {
     const userId = 1;
     const resp = { message: 'Email sent again.' };
     fetchMock.post(`${API_URL}/users/${userId}/resendConfirmation`, resp);
-    const reduxStore = mockStore(fromJS({ auth: {} }));
+    const reduxStore = mockStore({ auth: {} });
 
     return reduxStore.dispatch(auth.emailResendFetch(userId)).then(() => {
       expect(reduxStore.getActions()[0])
@@ -325,7 +323,7 @@ describe('auth action creators', () => {
       message: 'Resending failed',
     };
     fetchMock.post(`${API_URL}/users/${userId}/resendConfirmation`, resp);
-    const reduxStore = mockStore(fromJS({ auth: {} }));
+    const reduxStore = mockStore({ auth: {} });
 
     return reduxStore.dispatch(auth.emailResendFetch(userId)).then(() => {
       expect(reduxStore.getActions()[0])

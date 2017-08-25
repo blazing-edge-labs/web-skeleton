@@ -1,15 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { ChangePasswordFormComponent, validate } from './';
 
 describe('ChangePasswordForm component', () => {
   it('validate function success', () => {
-    const values = fromJS({
+    const values = {
       oldPassword: 'Aa123456',
       newPassword: 'Bb123456',
       confirmation: 'Bb123456',
-    });
+    };
     const errors = validate(values);
 
     expect(errors).toEqual({
@@ -18,11 +17,11 @@ describe('ChangePasswordForm component', () => {
   });
 
   it('validate function failed', () => {
-    const values = fromJS({
+    const values = {
       oldPassword: 'wrong',
       newPassword: undefined,
       confirmation: 'Cc123456',
-    });
+    };
     const errors = validate(values);
 
     expect(errors).toEqual({

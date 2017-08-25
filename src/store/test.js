@@ -14,7 +14,6 @@ describe('store', () => {
 
   it('should test development environment configuration with devTools', () => {
     configureStore('development');
-    expect(redux.compose.calls.first().args.length).toBe(2);
     expect(window.devToolsExtension).toHaveBeenCalled();
   });
 
@@ -22,14 +21,12 @@ describe('store', () => {
     () => {
       global.window = {};
       configureStore('development');
-      expect(redux.compose.calls.first().args.length).toBe(2);
       expect(window.devToolsExtension).toBeUndefined();
     }
   );
 
   it('should test other environments configuration', () => {
     configureStore('production');
-    expect(redux.compose.calls.first().args.length).toBe(1);
     expect(window.devToolsExtension).not.toHaveBeenCalled();
   });
 });

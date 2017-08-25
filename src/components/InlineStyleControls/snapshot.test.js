@@ -1,6 +1,5 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { fromJS } from 'immutable';
 import InlineStyleControls from './';
 
 describe('InlineStyleControls component snapshot', () => {
@@ -8,7 +7,7 @@ describe('InlineStyleControls component snapshot', () => {
     const tree = renderer.create(
       <InlineStyleControls
         editorState={{
-          getCurrentInlineStyle: () => fromJS({}),
+          getCurrentInlineStyle: () => null,
         }}
         onToggle={() => {}}
       />

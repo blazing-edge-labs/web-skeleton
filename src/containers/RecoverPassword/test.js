@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { RecoverPasswordComponent, validate } from './';
 import * as Actions from '../../actions/auth';
 
@@ -24,20 +23,20 @@ describe('RecoverPassword component', () => {
   Actions.recoverPasswordFetch = jest.fn((values, code, cb) => cb());
 
   it('validate function success', () => {
-    const values = fromJS({
+    const values = {
       password: 'Aa123456',
       confirmation: 'Aa123456',
-    });
+    };
     const errors = validate(values);
 
     expect(errors).toEqual({ password: null, confirmation: null });
   });
 
   it('validate function fail', () => {
-    const values = fromJS({
+    const values = {
       password: 'wrong',
       confirmation: 'Bb123456',
-    });
+    };
     const errors = validate(values);
 
     expect(errors).toEqual({
@@ -48,11 +47,11 @@ describe('RecoverPassword component', () => {
   });
 
   it('handleChangePassword method', () => {
-    const values = fromJS({
+    const values = {
       password: 'Aa123456',
       confirmation: 'Aa123456',
-    });
-    const expected = values.delete('confirmation');
+    };
+    const expected = { ...values, confirmation: undefined };    
     instance.handleRecoverPassword(values);
 
     jest.runAllTimers();

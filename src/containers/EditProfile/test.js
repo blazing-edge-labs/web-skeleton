@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fromJS } from 'immutable';
 import { EditProfileComponent } from './';
 import * as Actions from '../../actions/profile';
 
@@ -15,11 +14,11 @@ describe('EditProfile component', () => {
   Actions.changePasswordFetch = jest.fn(() => ({}));
 
   it('handleProfileUpdate method', () => {
-    const values = fromJS({
+    const values = {
       bio: 'New bio',
       firstname: 'John',
       lastname: 'Doe',
-    });
+    };
     instance.handleProfileUpdate(values);
 
     expect(Actions.profileUpdateFetch).toHaveBeenCalledWith(values, 1);
@@ -27,10 +26,10 @@ describe('EditProfile component', () => {
   });
 
   it('handleChangeEmail method', () => {
-    const values = fromJS({
+    const values = {
       newEmail: 'new@email.com',
       password: 'Aa123456',
-    });
+    };
     instance.handleChangeEmail(values);
 
     expect(Actions.changeEmailFetch).toHaveBeenCalledWith(values, 1);
@@ -38,12 +37,12 @@ describe('EditProfile component', () => {
   });
 
   it('handleChangePassword method', () => {
-    const values = fromJS({
+    const values = {
       oldPassword: 'Aa123456',
       newPassword: 'Bb123456',
       confirmation: 'Bb123456',
-    });
-    const expected = values.delete('confirmation');
+    };
+    const expected = { ...values, confirmation: undefined };
     instance.handleChangePassword(values);
 
     expect(Actions.changePasswordFetch).toHaveBeenCalledWith(expected, 1);
