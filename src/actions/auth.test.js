@@ -3,7 +3,6 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import store from 'store';
 import * as auth from './auth';
-import * as parseErrors from '../utils/parseErrors';
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
   EMAIL_RESEND_FAILED } from '../constants/actions';
@@ -15,21 +14,15 @@ describe('auth action creators', () => {
   });
 
   const user = {
-    bio: null,
-    confirmed: false,
     createdAt: '2016-10-06T14:55:40.708Z',
     email: 'test@email.com',
-    firstname: null,
     id: 1,
-    lastname: null,
-    resourceId: 1,
     updatedAt: '2016-10-06T14:55:40.722Z',
   };
-  const mockStore = configureMockStore([ thunk ]);
-  const mockDispatch = jest.fn();
+  const mockStore = configureMockStore([thunk]);
+  const mockDispatch = jest.fn(z => z);
   const expectedSignupLoginAction = {
     type: SIGNUP_LOGIN_SUCCESS,
-    user,
   };
   const expectedLogoutAction = {
     type: LOGOUT_SUCCESS,
@@ -46,7 +39,7 @@ describe('auth action creators', () => {
   };
 
   it('should create an action for successful login or signup', () => {
-    expect(auth.signupLoginSuccess(user)).toEqual(expectedSignupLoginAction);
+    expect(auth.signupLoginSuccess()).toEqual(expectedSignupLoginAction);
   });
 
   it('should create an action for successful logout', () => {
@@ -92,20 +85,16 @@ describe('auth action creators', () => {
       password: 'Aa123456',
     };
     store.set = jest.fn();
-    const cb = jest.fn();
-    const resp = {
+    const data = {
       token: 'this.is.token',
-      user,
     };
-    fetchMock.post(`${API_URL}/authenticate`, resp);
+    fetchMock.post(`${API_URL}/auth`, { data });
 
-    return auth.authenticate(values, mockDispatch, cb).then(() => {
+    return auth.authenticate(values)(mockDispatch).then(() => {
       expect(store.set.mock.calls[0])
-        .toEqual(['token', `Bearer ${resp.token}`]);
-      expect(store.set).toHaveBeenLastCalledWith('user', resp.user);
-      expect(store.set).toHaveBeenCalledTimes(2);
+        .toEqual(['token', `Bearer ${data.token}`]);
+      expect(store.set).toHaveBeenCalledTimes(1);
       expect(mockDispatch).toHaveBeenCalledWith(expectedSignupLoginAction);
-      expect(cb).toHaveBeenCalled();
     });
   });
 
@@ -114,18 +103,17 @@ describe('auth action creators', () => {
       email: 'test@mail.com',
       password: 'Aa123456',
     };
-    const cb = jest.fn();
-    const resp = { message: 'User created' };
-    const respAuth = {
+    const data = { message: 'User created' };
+    const authData = {
       token: 'this.is.token',
       user,
     };
-    fetchMock.post(`${API_URL}/users`, resp);
-    fetchMock.post(`${API_URL}/authenticate`, respAuth);
+    fetchMock.post(`${API_URL}/register`, { data });
+    fetchMock.post(`${API_URL}/auth`, { data: authData });
     const reduxStore = mockStore({ user: {} });
 
-    return reduxStore.dispatch(auth.signupFetch(values, cb)).then(() => {
-      expect(fetchMock.lastCall()[0]).toEqual(`${API_URL}/authenticate`);
+    return reduxStore.dispatch(auth.signupFetch(values)).then(() => {
+      expect(fetchMock.lastCall()[0]).toEqual(`${API_URL}/auth`);
     });
   });
 
@@ -134,20 +122,16 @@ describe('auth action creators', () => {
       email: 'test@mail.com',
       password: 'Aa123456',
     };
-    const resp = {
-      error: {
-        message: 'User already exists',
-        status: 404,
-      },
+    const error = {
       message: 'User already exists',
+      status: 404,
     };
-    fetchMock.post(`${API_URL}/users`, resp);
+    fetchMock.post(`${API_URL}/register`, { error });
     const reduxStore = mockStore({ user: {} });
-    spyOn(parseErrors, 'default');
 
-    return reduxStore.dispatch(auth.signupFetch(values)).catch(() => {
-      expect(parseErrors.default)
-          .toHaveBeenCalledWith(new Error('User already exists'));
+    return reduxStore.dispatch(auth.signupFetch(values))
+    .then(fail, (reason) => {
+      expect(reason).toEqual(new Error('User already exists'));
     });
   });
 
@@ -156,52 +140,39 @@ describe('auth action creators', () => {
       email: 'test@mail.com',
       password: 'Aa123456',
     };
-    const resp = {
-      error: {
-        message: 'Wrong password',
-        status: 404,
-      },
+    const error = {
       message: 'Wrong password',
+      status: 404,
     };
-    fetchMock.post(`${API_URL}/authenticate`, resp);
+    fetchMock.post(`${API_URL}/auth`, { error });
     const reduxStore = mockStore({ user: {} });
-    spyOn(parseErrors, 'default');
 
-    return reduxStore.dispatch(auth.loginFetch(values)).catch(() => {
-      expect(parseErrors.default)
-          .toHaveBeenCalledWith(new Error('Wrong password'));
+    return reduxStore.dispatch(auth.loginFetch(values))
+    .then(fail, (reason) => {
+      expect(reason).toEqual(new Error('Wrong password'));
     });
   });
 
   it('should make call to logout action', () => {
     store.clear = jest.fn();
-    const cb = jest.fn();
     const reduxStore = mockStore({ user: {} });
-    reduxStore.dispatch(auth.logoutAction(cb));
+    reduxStore.dispatch(auth.logoutAction());
 
     expect(store.clear).toHaveBeenCalled();
     expect(reduxStore.getActions()[0]).toEqual(expectedLogoutAction);
-    expect(cb).toHaveBeenCalled();
   });
 
   it('should fail to make call to forgotPassword fetch', () => {
-    const values = {
-      email: 'test@mail.com',
-    };
-    const resp = {
-      error: {
-        message: 'Email doesn\'t exist',
-        status: 404,
-      },
+    const error = {
       message: 'Email doesn\'t exist',
+      status: 404,
     };
-    fetchMock.post(`${API_URL}/recoverPassword`, resp);
-    const reduxStore = mockStore({ auth: {} });
-    spyOn(parseErrors, 'default');
 
-    return reduxStore.dispatch(auth.forgotPasswordFetch(values)).catch(() => {
-      expect(parseErrors.default)
-          .toHaveBeenCalledWith(new Error('Email doesn\'t exist'));
+    fetchMock.post(`${API_URL}/recoverPassword`, { error });
+
+    return mockStore({}).dispatch(auth.forgotPasswordFetch({}))
+    .then(fail, (reason) => {
+      expect(reason).toEqual(new Error('Email doesn\'t exist'));
     });
   });
 
@@ -211,15 +182,11 @@ describe('auth action creators', () => {
       newPassword: 'Bb123456',
     };
     const code = 'this.is.code';
-    const cb = jest.fn();
-    const resp = { message: 'Password changed.' };
-    fetchMock.post(`${API_URL}/recoverPassword/${code}`, resp);
+    const data = { message: 'Password changed.' };
+    fetchMock.post(`${API_URL}/changePassword`, { data });
     const reduxStore = mockStore({ auth: {} });
 
-    return reduxStore.dispatch(auth.recoverPasswordFetch(values, code, cb))
-      .then(() => {
-        expect(cb).toHaveBeenCalled();
-      });
+    return reduxStore.dispatch(auth.recoverPasswordFetch(values, code));
   });
 
   it('should fail to make call to recoverPassword fetch', () => {
@@ -228,110 +195,16 @@ describe('auth action creators', () => {
       newPassword: 'Bb123456',
     };
     const code = 'this.is.code';
-    const resp = {
-      error: {
-        message: 'Password doesn\'t exist',
-        status: 404,
-      },
+    const error = {
       message: 'Password doesn\'t exist',
+      status: 404,
     };
-    fetchMock.post(`${API_URL}/recoverPassword/${code}`, resp);
+    fetchMock.post(`${API_URL}/changePassword`, { error });
     const reduxStore = mockStore({ auth: {} });
-    spyOn(parseErrors, 'default');
 
     return reduxStore.dispatch(auth.recoverPasswordFetch(values, code))
-      .catch(() => {
-        expect(parseErrors.default)
-            .toHaveBeenCalledWith(new Error('Password doesn\'t exist'));
-      });
-  });
-
-  it('should make successsful emailConfirm fetch', () => {
-    const values = {
-      token: 'this.is.token',
-    };
-    store.get = jest.fn(() => user);
-    store.set = jest.fn();
-    const cb = jest.fn();
-    const resp = { email: 'new@mail.com' };
-    fetchMock.post(`${API_URL}/emailConfirm`, resp);
-    const reduxStore = mockStore({ auth: {} });
-
-
-    return reduxStore.dispatch(auth.emailConfirmFetch(values, cb))
-      .then(() => {
-        expect(store.get).toHaveBeenCalledWith('user');
-        expect(store.set).toHaveBeenCalledWith('user', {
-          bio: null,
-          confirmed: true,
-          createdAt: '2016-10-06T14:55:40.708Z',
-          email: 'new@mail.com',
-          firstname: null,
-          id: 1,
-          lastname: null,
-          resourceId: 1,
-          updatedAt: '2016-10-06T14:55:40.722Z',
-        });
-        expect(reduxStore.getActions()[0]).toEqual(expectedEmailConfirmAction);
-        expect(cb).toHaveBeenCalled();
-      });
-  });
-
-  it('should fail to make call to emailConfirm fetch', () => {
-    const values = {
-      token: 'this.is.token',
-    };
-    const resp = {
-      error: {
-        message: 'Wrong code',
-        status: 404,
-      },
-      message: 'Wrong code',
-    };
-    fetchMock.post(`${API_URL}/emailConfirm`, resp);
-    const reduxStore = mockStore({ auth: {} });
-    spyOn(parseErrors, 'default');
-
-    return reduxStore.dispatch(auth.emailConfirmFetch(values))
-      .catch(() => {
-        expect(parseErrors.default)
-            .toHaveBeenCalledWith(new Error('Wrong code'));
-      });
-  });
-
-  it('should make successsful emailResend fetch', () => {
-    const userId = 1;
-    const resp = { message: 'Email sent again.' };
-    fetchMock.post(`${API_URL}/users/${userId}/resendConfirmation`, resp);
-    const reduxStore = mockStore({ auth: {} });
-
-    return reduxStore.dispatch(auth.emailResendFetch(userId)).then(() => {
-      expect(reduxStore.getActions()[0])
-        .toEqual(expectedEmailResendFetchingAction);
-      expect(reduxStore.getActions()[1])
-        .toEqual(expectedEmailResendSuccessAction);
-    });
-  });
-
-  it('should fail to make call to emailResend fetch', () => {
-    const userId = 1;
-    const resp = {
-      error: {
-        message: 'Resending failed',
-        status: 404,
-      },
-      message: 'Resending failed',
-    };
-    fetchMock.post(`${API_URL}/users/${userId}/resendConfirmation`, resp);
-    const reduxStore = mockStore({ auth: {} });
-
-    return reduxStore.dispatch(auth.emailResendFetch(userId)).then(() => {
-      expect(reduxStore.getActions()[0])
-        .toEqual(expectedEmailResendFetchingAction);
-      expect(reduxStore.getActions()[1]).toEqual({
-        type: EMAIL_RESEND_FAILED,
-        error: 'Resending failed',
-      });
+    .then(fail, (reason) => {
+      expect(reason).toEqual(new Error('Password doesn\'t exist'));
     });
   });
 });

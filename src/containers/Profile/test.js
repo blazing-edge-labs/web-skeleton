@@ -4,7 +4,7 @@ import { ProfileComponent } from './';
 import * as Actions from '../../actions/profile';
 
 describe('Profile component', () => {
-  const mockDispatch = jest.fn();
+  const mockDispatch = jest.fn(z => z);
   const wrapper = shallow(
     <ProfileComponent dispatch={mockDispatch} user={{ id: 1 }} />
   );
@@ -14,7 +14,7 @@ describe('Profile component', () => {
   it('componentDidMount method', () => {
     instance.componentDidMount();
 
-    expect(Actions.profileGetFetch).toHaveBeenCalledWith(1);
+    expect(Actions.profileGetFetch).toHaveBeenCalledWith();
     expect(mockDispatch).toHaveBeenCalledWith({});
   });
 });

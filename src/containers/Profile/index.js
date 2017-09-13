@@ -10,8 +10,8 @@ export class ProfileComponent extends Component {
   };
 
   componentDidMount() {
-    const { dispatch, user } = this.props;
-    return dispatch(profileGetFetch(user.id));
+    const { dispatch } = this.props;
+    return dispatch(profileGetFetch());
   }
 
   render() {

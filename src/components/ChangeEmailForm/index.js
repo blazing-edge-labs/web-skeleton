@@ -56,7 +56,7 @@ ChangeEmailFormComponent.propTypes = {
 };
 
 export default connect(state => ({
-  currentEmail: state.getIn(['user', 'email']),
+  currentEmail: state.user.email,
 }))(reduxForm({
   form: 'ChangeEmailForm',
   validate,

@@ -59,7 +59,7 @@ export class RecoverPasswordComponent extends Component {
             id={form}
             label="New Password"
             type="password"
-            placeholder="New Email"
+            placeholder="New Password"
           />
           <Field
             name="confirmation"

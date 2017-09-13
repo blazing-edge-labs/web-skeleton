@@ -25,7 +25,6 @@ The repository contains simple startup application with authentication and user 
 9. [UTILS](#utils)
   - [createFormData.js](#createformdatajs)
   - [fetch.js](#fetchjs)
-  - [parseErrors.js](#parseerrorsjs)
   - [validator.js](#validatorjs)
 10. [LOCAL STORAGE](#local-storage)
 11. [GENERIC FORM FUNCTIONALITY](#generic-form-functionality)
@@ -267,9 +266,6 @@ A module that creates FormData object used in multipart API POST request and ret
 
 ### fetch.js
 A module which exports Fetch API. We don't call Fetch API immediately from our actions because with every request there is a bunch of repeatable processes through which our request needs to go. That is why this module contains all reusable functionality and configuration. Prior to every request, we have *Authorization* header and usually *Content-Type* header to set. We merge those default headers with other options passed to the module. Upon every successful response we need to parse JSON data into readable objects and we need to check the status of our request. By specification, Fetch API Promises reject only in case of exceptions so we need to manually check the status of response and manually reject in case our API responded with the error. The last thing to check is when our Fetch API Promise gets rejected. In that case, we want to make sure that we redirect all 401 statuses back to Login page because the user doesn't have permissions to access our application.
-
-### parseErrors.js
-A module that parses additional error messages returned from API request. Our error response object will always have some generic message but in the case of POST request we can have additional errors contained per each parameter sent in POST request. For instance, we also have validation on API in the case of POST request where we send form values. Upon return, this module parses additional debugInfo data and assigns each field error. Because we use Redux Form to handle our form functionality we are using SubmissionError constructor to create those errors. This way our Redux Form knows exactly which error belongs to which input.
 
 ### validator.js
 A module that holds multiple functions which validate certain data inside our forms and constructs error messages in case of invalid data. Essential for form validation and it should contain same logic as validation on API.

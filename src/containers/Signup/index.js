@@ -34,7 +34,7 @@ export class SignupComponent extends Component {
 
   handleSignup(values) {
     const { dispatch, router } = this.props;
-    return dispatch(signupFetch(values, () => router.push('/')));
+    return dispatch(signupFetch(values)).then(() => router.push('/'));
   }
 
   render() {

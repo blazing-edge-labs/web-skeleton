@@ -4,7 +4,7 @@ import { RecoverPasswordComponent, validate } from './';
 import * as Actions from '../../actions/auth';
 
 describe('RecoverPassword component', () => {
-  const mockDispatch = jest.fn();
+  const mockDispatch = jest.fn(z => z);
   const mockRouter = {
     push: jest.fn(),
   };

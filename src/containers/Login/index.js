@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router';
 import { loginFetch } from '../../actions/auth';
-import { isEmail, isPassword, isRequired } from '../../utils/validator';
+import { isEmail, isRequired } from '../../utils/validator';
 import Input from '../../components/Input';
 import ErrorMsg from '../../components/ErrorMsg';
 import Button from '../../components/Button';
@@ -13,7 +13,7 @@ export const validate = (values) => {
   const { email, password } = values;
 
   errors.email = isRequired(email) || isEmail(email);
-  errors.password = isRequired(password) || isPassword(password);
+  errors.password = isRequired(password);
   return errors;
 };
 
@@ -34,7 +34,7 @@ export class LoginComponent extends Component {
 
   handleLogin(values) {
     const { dispatch, router } = this.props;
-    return dispatch(loginFetch(values, () => router.push('/')));
+    return dispatch(loginFetch(values)).then(() => router.push('/'));
   }
 
   render() {

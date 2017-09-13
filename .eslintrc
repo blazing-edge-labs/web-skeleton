@@ -40,7 +40,8 @@
       "functions": "ignore"
     }],
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["server.js", "**/*.test.js", "**/test.js"]
-    }]
+      "devDependencies": ["server.js", "src/setupTests.js", "**/*.test.js", "**/test.js"]
+    }],
+    "arrow-body-style": 0
   }
 }

@@ -4,7 +4,7 @@ import { ForgotPasswordComponent, validate } from './';
 import * as Actions from '../../actions/auth';
 
 describe('ForgotPassword component', () => {
-  const mockDispatch = jest.fn();
+  const mockDispatch = jest.fn(z => z);
   const mockHandleSubmit = jest.fn(cb => cb());
   const wrapper = shallow(
     <ForgotPasswordComponent

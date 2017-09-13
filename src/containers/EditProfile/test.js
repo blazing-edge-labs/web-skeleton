@@ -4,7 +4,7 @@ import { EditProfileComponent } from './';
 import * as Actions from '../../actions/profile';
 
 describe('EditProfile component', () => {
-  const mockDispatch = jest.fn();
+  const mockDispatch = jest.fn(z => z);
   const wrapper = shallow(
     <EditProfileComponent userId={1} dispatch={mockDispatch} />
   );
@@ -15,7 +15,6 @@ describe('EditProfile component', () => {
 
   it('handleProfileUpdate method', () => {
     const values = {
-      bio: 'New bio',
       firstname: 'John',
       lastname: 'Doe',
     };
