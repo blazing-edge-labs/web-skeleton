@@ -47,8 +47,23 @@ module.exports = {
         test: /\.json$/,
         loader: 'json',
       }, {
-        test: /\.css$/,
-        loaders: ['style?singleton', 'css?minimize'],
+        test: /\.local\.(css|scss)$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1'
+            + '&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'postcss-loader',
+          'sass-loader',
+          'sass-resources-loader',
+        ],
+      }, {
+        test: /^((?!\.local).)+\.(css|scss)$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       }, {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=application/font-woff',
@@ -67,6 +82,9 @@ module.exports = {
       },
     ],
   },
+  sassResources: [
+    path.resolve(__dirname, './src/styles/_variables.scss'),
+  ],
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
   node: {
     fs: 'empty',

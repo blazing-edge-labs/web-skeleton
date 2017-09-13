@@ -4,5 +4,13 @@
     "development": {
       "presets": ["react-hmre"]
     }
-  }
+  },
+  "plugins": [
+    ["react-css-modules", {
+      "webpackHotModuleReloading": true,
+      "filetypes": {
+        ".scss": "postcss-scss"
+      }
+    }]
+  ]
 }
