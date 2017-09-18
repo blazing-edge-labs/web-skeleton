@@ -1,0 +1,36 @@
+.container {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.outer {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+
+  margin-top: -3px;
+  margin-right: 10px;
+  border: 1px solid black;
+  border-radius: 50%;
+  color: black;
+  vertical-align: middle;
+}
+
+.filled {
+  background-color: black;
+}
+
+.focused {
+  box-shadow: $focus-box-shadow;
+}
+
+.inner {
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: text-top;
+  margin-left: 4px;
+  margin-top: 1px;
+}

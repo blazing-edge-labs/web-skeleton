@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class StyleButton extends Component {
   static propTypes = {
@@ -17,7 +18,7 @@ export default class StyleButton extends Component {
 
     e.preventDefault();
     onToggle(style);
-  };
+  }
 
   render() {
     const { label } = this.props;

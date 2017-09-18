@@ -1,16 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { StyleSheetTestUtils } from 'aphrodite/no-important';
 import Pagination from './';
 
 describe('Pagination component snapshot', () => {
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
-
   it('renders data with current page 1', () => {
     const tree = renderer.create(
       <Pagination

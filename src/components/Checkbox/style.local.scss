@@ -1,0 +1,32 @@
+.container {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.checkbox {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-top: -3px;
+  margin-right: 10px;
+  border: 1px solid black;
+  border-radius: 1px;
+  color: black;
+  vertical-align: middle;
+}
+
+.focused {
+  box-shadow: $focus-box-shadow;
+}
+
+.checkIcon {
+  font-size: 16px;
+  vertical-align: top;
+  color: white;
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+.checked {
+  background-color: black;
+}

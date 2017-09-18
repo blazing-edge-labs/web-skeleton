@@ -15,7 +15,7 @@ export default class RichTextEditor extends Component {
   }
 
   onChange(editorState) {
-    this.setState({ editorState })
+    this.setState({ editorState });
   }
 
   toggleBlockType(blockType) {

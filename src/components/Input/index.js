@@ -1,28 +1,37 @@
-import React, { PropTypes } from 'react';
-import ErrorMsg from '../ErrorMsg';
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import InlineError from '../InlineError';
+import { hasError } from '../../utils/validator';
+import './style.local.scss';
 
 const Input = (props) => {
-  const { id, label, input, meta: { active, touched, error }, textarea,
-    ...rest } = props;
+  const { label, input, meta, textarea, ...rest } = props;
+
   const attributes = {
+    id: input.name,
     ...input,
     ...rest,
-    id: `${id}-${input.name}`,
   };
 
+  const styleName = hasError(meta) ? 'error' : '';
+
   return (
-    <div>
-      <label htmlFor={`${id}-${input.name}`}>
+    <div styleName={styleName}>
+      <label className="label" htmlFor={input.name}>
         {label}
       </label>
-      {textarea ? <textarea {...attributes} /> : <input {...attributes} />}
-      {!active && touched && error && <ErrorMsg>{error}</ErrorMsg>}
+      {
+        textarea
+        ? <textarea rows={4} {...attributes} styleName="input" />
+        : <input {...attributes} styleName="input" />
+      }
+      <InlineError meta={meta} />
     </div>
   );
 };
 
 Input.propTypes = {
-  id: PropTypes.string.isRequired,
   label: PropTypes.string,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,

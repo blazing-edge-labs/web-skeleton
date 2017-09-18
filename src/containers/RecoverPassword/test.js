@@ -51,7 +51,7 @@ describe('RecoverPassword component', () => {
       password: 'Aa123456',
       confirmation: 'Aa123456',
     };
-    const expected = { ...values, confirmation: undefined };    
+    const expected = { ...values, confirmation: undefined };
     instance.handleRecoverPassword(values);
 
     jest.runAllTimers();

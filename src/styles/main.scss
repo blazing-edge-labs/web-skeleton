@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'typography';
 
 body {
   background-color: $color-background;
@@ -7,7 +8,6 @@ body {
   font-family: $fonts-family;
   font-size: $fonts-size;
   font-weight: 400;
-  line-height: 1em;
   -moz-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -15,12 +15,7 @@ body {
 * {
   box-sizing: inherit;
   font-weight: inherit;
-  line-height: inherit;
-}
-
-p, h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0;
+  line-height: 1.5;
 }
 
 button, input, optgroup, select, textarea {
@@ -31,4 +26,8 @@ button, input, optgroup, select, textarea {
 
 a, button {
   cursor: pointer;
+}
+
+*:focus {
+  outline: 0;
 }

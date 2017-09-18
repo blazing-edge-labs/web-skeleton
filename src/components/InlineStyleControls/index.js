@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { INLINE_STYLES } from '../../constants/richTextEditor';
 import StyleButton from '../StyleButton';
 

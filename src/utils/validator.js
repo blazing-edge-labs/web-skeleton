@@ -2,6 +2,10 @@ import validator from 'validator';
 import { CONFIRM_PASSWORD_MSG, EMAIL_MSG, PASSWORD_MSG, REQUIRED_MSG,
   USED_EMAIL_MSG } from '../constants/errors';
 
+export const hasError = meta => meta.touched && meta.error;
+
+export const alwaysError = () => 'Wrong, try again - and here is one very long message so the error can go into two rows. Looks like I need more chars ... Finally :)';
+
 export const isEqual = (value, comparison) =>
   validator.equals(String(value), String(comparison));
 

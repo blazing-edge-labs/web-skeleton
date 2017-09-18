@@ -22,10 +22,9 @@
     }
   },
   "rules": {
-    "max-len": ["error", 80, 2],
     "no-unused-vars": [2, {
       "vars": "local",
-      "varsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_|^ss$",
       "args": "after-used",
       "argsIgnorePattern": "^_"
     }],
@@ -42,6 +41,8 @@
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": ["server.js", "src/setupTests.js", "**/*.test.js", "**/test.js"]
     }],
-    "arrow-body-style": 0
+    "arrow-body-style": 0,
+    "react/style-prop-object": 0,
+    "jsx-a11y/no-static-element-interactions": 0
   }
 }

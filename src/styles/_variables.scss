@@ -1,5 +1,12 @@
 $color-background: #fff;
 $color-font: #000;
+$color-error: #8A0011;
+$color-input-border: $color-font;
+$color-disabled-input-border: #DBDBDB;
+$color-disabled-input-background: #F2F2F2;
+$color-disabled-input-text: #DBDBDB;
 
-$fonts-family: sans-serif;
+$fonts-family: arial, sans-serif;
 $fonts-size: 16px;
+
+$focus-box-shadow: 0 0 2px 2px rgba(74, 144, 226, 0.7);

@@ -1,12 +1,15 @@
-import React, { PropTypes } from 'react';
-import { css } from 'aphrodite/no-important';
-import styles from './styles';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Button = ({ children, empty, ...rest }) =>
+import './style.local.scss';
+
+const Button = ({ children, ...rest }) =>
   <button
-    className={css(empty && styles.empty)}
+    styleName="button"
     {...rest}
-  >{children}</button>;
+  >
+    {children}
+  </button>;
 
 Button.propTypes = {
   children: PropTypes.oneOfType([
@@ -14,7 +17,6 @@ Button.propTypes = {
     PropTypes.number,
     PropTypes.element,
   ]).isRequired,
-  empty: PropTypes.bool,
 };
 
 export default Button;

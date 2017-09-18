@@ -1,10 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 import App from '../containers/App';
 import Home from '../containers/Home';
 import Profile from '../containers/Profile';
 import EditProfile from '../containers/EditProfile';
+import FormExample from '../containers/FormExample';
 import Login from '../containers/Login';
 import Signup from '../containers/Signup';
 import ForgotPassword from '../containers/ForgotPassword';
@@ -19,6 +21,7 @@ const Routes = ({ store, history }) =>
           <IndexRoute component={Home} />
           <Route path="profile" component={Profile} />
           <Route path="editProfile" component={EditProfile} />
+          <Route path="formExample" component={FormExample} />
         </Route>
         <Route path="login" component={Login} />
         <Route path="signup" component={Signup} />

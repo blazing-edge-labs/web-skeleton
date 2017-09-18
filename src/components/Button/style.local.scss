@@ -1,0 +1,20 @@
+.button {
+  & {
+    height: 40px;
+    width: 160px;
+    background: #DBDBDB;
+    border: 1px solid #000;
+    border-radius: 2px;
+  }
+
+  &:disabled {
+    border: 1px solid #DBDBDB;
+    background-color: #F2F2F2;
+    color: #DBDBDB;
+    cursor: default;
+  }
+
+  &:focus {
+    box-shadow: $focus-box-shadow
+  }
+}
