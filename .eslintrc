@@ -8,9 +8,6 @@
     "jest": true,
     "jasmine": true
   },
-  "globals": {
-    "__API_URL__": true
-  },
   "plugins": [
     "react"
   ],
@@ -39,7 +36,7 @@
       "functions": "ignore"
     }],
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["server.js", "src/setupTests.js", "**/*.test.js", "**/test.js"]
+      "devDependencies": ["*", "src/setupTests.js", "**/*.test.js", "**/test.js"]
     }],
     "arrow-body-style": 0,
     "react/style-prop-object": 0,

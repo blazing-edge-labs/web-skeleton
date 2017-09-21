@@ -1,16 +1,13 @@
 {
-  "presets": ["es2015", "stage-0", "react"],
-  "env": {
-    "development": {
-      "presets": ["react-hmre"]
-    }
-  },
+  "presets": ["next/babel", "es2015", "stage-0", "react"],
   "plugins": [
     ["react-css-modules", {
+      "removeImport": true,
       "webpackHotModuleReloading": true,
       "filetypes": {
         ".scss": "postcss-scss"
       }
-    }]
+    }],
+    "transform-inline-environment-variables"
   ]
 }

@@ -1,6 +1,6 @@
-.DS_Store
-.vscode
+.DS_Store/
+.vscode/
+.next/
+.test/
 npm-debug.log
 node_modules/
-dist/
-test/

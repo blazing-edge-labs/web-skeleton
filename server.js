@@ -1,34 +1,31 @@
 'use strict';
 
-const config = require('./webpack.config');
+require('dotenv-safe').load();
+
 const express = require('express');
-const historyApiFallback = require('connect-history-api-fallback');
 const path = require('path');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+const next = require('next');
+const routes = require('./routes');
 
-const app = express();
-const compiler = webpack(config);
-const port = process.env.PORT || 7000;
-const staticDir = path.join(__dirname, 'dist');
-const staticIndex = path.join(staticDir, 'index.html');
+const port = process.env.PORT;
+const dev = process.env.NODE_ENV !== 'production';
 
-app.use(historyApiFallback());
-app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath,
-}));
-app.use(webpackHotMiddleware(compiler));
+const app = next({ dev });
+const handler = routes.getRequestHandler(app);
 
-app.use((req, res) => {
-  res.sendFile(staticIndex);
-});
+app.prepare()
+.then(() => {
+  const server = express();
 
-app.listen(port, (error) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(`Listening on port ${port}`);
-  }
+  server.get(/_next\/([^/]+)\/(.*?\.css)$/, (req, res) => {
+    const p = path.normalize(req.params[1]);
+    res.sendFile(path.join(__dirname, '.next', 'bundles', p));
+  });
+
+  server.use(handler);
+
+  server.listen(port, (err) => {
+    if (err) throw err;
+    console.log(`> Ready on http://localhost:${port}`);
+  });
 });

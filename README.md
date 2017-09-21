@@ -94,14 +94,6 @@ To start further development process from this skeleton there are few manual ste
 ### package.json
 Some data should be changed corresponding to your project. Generic information like *name*, *description*, *author* and *license* should probably be changed to information that closely describes a specific project. Global variables for Jest configuration can be changed if needed, but they don't really produce any value for tests.
 
-### webpack.config.js | webpack.prod.config.js
-
-    new webpack.DefinePlugin({
-      __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
-    }),
-
-These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as global variable which we use inside the application as Web and API constant. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
-
 ### src/index.tpl.html
 Title inside template should be updated to the corresponding one instead of generic one. Favicon link doesn't exist with skeleton example which should probably be added manually.
 
