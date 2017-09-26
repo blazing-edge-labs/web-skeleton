@@ -11,7 +11,11 @@ const styleBundleNamer = (getPath) => {
   return p.replace(/\.js$/, '.css');
 };
 
-const ExtractStyle = new ExtractTextPlugin({ filename: styleBundleNamer, disable: false, allChunks: true });
+const ExtractStyle = new ExtractTextPlugin({
+  filename: styleBundleNamer,
+  disable: false,
+  allChunks: true,
+});
 
 module.exports = {
   webpack: async (config_, { dev: _ }) => {
