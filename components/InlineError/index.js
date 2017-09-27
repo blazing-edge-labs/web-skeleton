@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { hasError } from '../../utils/validator';
-import './style.local.scss';
+import css from './style.local.scss';
 
 const ErrorMsg = ({ meta, error }) =>
-  <div styleName="inlineError">
+  <div className="inlineError">
+    <style jsx>{css}</style>
     {error || (meta && hasError(meta) && meta.error)}
   </div>;
 

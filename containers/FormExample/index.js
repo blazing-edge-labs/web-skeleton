@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import Select from '../../components/Select';
 import Radio from '../../components/Radio';
 import { alwaysError } from '../../utils/validator';
-import './style.local.scss';
+import css from './style.local.scss';
 
 const options = [
   { label: 'One', value: 1 },
@@ -23,7 +23,8 @@ const theSubmitFunction = (values) => {
 };
 
 const FormExample = ({ handleSubmit }) => (
-  <div styleName="formContainer">
+  <div className="formContainer">
+    <style jsx>{css}</style>
     <h1>H1 Page Title</h1>
     <p>
       Body Text. Short paragraph intro to the page. Generally 2 or more sentences. Now I am just

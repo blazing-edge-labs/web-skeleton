@@ -1,41 +1,10 @@
 {
   "presets": ["next/babel", "es2015", "stage-0", "react"],
-  "env": {
-    "development": {
-      "plugins": [
-        ["react-css-modules", {
-          "removeImport": true,
-          "webpackHotModuleReloading": true,
-          "filetypes": {
-            ".scss": "postcss-scss"
-          }
-        }]
-      ]
-    },
-    "production": {
-      "plugins": [
-        ["react-css-modules", {
-          "removeImport": true,
-          "webpackHotModuleReloading": true,
-          "filetypes": {
-            ".scss": "postcss-scss"
-          }
-        }]
-      ]
-    },
-    "webpack": {
-      "plugins": [
-        ["react-css-modules", {
-          "removeImport": false,
-          "webpackHotModuleReloading": true,
-          "filetypes": {
-            ".scss": "postcss-scss"
-          }
-        }]
-      ]
-    }
-  },
   "plugins": [
+    ["wrap-in-js", {
+      "extensions": ["css$", "scss$"]
+    }],
+    "styled-jsx/babel",
     "transform-inline-environment-variables"
   ]
 }

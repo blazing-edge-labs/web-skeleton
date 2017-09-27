@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
-import 'react-select/dist/react-select.css';
+
+import selectCSS from 'react-select/dist/react-select.css';
+import css from './style.local.scss';
 
 import InlineError from '../InlineError';
 import { hasError } from '../../utils/validator';
 
-import ss from './style.local.scss';
 
 const Select = (props) => {
   const { label, input, meta, ...rest } = props;
@@ -22,11 +23,13 @@ const Select = (props) => {
   };
 
   return (
-    <div styleName={`${hasError(meta) ? 'ss.error' : ''}`}>
+    <div className={`${hasError(meta) ? 'error' : ''}`}>
+      <style jsx global>{selectCSS}</style>
+      <style jsx>{css}</style>
       <label htmlFor={name}>
         {label}
       </label>
-      <ReactSelect {...selectProps} styleName="ss.select" />
+      <ReactSelect {...selectProps} />
       <InlineError meta={meta} />
     </div>
   );

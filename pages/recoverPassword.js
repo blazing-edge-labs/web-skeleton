@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connectPage, IncludePageCSS } from '../utils/page';
+import { connectPage } from '../utils/page';
 import RecoverPassword from '../containers/RecoverPassword';
 
 const RecoverPasswordPage = ({ url }) => (
-  <div>
-    <IncludePageCSS />
-    <RecoverPassword params={url.query} />
-  </div>
+  <RecoverPassword params={url.query} />
 );
 
 RecoverPasswordPage.propTypes = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './style.local.scss';
+import css from './style.local.scss';
 
 class Radio extends Component {
   constructor(props) {
@@ -48,13 +48,14 @@ class Radio extends Component {
         onFocus={this.changeFocus}
         onBlur={this.changeFocus}
         onKeyDown={this.onKeyPressed}
-        styleName="container"
+        className="root"
       >
+        <style jsx>{css}</style>
         <span
           id={input.name}
-          styleName={`outer ${isChecked ? 'filled' : ''} ${focused ? 'focused' : ''}`}
+          className={`outer ${isChecked ? 'filled' : ''} ${focused ? 'focused' : ''}`}
         >
-          {isChecked && <span styleName="inner" />}
+          {isChecked && <span className="inner" />}
         </span>
         <label htmlFor={input.name}>{label}</label>
       </div>

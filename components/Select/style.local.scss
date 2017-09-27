@@ -1,4 +1,4 @@
-.select {
+:global(.Select) {
 
   &:global(.is-focused) > :global(.Select-control) {
     border-color: $color-input-border;

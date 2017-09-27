@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './style.local.scss';
+import css from './style.local.scss';
 
 class Checkbox extends Component {
   constructor(props) {
@@ -46,13 +46,14 @@ class Checkbox extends Component {
         onFocus={this.changeFocus}
         onBlur={this.changeFocus}
         onKeyDown={this.onKeyPressed}
-        styleName="container"
+        className="root"
       >
+        <style jsx>{css}</style>
         <span
           id={input.name}
-          styleName={`checkbox ${input.value ? 'checked' : ''} ${focused ? 'focused' : ''}`}
+          className={`checkbox ${input.value ? 'checked' : ''} ${focused ? 'focused' : ''}`}
         >
-          {input.value && <i className="fa fa-check" styleName="checkIcon" />}
+          {input.value && <i className="fa fa-check checkIcon" />}
         </span>
         <label htmlFor={input.name}>{label}</label>
       </div>

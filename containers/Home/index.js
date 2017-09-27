@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import './style.local.scss';
+import css from './style.local.scss';
 
 const HomeComponent = () => {
   return (
     <main>
-      <p styleName="test">Home Page!</p>
+      <style jsx>{css}</style>
+      <p className="test">Home Page!</p>
     </main>
   );
 };

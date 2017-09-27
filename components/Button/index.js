@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.local.scss';
+import css from './style.local.scss';
 
 const Button = ({ children, ...rest }) =>
   <button
-    styleName="button"
+    className="button"
     {...rest}
   >
+    <style jsx>{css}</style>
     {children}
   </button>;
 

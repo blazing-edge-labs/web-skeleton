@@ -1,12 +1,9 @@
 import React from 'react';
-import { connectPage, IncludePageCSS } from '../utils/page';
+import { connectPage } from '../utils/page';
 import Login from '../containers/Login';
 
 const LoginPage = () => (
-  <div>
-    <IncludePageCSS />
-    <Login />
-  </div>
+  <Login />
 );
 
 export default connectPage()(LoginPage);
