@@ -29,6 +29,7 @@ export class AppComponent extends Component {
       <div>
         <nav>
           <Link to="home"><a>Home</a></Link>
+          <Link to="formExample"><a>Components</a></Link>
           <Link to="profile"><a>Profile</a></Link>
           <a href onClick={this.handleLogout}>Logout</a>
         </nav>

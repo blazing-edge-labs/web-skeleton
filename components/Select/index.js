@@ -23,7 +23,7 @@ const Select = (props) => {
   };
 
   return (
-    <div className={`${hasError(meta) ? 'error' : ''}`}>
+    <div className={`root ${hasError(meta) ? 'error' : ''}`}>
       <style jsx global>{selectCSS}</style>
       <style jsx>{css}</style>
       <label htmlFor={name}>
