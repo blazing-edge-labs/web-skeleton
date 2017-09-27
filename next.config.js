@@ -18,7 +18,7 @@ const ExtractStyle = new ExtractTextPlugin({
 });
 
 module.exports = {
-  webpack: async (config_, { dev: _ }) => {
+  webpack: async (config_, { dev }) => {
     const config = config_;
     if (typeof config.entry === 'function') {
       config.entry = await config.entry();
@@ -39,6 +39,20 @@ module.exports = {
 
     config.entry['bundles/main.css'] = path.join(__dirname, 'styles', 'main.scss');
 
+    config.module.rules
+      .filter(rule => rule.loader === 'babel-loader' && rule.options.babelrc !== false)
+      .forEach((rule) => {
+        // eslint-disable-next-line
+        rule.options.forceEnv = 'webpack';
+      });
+
+    const styleEmitter = {
+      loader: 'emit-file-loader',
+      options: {
+        name: 'dist/[path][name].[ext]',
+      },
+    };
+
     const commonStyleLoaders = [
       {
         loader: 'postcss-loader',
@@ -51,39 +65,45 @@ module.exports = {
       'sass-loader',
     ];
 
+    const localStyleLoaders = [
+      styleEmitter,
+      {
+        loader: 'css-loader',
+        options: {
+          // url: false,
+          modules: true,
+          importLoaders: 2,
+          localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+        },
+      },
+      ...commonStyleLoaders,
+      {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            path.resolve(__dirname, './styles/_variables.scss'),
+          ],
+        },
+      },
+    ];
+
+    const globalStyleLoaders = [
+      styleEmitter,
+      'css-loader',
+      ...commonStyleLoaders,
+    ];
+
     config.module.rules.push(
       {
         test: /\.local\.(css|scss)$/,
-        use: ExtractStyle.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                // url: false,
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
-              },
-            },
-            ...commonStyleLoaders,
-            {
-              loader: 'sass-resources-loader',
-              options: {
-                resources: [
-                  path.resolve(__dirname, './styles/_variables.scss'),
-                ],
-              },
-            },
-          ],
-        }),
+        use: dev
+          ? ['style-loader', ...localStyleLoaders]
+          : ExtractStyle.extract({ use: localStyleLoaders }),
       }, {
         test: /^((?!\.local).)+\.(css|scss)$/,
-        use: ExtractStyle.extract({
-          use: [
-            'css-loader',
-            ...commonStyleLoaders,
-          ],
-        }),
+        use: dev
+          ? ['style-loader', ...globalStyleLoaders]
+          : ExtractStyle.extract({ use: globalStyleLoaders }),
       }, {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?limit=10000&mimetype=application/font-woff',
@@ -95,7 +115,7 @@ module.exports = {
         loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
       }, {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file',
+        loader: 'file-loader',
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?limit=10000&mimetype=image/svg+xml',

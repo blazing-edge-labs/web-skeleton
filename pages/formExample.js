@@ -1,15 +1,15 @@
 import React from 'react';
 import { connectPage, IncludePageCSS } from '../utils/page';
 import App from '../containers/App';
-import Home from '../containers/Home';
+import FormExample from '../containers/FormExample';
 
-const HomePage = () => (
+const FormExamplePage = () => (
   <App>
     <div>
       <IncludePageCSS />
-      <Home />
+      <FormExample />
     </div>
   </App>
 );
 
-export default connectPage()(HomePage);
+export default connectPage()(FormExamplePage);
