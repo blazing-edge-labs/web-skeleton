@@ -2,5 +2,6 @@
 .vscode/
 .next/
 .test/
+.env
 npm-debug.log
 node_modules/
