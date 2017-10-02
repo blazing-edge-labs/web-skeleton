@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 
 import selectCSS from 'react-select/dist/react-select.css';
-import css from './style.local.scss';
+import css from './style.scss';
 
 import InlineError from '../InlineError';
 import { hasError } from '../../utils/validator';

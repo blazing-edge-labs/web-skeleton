@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { hasError } from '../../utils/validator';
-import css from './style.local.scss';
+import css from './style.scss';
 
 const ErrorMsg = ({ meta, error }) =>
   <div className="inlineError">

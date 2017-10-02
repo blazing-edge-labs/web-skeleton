@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import css from './style.local.scss';
+import css from './style.scss';
 
 const HomeComponent = () => {
   return (

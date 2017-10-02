@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import InlineError from '../InlineError';
 import { hasError } from '../../utils/validator';
-import css from './style.local.scss';
+import css from './style.scss';
 
 const Input = (props) => {
   const { label, input, meta, textarea, ...rest } = props;

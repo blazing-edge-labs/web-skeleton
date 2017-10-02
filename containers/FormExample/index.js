@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import Select from '../../components/Select';
 import Radio from '../../components/Radio';
 import { alwaysError } from '../../utils/validator';
-import css from './style.local.scss';
+import css from './style.scss';
 
 const options = [
   { label: 'One', value: 1 },

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import css from './style.local.scss';
+import css from './style.scss';
 
 class Radio extends Component {
   constructor(props) {
