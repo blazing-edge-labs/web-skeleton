@@ -32,8 +32,17 @@ module.exports = {
           'babel-loader',
           'raw-loader',
           postcssLoader,
-          'sass-loader',
+          'resolve-url-loader',
           {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true, // needed by resolve-url-loader
+              includePaths: [
+                // path.join(__dirname, 'styles'),
+                // path.join(__dirname, 'node_modules'),
+              ],
+            },
+          }, {
             loader: 'sass-resources-loader',
             options: {
               resources: [
@@ -42,21 +51,21 @@ module.exports = {
             },
           },
         ],
-      }, {
-        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-      }, {
-        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-      }, {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
-      }, {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
-      }, {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+      // }, {
+      //   test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+      //   loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      // }, {
+      //   test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+      //   loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      // }, {
+      //   test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      //   loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
+      // }, {
+      //   test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+      //   loader: 'file-loader',
+      // }, {
+      //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      //   loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
     );
 

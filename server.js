@@ -17,9 +17,9 @@ app.prepare()
 .then(() => {
   const server = express();
 
-  server.get(/_next\/([^/]+)\/(.*?\.css)$/, (req, res) => {
-    const p = path.normalize(req.params[1]);
-    res.sendFile(path.join(__dirname, '.next', 'bundles', p));
+  server.get(/(\/node_modules\/.*?\.(:?woff2?|ttf|eot|svg))$/, (req, res) => {
+    const p = path.normalize(req.params[0]);
+    res.sendFile(path.join(__dirname, p));
   });
 
   server.use(handler);
