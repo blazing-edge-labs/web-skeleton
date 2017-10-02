@@ -1,5 +1,5 @@
 import store from 'store';
-import * as RR from 'react-router';
+import { Router } from '../routes';
 import createFormData from './createFormData';
 import api from './api';
 import { API_URL } from '../constants/application';
@@ -120,13 +120,11 @@ describe('fetchApi util', () => {
   it('api.fetch API with 401 error', () => {
     const error = { status: 401 };
     global.fetch = jest.fn(() => fakeResponseWithBody({ error }));
-    RR.browserHistory = {
-      push: jest.fn(),
-    };
+    Router.pushRoute = jest.fn();
 
     return api.fetch('/self', {}).then(fail, (reason) => {
       expect(reason.status).toEqual(401);
-      expect(RR.browserHistory.push).toHaveBeenCalledWith('/login');
+      expect(Router.pushRoute).toHaveBeenCalledWith('/login');
     });
   });
 

@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import store from 'store';
-import { browserHistory } from 'react-router';
+import { Router } from '../routes';
 import { API_URL } from '../constants/application';
 
 const encodeComponent = str =>
@@ -77,7 +77,7 @@ const handler = ({ response, body = {} }) => {
 
 const handle401 = (error) => {
   if (error && error.status === 401) {
-    browserHistory.push('/login');
+    Router.pushRoute('/login');
   }
   throw error;
 };

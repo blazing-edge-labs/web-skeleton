@@ -167,8 +167,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * babel-preset-react - preset to install all React plugins
 * babel-preset-react-hmre - preset for React hot module replacement
 * babel-preset-stage-0 - preset to install future and experimental plugins that polyfill potential JS language proposals
-* connect-history-api-fallback - always serves *index.html* file from express without depending on manual route changes in URL
-* css-loader - Webpack CSS loader, resolves imports and URL in CSS
 * enzyme - testing utility for React, allows us to test components and it's functions
 * eslint - linting utility for JS
 * eslint-config-airbnb - Airbnb Eslint configuration
@@ -182,12 +180,10 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * file-loader - Webpack file loader, constructs MD5 hash filename and emits files
 * html-webpack-plugin - simplifies creation of *index.html* file through Webpack
 * jest - JS testing framework, best tool to rest React/Redux applications
-* postcss-js - PostCss library for CSS-in-JS default styles
 * postcss-loader - Webpack PostCss loader
 * react-addons-test-utils - package provides React TestUtils add-on, it is also dependency of Enzyme
 * react-test-renderer - React package used for snapshot testing
 * redux-mock-store - library to mock Redux store for test environment
-* style-loader - Webpack style loader, adds CSS to DOM by injecting style tags
 * url-loader - Webpack URL loader, returns Data URL if file is smaller than limit
 * webpack - JS bundler for tasks automation
 * webpack-dev-middleware - dev middleware for Webpack, arguments live bundle to a directory
@@ -203,7 +199,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * react - JS framework for building user interfaces
 * react-dom - React package, allows working with DOM, used to hook up React application to template DOM served by *index.html*
 * react-redux - React bindings for Redux
-* react-router - React routing library
 * redux - persistent state management library
 * redux-form - HOC wrapper for form components, allows basic form functionality and reduces boilerplate
 * redux-thunk - Redux middleware which allows async actions
