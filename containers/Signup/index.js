@@ -24,7 +24,6 @@ export class SignupComponent extends Component {
     error: PropTypes.string,
     form: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    router: PropTypes.object.isRequired,
     submitting: PropTypes.bool.isRequired,
   };
 

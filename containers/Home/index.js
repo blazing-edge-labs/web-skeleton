@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import applyStyles from '../../next-style-loader/applyStyles';
 
-import css from './style.scss';
+import s from './style.scss';
 
 const HomeComponent = () => {
   return (
     <main>
-      <style jsx>{css}</style>
-      <p className="test">Home Page!</p>
+      <p className={s.test}>Home Page!</p>
     </main>
   );
 };
@@ -24,4 +24,4 @@ HomeComponent.propTypes = {
 export default connect(state => ({
   auth: state.auth,
   user: state.user,
-}))(HomeComponent);
+}))(applyStyles(s)(HomeComponent));

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import css from './style.scss';
+import applyStyles from '../../next-style-loader/applyStyles';
+import s from './style.scss';
 
 class Radio extends Component {
   constructor(props) {
@@ -48,14 +49,10 @@ class Radio extends Component {
         onFocus={this.changeFocus}
         onBlur={this.changeFocus}
         onKeyDown={this.onKeyPressed}
-        className="root"
+        className={`${s.root} ${isChecked ? s.checked : ''} ${focused ? s.focused : ''}`}
       >
-        <style jsx>{css}</style>
-        <span
-          id={input.name}
-          className={`outer ${isChecked ? 'filled' : ''} ${focused ? 'focused' : ''}`}
-        >
-          {isChecked && <span className="inner" />}
+        <span id={input.name} className={s.outer}>
+          <span className={s.inner} />
         </span>
         <label htmlFor={input.name}>{label}</label>
       </div>
@@ -72,4 +69,4 @@ Radio.propTypes = {
   ]),
 };
 
-export default Radio;
+export default applyStyles(s)(Radio);

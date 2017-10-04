@@ -9,7 +9,9 @@ import Input from '../../components/Input';
 import Select from '../../components/Select';
 import Radio from '../../components/Radio';
 import { alwaysError } from '../../utils/validator';
-import css from './style.scss';
+
+import applyStyles from '../../next-style-loader/applyStyles';
+import s from './style.scss';
 
 const options = [
   { label: 'One', value: 1 },
@@ -23,8 +25,7 @@ const theSubmitFunction = (values) => {
 };
 
 const FormExample = ({ handleSubmit }) => (
-  <div className="formContainer">
-    <style jsx>{css}</style>
+  <div className={s.formContainer}>
     <h1>H1 Page Title</h1>
     <p>
       Body Text. Short paragraph intro to the page. Generally 2 or more sentences. Now I am just
@@ -127,4 +128,4 @@ export default connect(() => ({
   },
 }))(reduxForm({
   form: 'formExample',
-})(FormExample));
+})(applyStyles(s)(FormExample)));

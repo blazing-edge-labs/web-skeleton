@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 
-import selectCSS from 'react-select/dist/react-select.css';
-import css from './style.scss';
+import selectStyle from 'react-select/dist/react-select.css';
+import s from './style.scss';
+import applyStyles from '../../next-style-loader/applyStyles';
 
 import InlineError from '../InlineError';
 import { hasError } from '../../utils/validator';
@@ -23,9 +24,7 @@ const Select = (props) => {
   };
 
   return (
-    <div className={`root ${hasError(meta) ? 'error' : ''}`}>
-      <style jsx global>{selectCSS}</style>
-      <style jsx>{css}</style>
+    <div className={`${s.root} ${hasError(meta) ? s.error : ''}`}>
       <label htmlFor={name}>
         {label}
       </label>
@@ -42,4 +41,4 @@ Select.propTypes = {
   options: PropTypes.array,
 };
 
-export default Select;
+export default applyStyles([selectStyle, s])(Select);

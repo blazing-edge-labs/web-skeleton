@@ -36,7 +36,7 @@
       "functions": "ignore"
     }],
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["*", "src/setupTests.js", "**/*.test.js", "**/test.js"]
+      "devDependencies": ["*", "next-style-loader/index.js", "setupTests.js", "**/*.test.js", "**/test.js"]
     }],
     "arrow-body-style": 0,
     "react/style-prop-object": 0,

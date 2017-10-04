@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import css from './style.scss';
+import applyStyles from '../../next-style-loader/applyStyles';
+import s from './style.scss';
 
-const Button = ({ children, ...rest }) =>
+const Button = ({ children, className, ...rest }) =>
   <button
-    className="button"
+    className={`${s.button} ${className || ''}`}
     {...rest}
   >
-    <style jsx>{css}</style>
     {children}
   </button>;
 
 Button.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -20,4 +21,4 @@ Button.propTypes = {
   ]).isRequired,
 };
 
-export default Button;
+export default applyStyles(s)(Button);

@@ -1,4 +1,4 @@
-textarea, input {
+.input {
   display: block;
   padding: 10px;
   height: 40px;
@@ -21,6 +21,6 @@ textarea, input {
   }
 }
 
-textarea {
+textarea.input {
   height: 100px;
 }

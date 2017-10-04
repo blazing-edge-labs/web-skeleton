@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { hasError } from '../../utils/validator';
-import css from './style.scss';
+
+import applyStyles from '../../next-style-loader/applyStyles';
+import s from './style.scss';
 
 const ErrorMsg = ({ meta, error }) =>
-  <div className="inlineError">
-    <style jsx>{css}</style>
+  <div className={s.inlineError}>
     {error || (meta && hasError(meta) && meta.error)}
   </div>;
 
@@ -15,4 +16,4 @@ ErrorMsg.propTypes = {
   error: PropTypes.string,
 };
 
-export default ErrorMsg;
+export default applyStyles(s)(ErrorMsg);

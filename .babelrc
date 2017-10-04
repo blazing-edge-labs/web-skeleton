@@ -1,10 +1,6 @@
 {
   "presets": ["next/babel", "es2015", "stage-0", "react"],
   "plugins": [
-    ["wrap-in-js", {
-      "extensions": ["css$", "scss$"]
-    }],
-    "styled-jsx/babel",
     "transform-inline-environment-variables"
   ]
 }

@@ -14,14 +14,14 @@
   border-radius: 50%;
   color: black;
   vertical-align: middle;
-}
 
-.filled {
-  background-color: black;
-}
+  .checked & {
+    background-color: black;
+  }
 
-.focused {
-  box-shadow: $focus-box-shadow;
+  .focused & {
+    box-shadow: $focus-box-shadow;
+  }
 }
 
 .inner {
@@ -33,4 +33,9 @@
   vertical-align: text-top;
   margin-left: 4px;
   margin-top: 1px;
+  visibility: hidden;
+
+  .checked & {
+    visibility: visible;
+  }
 }

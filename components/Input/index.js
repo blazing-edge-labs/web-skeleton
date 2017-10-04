@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 
 import InlineError from '../InlineError';
 import { hasError } from '../../utils/validator';
-import css from './style.scss';
+
+import applyStyles from '../../next-style-loader/applyStyles';
+import s from './style.scss';
 
 const Input = (props) => {
-  const { label, input, meta, textarea, ...rest } = props;
+  const { label, input, meta, textarea, className, ...rest } = props;
 
   const attributes = {
     id: input.name,
+    className: `${s.input} ${className || ''}`,
     ...input,
     ...rest,
   };
 
   return (
-    <div className={hasError(meta) ? 'error' : ''}>
-      <style jsx>{css}</style>
+    <div className={hasError(meta) ? s.error : ''}>
       <label className="label" htmlFor={input.name}>
         {label}
       </label>
@@ -32,9 +34,10 @@ const Input = (props) => {
 
 Input.propTypes = {
   label: PropTypes.string,
+  className: PropTypes.string,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   textarea: PropTypes.bool,
 };
 
-export default Input;
+export default applyStyles(s)(Input);
