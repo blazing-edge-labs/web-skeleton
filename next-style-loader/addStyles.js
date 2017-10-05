@@ -14,7 +14,7 @@ let serverStyles = !isServer ? null : [];
 //   if (styleEl) styleEl.parentNode.removeChild(styleEl);
 // }
 
-function addStyles(style_) {
+export default function addStyles(style_) {
   const styles = Array.isArray(style_) ? style_ : [style_];
   const nextStyles = [].concat(...styles.map(s => s._nextStyles));
 
@@ -32,21 +32,17 @@ function addStyles(style_) {
   return styleLoaderAddStyles(styleLoaderStyles);
 }
 
-function flush() {
+export function flush() {
   if (!isServer) {
     throw new Error('flush() should only be called on the server');
   }
 
-  const flushedStyles = serverStyles;
-  const flushedCss = serverStyles.map(s => s.content).join('');
+  const css = serverStyles.map(s => s.content).join('');
 
   serverStyles = [];
 
   return {
-    tag: <style id={ssrStyleElId} dangerouslySetInnerHTML={{ __html: flushedCss }} />, // eslint-disable-line
-    styles: flushedStyles,
+    tag: <style id={ssrStyleElId} dangerouslySetInnerHTML={{ __html: css }} />, // eslint-disable-line
+    css,
   };
 }
-
-addStyles.flush = flush;
-module.exports = addStyles;
