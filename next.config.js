@@ -4,6 +4,7 @@ const path = require('path');
 const localStyleCondition = [
   path.join(__dirname, 'containers'),
   path.join(__dirname, 'components'),
+  path.join(__dirname, 'pages'),
 ];
 
 function getStyleLoaders({ dev, mode, sass }) {
