@@ -6,15 +6,18 @@ const localStyleCondition = [
   path.join(__dirname, 'components'),
 ];
 
-function getStyleLoaders(options) {
+function getStyleLoaders({ dev, mode, sass }) {
   const loaders = [
     'babel-loader',
     path.join(__dirname, 'next-style-loader'),
     {
       loader: 'css-loader',
       options: {
-        modules: options.mode === 'local',
-        minimize: true,
+        modules: mode === 'local',
+        minimize: !dev,
+        localIdentName: dev
+          ? '[local]__[hash:base64:5]'
+          : '[hash:base64]',
         url: false,
         importLoaders: 2,
       },
@@ -30,7 +33,7 @@ function getStyleLoaders(options) {
     'resolve-url-loader',
   ];
 
-  if (options.sass) {
+  if (sass) {
     loaders.push(
       {
         loader: 'sass-loader',
@@ -56,7 +59,7 @@ function getStyleLoaders(options) {
 }
 
 module.exports = {
-  webpack: (config, { dev: _ }) => {
+  webpack: (config, { dev }) => {
     config.module.rules.push(
       {
         test: /\.(css|scss)$/,
@@ -67,19 +70,19 @@ module.exports = {
       }, {
         test: /\.css$/,
         exclude: localStyleCondition,
-        use: getStyleLoaders({ mode: 'global' }),
+        use: getStyleLoaders({ dev, mode: 'global' }),
       }, {
         test: /\.scss$/,
         exclude: localStyleCondition,
-        use: getStyleLoaders({ mode: 'global', sass: true }),
+        use: getStyleLoaders({ dev, mode: 'global', sass: true }),
       }, {
         test: /\.css$/,
         include: localStyleCondition,
-        use: getStyleLoaders({ mode: 'local' }),
+        use: getStyleLoaders({ dev, mode: 'local' }),
       }, {
         test: /\.scss$/,
         include: localStyleCondition,
-        use: getStyleLoaders({ mode: 'local', sass: true }),
+        use: getStyleLoaders({ dev, mode: 'local', sass: true }),
       }
       // }, {
       //   test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
