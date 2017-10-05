@@ -2,17 +2,16 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { AppComponent } from './';
 import * as Actions from '../../actions/auth';
+import { Router } from '../../routes';
 
 describe('App component', () => {
   const children = <div>Test</div>;
   const mockDispatch = jest.fn(z => z);
-  const mockRouter = {
-    push: jest.fn(),
-  };
+  Router.pushRoute = jest.fn();
+
   const wrapper = shallow(
     <AppComponent
       dispatch={mockDispatch}
-      router={mockRouter}
     >{children}</AppComponent>
   );
   const instance = wrapper.instance();
@@ -29,8 +28,8 @@ describe('App component', () => {
     expect(Actions.logoutAction).toHaveBeenCalled();
     expect(mockDispatch).toHaveBeenCalled();
 
-    mockDispatch.mock.calls[0][0].then(() => {
-      expect(mockRouter.push).toHaveBeenCalledWith('/login');
+    return mockDispatch.mock.calls[0][0].then(() => {
+      expect(Router.pushRoute).toHaveBeenCalledWith('/login');
     });
   });
 });

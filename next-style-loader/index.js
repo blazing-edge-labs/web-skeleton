@@ -2,7 +2,7 @@
 
 'use strict';
 
-const { getHashDigest, stringifyRequest } = require('loader-utils');
+const { getHashDigest } = require('loader-utils');
 const path = require('path');
 
 module.exports = function loader(source, sourceMap) {

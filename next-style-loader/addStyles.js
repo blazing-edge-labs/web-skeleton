@@ -43,7 +43,7 @@ function flush() {
   serverStyles = [];
 
   return {
-    tag: <style id={ssrStyleElId} dangerouslySetInnerHTML={{ __html: flushedCss }} />,
+    tag: <style id={ssrStyleElId} dangerouslySetInnerHTML={{ __html: flushedCss }} />, // eslint-disable-line
     styles: flushedStyles,
   };
 }

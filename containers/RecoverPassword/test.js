@@ -2,19 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { RecoverPasswordComponent, validate } from './';
 import * as Actions from '../../actions/auth';
+import { Router } from '../../routes';
 
 describe('RecoverPassword component', () => {
   const mockDispatch = jest.fn(z => z);
-  const mockRouter = {
-    push: jest.fn(),
-  };
+  Router.pushRoute = jest.fn();
+
   const wrapper = shallow(
     <RecoverPasswordComponent
       dispatch={mockDispatch}
       form="Form"
       handleSubmit={() => {}}
       params={{ code: 'this.is.code' }}
-      router={mockRouter}
       submitSucceeded={false}
       submitting={false}
     />
@@ -57,7 +56,7 @@ describe('RecoverPassword component', () => {
     jest.runAllTimers();
     expect(Actions.recoverPasswordFetch)
       .toHaveBeenCalledWith(expected, 'this.is.code', jasmine.any(Function));
-    expect(mockRouter.push).toHaveBeenCalledWith('/login');
+    expect(Router.pushRoute).toHaveBeenCalledWith('/login');
     expect(mockDispatch).toHaveBeenCalled();
   });
 });

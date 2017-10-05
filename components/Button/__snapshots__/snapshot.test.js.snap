@@ -1,13 +1,13 @@
 exports[`Button component snapshot renders basic required data 1`] = `
 <button
-  className="src-components-Button-___style-local__button___2wkPc">
+  className="button ">
   Login
 </button>
 `;
 
 exports[`Button component snapshot renders empty button 1`] = `
 <button
-  className="src-components-Button-___style-local__button___2wkPc"
+  className="button "
   empty={true}>
   Login
 </button>

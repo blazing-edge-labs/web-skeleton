@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "ECP skeleton for React/Redux web application",
   "scripts": {
-    "snapshots": "jest -u",
     "lint": "eslint . --ignore-pattern '/node_modules/*'",
     "test": "jest",
+    "snapshots": "jest -u",
     "build": "next build",
     "dev": "node server.js",
     "start": "NODE_ENV=production node server.js",
@@ -80,7 +80,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "engines": {
-    "node": ">=6.7 <7"
+    "node": "8"
   },
   "jest": {
     "cacheDirectory": "./.test/cache",
@@ -103,7 +103,6 @@
     "timers": "fake",
     "rootDir": ".",
     "moduleNameMapper": {
-      "\\.js$": "babel-jest",
       "\\.(css|scss)$": "identity-obj-proxy"
     }
   }

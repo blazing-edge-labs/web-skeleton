@@ -2,18 +2,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { SignupComponent, validate } from './';
 import * as Actions from '../../actions/auth';
+import { Router } from '../../routes';
 
 describe('Signup component', () => {
   const mockDispatch = jest.fn(z => z);
-  const mockRouter = {
-    push: jest.fn(),
-  };
+  Router.pushRoute = jest.fn();
+
   const wrapper = shallow(
     <SignupComponent
       dispatch={mockDispatch}
       form="Form"
       handleSubmit={() => {}}
-      router={mockRouter}
       submitting={false}
     />
   );
@@ -54,7 +53,7 @@ describe('Signup component', () => {
     expect(mockDispatch).toHaveBeenCalled();
 
     return mockDispatch.mock.calls[0][0].then(() => {
-      expect(mockRouter.push).toHaveBeenCalledWith('/');
+      expect(Router.pushRoute).toHaveBeenCalledWith('/');
     });
   });
 });

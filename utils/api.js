@@ -1,7 +1,8 @@
 import 'whatwg-fetch';
 import store from 'store';
 import { Router } from '../routes';
-import { API_URL } from '../constants/application';
+
+const { API_URL } = process.env;
 
 const encodeComponent = str =>
   encodeURIComponent(str)
@@ -63,7 +64,10 @@ const jsonParser = response =>
 
 const handler = ({ response, body = {} }) => {
   if (body.error) {
-    throw new Error(body.error);
+    const error = new Error(body.error);
+    error.code = body.code;
+    error.status = body.status || response.status;
+    throw error;
   }
 
   if (response.status < 200 || response.status >= 300) {

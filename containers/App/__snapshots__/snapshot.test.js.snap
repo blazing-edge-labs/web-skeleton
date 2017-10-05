@@ -2,13 +2,18 @@ exports[`App component snapshot renders 1`] = `
 <div>
   <nav>
     <a
-      onClick={[Function]}
-      style={Object {}}>
+      href="/"
+      onClick={[Function]}>
       Home
     </a>
     <a
-      onClick={[Function]}
-      style={Object {}}>
+      href="/formExample"
+      onClick={[Function]}>
+      Components
+    </a>
+    <a
+      href="/profile"
+      onClick={[Function]}>
       Profile
     </a>
     <a

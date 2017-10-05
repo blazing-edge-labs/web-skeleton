@@ -5,32 +5,32 @@ exports[`Input component snapshot renders basic required data 1`] = `
     className="label"
     htmlFor="email" />
   <input
-    className="src-components-Input-___style-local__input___AWI3s"
+    className="input "
     id="Form"
     name="email"
     value="" />
   <div
-    className="src-components-InlineError-___style-local__inlineError___rL1Dx" />
+    className="inlineError" />
 </div>
 `;
 
 exports[`Input component snapshot renders extra info and it is active and invalid 1`] = `
 <div
-  className="src-components-Input-___style-local__error___1gxey">
+  className="error">
   <label
     className="label"
     htmlFor="email">
     Email
   </label>
   <input
-    className="src-components-Input-___style-local__input___AWI3s"
+    className="input "
     id="Form"
     name="email"
     placeholder="Email"
     type="email"
     value="notAnEmail" />
   <div
-    className="src-components-InlineError-___style-local__inlineError___rL1Dx">
+    className="inlineError">
     Input is invalid
   </div>
 </div>
@@ -38,19 +38,19 @@ exports[`Input component snapshot renders extra info and it is active and invali
 
 exports[`Input component snapshot renders label and input is invalid 1`] = `
 <div
-  className="src-components-Input-___style-local__error___1gxey">
+  className="error">
   <label
     className="label"
     htmlFor="email">
     Email
   </label>
   <input
-    className="src-components-Input-___style-local__input___AWI3s"
+    className="input "
     id="Form"
     name="email"
     value="notAnEmail" />
   <div
-    className="src-components-InlineError-___style-local__inlineError___rL1Dx">
+    className="inlineError">
     Input is invalid
   </div>
 </div>
@@ -58,19 +58,19 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
 
 exports[`Input component snapshot renders label and input is required 1`] = `
 <div
-  className="src-components-Input-___style-local__error___1gxey">
+  className="error">
   <label
     className="label"
     htmlFor="email">
     Email
   </label>
   <input
-    className="src-components-Input-___style-local__input___AWI3s"
+    className="input "
     id="Form"
     name="email"
     value="" />
   <div
-    className="src-components-InlineError-___style-local__inlineError___rL1Dx">
+    className="inlineError">
     Input required
   </div>
 </div>
@@ -85,11 +85,11 @@ exports[`Input component snapshot renders label and is focused 1`] = `
     Email
   </label>
   <input
-    className="src-components-Input-___style-local__input___AWI3s"
+    className="input "
     id="Form"
     name="email"
     value="test@email.com" />
   <div
-    className="src-components-InlineError-___style-local__inlineError___rL1Dx" />
+    className="inlineError" />
 </div>
 `;

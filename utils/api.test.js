@@ -2,7 +2,8 @@ import store from 'store';
 import { Router } from '../routes';
 import createFormData from './createFormData';
 import api from './api';
-import { API_URL } from '../constants/application';
+
+const { API_URL } = process.env;
 
 function fakeResponseWithBody(body, response = {}) {
   return Promise.resolve({
@@ -118,8 +119,7 @@ describe('fetchApi util', () => {
   });
 
   it('api.fetch API with 401 error', () => {
-    const error = { status: 401 };
-    global.fetch = jest.fn(() => fakeResponseWithBody({ error }));
+    global.fetch = jest.fn(() => fakeResponseWithBody({ error: 'foo', status: 401 }));
     Router.pushRoute = jest.fn();
 
     return api.fetch('/self', {}).then(fail, (reason) => {

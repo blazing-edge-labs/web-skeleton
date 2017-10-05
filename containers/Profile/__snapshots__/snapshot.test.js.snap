@@ -35,8 +35,8 @@ exports[`Profile component snapshot render all data 1`] = `
     </dd>
   </dl>
   <a
-    onClick={[Function]}
-    style={Object {}}>
+    href="/editProfile"
+    onClick={[Function]}>
     Edit Profile
   </a>
 </main>
@@ -53,8 +53,8 @@ exports[`Profile component snapshot render only required email 1`] = `
     </dd>
   </dl>
   <a
-    onClick={[Function]}
-    style={Object {}}>
+    href="/editProfile"
+    onClick={[Function]}>
     Edit Profile
   </a>
 </main>

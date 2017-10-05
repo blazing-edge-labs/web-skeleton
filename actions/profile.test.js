@@ -3,7 +3,8 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as profile from './profile';
 import { PROFILE_UPDATE_SUCCESS } from '../constants/actions';
-import { API_URL } from '../constants/application';
+
+const { API_URL } = process.env;
 
 describe('profile action creators', () => {
   beforeEach(() => {
@@ -57,11 +58,11 @@ describe('profile action creators', () => {
       firstname: 'John',
       lastname: 'Doe',
     };
-    const error = {
-      message: 'Something went wrong',
+    const body = {
+      error: 'Something went wrong',
       status: 404,
     };
-    fetchMock.put(`${API_URL}/self`, { error });
+    fetchMock.put(`${API_URL}/self`, { body });
     const reduxStore = mockStore({ user: {} });
 
     return reduxStore.dispatch(profile.profileUpdateFetch(values))
@@ -75,11 +76,11 @@ describe('profile action creators', () => {
       oldPassword: 'Aa123456',
       newPassword: 'Bb123456',
     };
-    const error = {
-      message: 'Wrong password',
+    const body = {
+      error: 'Wrong password',
       status: 404,
     };
-    fetchMock.put(`${API_URL}/self/password`, { error });
+    fetchMock.put(`${API_URL}/self/password`, { body });
     const reduxStore = mockStore({ user: {} });
 
     return reduxStore.dispatch(profile.changePasswordFetch(values, userId))

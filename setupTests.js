@@ -1,4 +1,6 @@
-import { FormData, File, FileList } from 'file-api';
+require('./env');
+
+const { FormData, File, FileList } = require('file-api');
 
 global.FormData = FormData;
 global.File = File;

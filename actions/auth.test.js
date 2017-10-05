@@ -6,7 +6,8 @@ import * as auth from './auth';
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
   EMAIL_RESEND_FAILED } from '../constants/actions';
-import { API_URL } from '../constants/application';
+
+const { API_URL } = process.env;
 
 describe('auth action creators', () => {
   beforeEach(() => {
@@ -122,11 +123,11 @@ describe('auth action creators', () => {
       email: 'test@mail.com',
       password: 'Aa123456',
     };
-    const error = {
-      message: 'User already exists',
+    const body = {
+      error: 'User already exists',
       status: 404,
     };
-    fetchMock.post(`${API_URL}/register`, { error });
+    fetchMock.post(`${API_URL}/register`, { body });
     const reduxStore = mockStore({ user: {} });
 
     return reduxStore.dispatch(auth.signupFetch(values))
@@ -140,11 +141,11 @@ describe('auth action creators', () => {
       email: 'test@mail.com',
       password: 'Aa123456',
     };
-    const error = {
-      message: 'Wrong password',
+    const body = {
+      error: 'Wrong password',
       status: 404,
     };
-    fetchMock.post(`${API_URL}/auth`, { error });
+    fetchMock.post(`${API_URL}/auth`, { body });
     const reduxStore = mockStore({ user: {} });
 
     return reduxStore.dispatch(auth.loginFetch(values))
@@ -163,12 +164,12 @@ describe('auth action creators', () => {
   });
 
   it('should fail to make call to forgotPassword fetch', () => {
-    const error = {
-      message: 'Email doesn\'t exist',
+    const body = {
+      error: 'Email doesn\'t exist',
       status: 404,
     };
 
-    fetchMock.post(`${API_URL}/recoverPassword`, { error });
+    fetchMock.post(`${API_URL}/recoverPassword`, { body });
 
     return mockStore({}).dispatch(auth.forgotPasswordFetch({}))
     .then(fail, (reason) => {
@@ -195,11 +196,11 @@ describe('auth action creators', () => {
       newPassword: 'Bb123456',
     };
     const code = 'this.is.code';
-    const error = {
-      message: 'Password doesn\'t exist',
+    const body = {
+      error: 'Password doesn\'t exist',
       status: 404,
     };
-    fetchMock.post(`${API_URL}/changePassword`, { error });
+    fetchMock.post(`${API_URL}/changePassword`, { body });
     const reduxStore = mockStore({ auth: {} });
 
     return reduxStore.dispatch(auth.recoverPasswordFetch(values, code))

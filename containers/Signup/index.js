@@ -62,7 +62,7 @@ export class SignupComponent extends Component {
           {error && <ErrorMsg>{error}</ErrorMsg>}
           <Button type="submit" disabled={submitting}>Signup</Button>
         </form>
-        <p>Already have an account? <Link to="/login">Log in here</Link></p>
+        <p>Already have an account? <Link to="/login">L<a>og in here</a></Link></p>
       </main>
     );
   }

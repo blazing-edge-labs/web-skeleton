@@ -7,7 +7,6 @@ import hoistStatics from 'hoist-non-react-statics';
 import addStyles from './addStyles';
 
 export default function applyStyles(styles) {
-
   return (WrappedComponent) => {
     class ApplyStyles extends Component {
       componentWillMount() {

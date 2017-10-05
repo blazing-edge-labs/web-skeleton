@@ -8,8 +8,9 @@ describe('App component snapshot', () => {
     const tree = renderer.create(
       <AppComponent
         dispatch={() => {}}
-        router={{}}
-      >{children}</AppComponent>
+      >
+        {children}
+      </AppComponent>
     );
 
     expect(tree.toJSON()).toMatchSnapshot();

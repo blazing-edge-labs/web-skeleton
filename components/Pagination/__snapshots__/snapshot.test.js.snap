@@ -11,7 +11,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -20,7 +20,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -29,7 +29,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -38,7 +38,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -47,7 +47,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -57,7 +57,7 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -77,7 +77,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
   <ul>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -87,7 +87,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -97,7 +97,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -106,7 +106,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -118,7 +118,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -127,7 +127,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -136,7 +136,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -146,7 +146,7 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -166,7 +166,7 @@ exports[`Pagination component snapshot renders data with current page being last
   <ul>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -176,7 +176,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -186,7 +186,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -195,7 +195,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -204,7 +204,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -213,7 +213,7 @@ exports[`Pagination component snapshot renders data with current page being last
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -235,7 +235,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
   <ul>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -245,7 +245,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -257,7 +257,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">
@@ -266,7 +266,7 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
     </li>
     <li>
       <button
-        className="src-components-Button-___style-local__button___2wkPc"
+        className="button "
         empty={true}
         onClick={[Function]}
         type="button">

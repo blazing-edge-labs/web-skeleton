@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv-safe').load();
+require('./env');
 
 const express = require('express');
 const path = require('path');
@@ -26,6 +26,6 @@ app.prepare()
 
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`> Ready on http://localhost:${port}`); // eslint-disable-line
   });
 });
