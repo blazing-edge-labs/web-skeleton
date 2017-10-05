@@ -11,11 +11,11 @@
     "start": "NODE_ENV=production node server.js",
     "heroku-postbuild": "npm run build"
   },
-  "author": "ECP",
+  "author": "Blazing Edge",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/EastCoastProduct/web-skeleton"
+    "url": "https://github.com/blazing-edge-labs/web-skeleton-v2"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
