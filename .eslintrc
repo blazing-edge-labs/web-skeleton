@@ -21,7 +21,7 @@
   "rules": {
     "no-unused-vars": [2, {
       "vars": "local",
-      "varsIgnorePattern": "^_|^ss$",
+      "varsIgnorePattern": "^_",
       "args": "after-used",
       "argsIgnorePattern": "^_"
     }],
