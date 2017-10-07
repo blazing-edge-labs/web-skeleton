@@ -1,11 +1,11 @@
-const autoprefixer = require('autoprefixer');
-const path = require('path');
+const autoprefixer = require('autoprefixer')
+const path = require('path')
 
 const localStyleCondition = [
   path.join(__dirname, 'containers'),
   path.join(__dirname, 'components'),
   path.join(__dirname, 'pages'),
-];
+]
 
 function getStyleLoaders({ dev, mode, sass }) {
   const loaders = [
@@ -32,7 +32,7 @@ function getStyleLoaders({ dev, mode, sass }) {
       },
     },
     'resolve-url-loader',
-  ];
+  ]
 
   if (sass) {
     loaders.push(
@@ -53,10 +53,10 @@ function getStyleLoaders({ dev, mode, sass }) {
           ],
         },
       }
-    );
+    )
   }
 
-  return loaders;
+  return loaders
 }
 
 module.exports = {
@@ -101,8 +101,8 @@ module.exports = {
       //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       //   loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       // },
-    );
+    )
 
-    return config;
+    return config
   },
-};
+}

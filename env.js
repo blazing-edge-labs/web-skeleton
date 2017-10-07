@@ -1,2 +1,2 @@
-require('babel-polyfill');
-require('dotenv-safe').load();
+require('babel-polyfill')
+require('dotenv-safe').load()

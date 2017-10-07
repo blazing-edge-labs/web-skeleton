@@ -1,6 +1,6 @@
-import reducer from './auth';
+import reducer from './auth'
 import { EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING,
-  EMAIL_RESEND_SUCCESS, EMAIL_RESEND_FAILED } from '../constants/actions';
+  EMAIL_RESEND_SUCCESS, EMAIL_RESEND_FAILED } from '../constants/actions'
 
 describe('auth reducer', () => {
   it('should return initial state', () => {
@@ -9,8 +9,8 @@ describe('auth reducer', () => {
       emailConfirmationSuccess: false,
       emailResendError: null,
       emailResendSuccess: false,
-    });
-  });
+    })
+  })
 
   it('should handle EMAIL_CONFIRM_SUCCESS', () => {
     expect(reducer(undefined, {
@@ -20,11 +20,11 @@ describe('auth reducer', () => {
       emailConfirmationSuccess: true,
       emailResendError: null,
       emailResendSuccess: false,
-    });
-  });
+    })
+  })
 
   it('should handle EMAIL_CONFIRM_FAILED', () => {
-    const error = 'Confirmation Failed';
+    const error = 'Confirmation Failed'
 
     expect(reducer(undefined, {
       type: EMAIL_CONFIRM_FAILED,
@@ -34,8 +34,8 @@ describe('auth reducer', () => {
       emailConfirmationSuccess: false,
       emailResendError: null,
       emailResendSuccess: false,
-    });
-  });
+    })
+  })
 
   it('should handle EMAIL_RESEND_FETCHING', () => {
     expect(reducer(undefined, {
@@ -45,8 +45,8 @@ describe('auth reducer', () => {
       emailConfirmationSuccess: false,
       emailResendError: null,
       emailResendSuccess: false,
-    });
-  });
+    })
+  })
 
   it('should handle EMAIL_RESEND_SUCCESS', () => {
     expect(reducer(undefined, {
@@ -56,11 +56,11 @@ describe('auth reducer', () => {
       emailConfirmationSuccess: false,
       emailResendError: null,
       emailResendSuccess: true,
-    });
-  });
+    })
+  })
 
   it('should handle EMAIL_RESEND_FAILED', () => {
-    const error = 'Resend Failed';
+    const error = 'Resend Failed'
 
     expect(reducer(undefined, {
       type: EMAIL_RESEND_FAILED,
@@ -70,6 +70,6 @@ describe('auth reducer', () => {
       emailConfirmationSuccess: false,
       emailResendError: error,
       emailResendSuccess: false,
-    });
-  });
-});
+    })
+  })
+})

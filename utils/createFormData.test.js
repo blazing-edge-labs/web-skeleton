@@ -1,5 +1,5 @@
-import { FileList, FormData, File } from 'file-api';
-import createFormData from './createFormData';
+import { FileList, FormData, File } from 'file-api'
+import createFormData from './createFormData'
 
 describe('createFormData util', () => {
   it('returns FormData object with File', () => {
@@ -8,10 +8,10 @@ describe('createFormData util', () => {
       firstname: 'John',
       lastname: 'Doe',
       bio: 'This is my bio',
-    };
-    const formData = createFormData(iterable);
+    }
+    const formData = createFormData(iterable)
 
-    expect(typeof formData).toEqual('object');
-    expect(formData instanceof FormData).toBeTruthy();
-  });
-});
+    expect(typeof formData).toEqual('object')
+    expect(formData instanceof FormData).toBeTruthy()
+  })
+})

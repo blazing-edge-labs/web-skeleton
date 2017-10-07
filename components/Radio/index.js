@@ -1,43 +1,43 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import applyStyles from '../../next-style-loader/applyStyles';
-import s from './style.scss';
+import applyStyles from '../../next-style-loader/applyStyles'
+import s from './style.scss'
 
 class Radio extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.changeValue = this.changeValue.bind(this);
-    this.changeFocus = this.changeFocus.bind(this);
-    this.onKeyPressed = this.onKeyPressed.bind(this);
+    this.changeValue = this.changeValue.bind(this)
+    this.changeFocus = this.changeFocus.bind(this)
+    this.onKeyPressed = this.onKeyPressed.bind(this)
 
     this.state = {
       focused: false,
-    };
+    }
   }
 
   onKeyPressed(e) {
-    if (e.key === 'Enter') this.changeValue();
+    if (e.key === 'Enter') this.changeValue()
   }
 
   changeFocus() {
-    const { focused } = this.state;
+    const { focused } = this.state
 
-    this.setState({ focused: !focused });
+    this.setState({ focused: !focused })
   }
 
   changeValue() {
-    const { input, val } = this.props;
+    const { input, val } = this.props
 
-    input.onChange(val);
+    input.onChange(val)
   }
 
   render() {
-    const { label, input, val } = this.props;
-    const { focused } = this.state;
+    const { label, input, val } = this.props
+    const { focused } = this.state
 
-    const isChecked = input.value === val;
+    const isChecked = input.value === val
 
     return (
       <div
@@ -56,7 +56,7 @@ class Radio extends Component {
         </span>
         <label htmlFor={input.name}>{label}</label>
       </div>
-    );
+    )
   }
 }
 
@@ -67,6 +67,6 @@ Radio.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-};
+}
 
-export default applyStyles(s)(Radio);
+export default applyStyles(s)(Radio)

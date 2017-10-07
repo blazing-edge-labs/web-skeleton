@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { BLOCK_TYPES } from '../../constants/richTextEditor';
-import StyleButton from '../StyleButton';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { BLOCK_TYPES } from '../../constants/richTextEditor'
+import StyleButton from '../StyleButton'
 
 const BlockStyleControls = (props) => {
-  const { editorState, onToggle } = props;
-  const selection = editorState.getSelection();
+  const { editorState, onToggle } = props
+  const selection = editorState.getSelection()
   const blockType = editorState
     .getCurrentContent()
     .getBlockForKey(selection.getStartKey())
-    .getType();
+    .getType()
 
   return (
     <div>
@@ -23,12 +23,12 @@ const BlockStyleControls = (props) => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
 BlockStyleControls.propTypes = {
   editorState: PropTypes.object.isRequired,
   onToggle: PropTypes.func.isRequired,
-};
+}
 
-export default BlockStyleControls;
+export default BlockStyleControls

@@ -15,5 +15,5 @@ describe('Home component', () => {
 
   it('handleEmailResend method', () => {
     // expect something
-  });
-});
+  })
+})

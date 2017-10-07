@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from '../../routes';
-import { profileGetFetch } from '../../actions/profile';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Link } from '../../routes'
+import { profileGetFetch } from '../../actions/profile'
 
 export class ProfileComponent extends Component {
   static propTypes = {
@@ -11,13 +11,13 @@ export class ProfileComponent extends Component {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    return dispatch(profileGetFetch());
+    const { dispatch } = this.props
+    return dispatch(profileGetFetch())
   }
 
   render() {
-    const { user } = this.props;
-    const { bio, email, firstname, image, lastname } = user;
+    const { user } = this.props
+    const { bio, email, firstname, image, lastname } = user
 
     return (
       <main>
@@ -39,10 +39,10 @@ export class ProfileComponent extends Component {
         </dl>
         <Link to="/editProfile"><a>Edit Profile</a></Link>
       </main>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   user: state.user,
-}))(ProfileComponent);
+}))(ProfileComponent)

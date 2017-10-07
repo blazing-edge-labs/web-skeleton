@@ -1,6 +1,6 @@
-import reducer from './user';
+import reducer from './user'
 import { SIGNUP_LOGIN_SUCCESS, EMAIL_CONFIRM_SUCCESS, PROFILE_UPDATE_SUCCESS }
-  from '../constants/actions';
+  from '../constants/actions'
 
 const defaultUser = {
   bio: null,
@@ -12,12 +12,12 @@ const defaultUser = {
   lastname: null,
   resourceId: null,
   updatedAt: '2016-10-06T14:55:40.722Z',
-};
+}
 
 describe('user reducer', () => {
   it('should return empty initial state', () => {
-    expect(reducer(undefined, {})).toEqual({});
-  });
+    expect(reducer(undefined, {})).toEqual({})
+  })
 
   it('should return initial state', () => {
     expect(reducer(defaultUser, {})).toEqual({
@@ -30,8 +30,8 @@ describe('user reducer', () => {
       lastname: null,
       resourceId: null,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    });
-  });
+    })
+  })
 
   it('should handle SIGNUP_LOGIN_SUCCESS', () => {
     expect(reducer(undefined, {
@@ -47,11 +47,11 @@ describe('user reducer', () => {
       lastname: null,
       resourceId: null,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    });
-  });
+    })
+  })
 
   it('should handle EMAIL_CONFIRM_SUCCESS', () => {
-    const user = { ...defaultUser, confirmed: true };
+    const user = { ...defaultUser, confirmed: true }
 
     expect(reducer(undefined, {
       type: EMAIL_CONFIRM_SUCCESS,
@@ -66,8 +66,8 @@ describe('user reducer', () => {
       lastname: null,
       resourceId: null,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    });
-  });
+    })
+  })
 
   it('should handle PROFILE_UPDATE_SUCCESS', () => {
     const user = {
@@ -78,7 +78,7 @@ describe('user reducer', () => {
       image: 'link.to.image',
       lastname: 'Doe',
       resourceId: 1,
-    };
+    }
 
     expect(reducer(undefined, {
       type: PROFILE_UPDATE_SUCCESS,
@@ -94,6 +94,6 @@ describe('user reducer', () => {
       lastname: 'Doe',
       resourceId: 1,
       updatedAt: '2016-10-06T14:55:40.722Z',
-    });
-  });
-});
+    })
+  })
+})

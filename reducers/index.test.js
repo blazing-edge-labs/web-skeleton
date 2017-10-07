@@ -1,6 +1,6 @@
-import { createStore } from 'redux';
-import { LOGOUT_SUCCESS } from '../constants/actions';
-import rootReducer from './';
+import { createStore } from 'redux'
+import { LOGOUT_SUCCESS } from '../constants/actions'
+import rootReducer from './'
 
 describe('root reducer', () => {
   const initialState = {
@@ -12,12 +12,12 @@ describe('root reducer', () => {
     },
     form: {},
     user: {},
-  };
+  }
 
   it('should return initial state for combined reducers', () => {
-    const store = createStore(rootReducer);
-    expect(store.getState()).toEqual(initialState);
-  });
+    const store = createStore(rootReducer)
+    expect(store.getState()).toEqual(initialState)
+  })
 
   it('should return initial state for logout action', () => {
     const newState = {
@@ -42,8 +42,8 @@ describe('root reducer', () => {
         email: 'firstname4.lastname4@mail.com',
         confirmed: true,
       },
-    };
+    }
     expect(rootReducer(newState, { type: LOGOUT_SUCCESS }))
-      .toEqual(initialState);
-  });
-});
+      .toEqual(initialState)
+  })
+})

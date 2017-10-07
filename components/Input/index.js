@@ -1,21 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import InlineError from '../InlineError';
-import { hasError } from '../../utils/validator';
+import InlineError from '../InlineError'
+import { hasError } from '../../utils/validator'
 
-import applyStyles from '../../next-style-loader/applyStyles';
-import s from './style.scss';
+import applyStyles from '../../next-style-loader/applyStyles'
+import s from './style.scss'
 
 const Input = (props) => {
-  const { label, input, meta, textarea, className, ...rest } = props;
+  const { label, input, meta, textarea, className, ...rest } = props
 
   const attributes = {
     id: input.name,
     className: `${s.input} ${className || ''}`,
     ...input,
     ...rest,
-  };
+  }
 
   return (
     <div className={hasError(meta) ? s.error : ''}>
@@ -29,8 +29,8 @@ const Input = (props) => {
       }
       <InlineError meta={meta} />
     </div>
-  );
-};
+  )
+}
 
 Input.propTypes = {
   label: PropTypes.string,
@@ -38,6 +38,6 @@ Input.propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   textarea: PropTypes.bool,
-};
+}
 
-export default applyStyles(s)(Input);
+export default applyStyles(s)(Input)

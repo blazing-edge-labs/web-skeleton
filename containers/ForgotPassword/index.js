@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Link } from '../../routes';
-import { forgotPasswordFetch } from '../../actions/auth';
-import { isEmail, isRequired } from '../../utils/validator';
-import Input from '../../components/Input';
-import ErrorMsg from '../../components/ErrorMsg';
-import Button from '../../components/Button';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { Link } from '../../routes'
+import { forgotPasswordFetch } from '../../actions/auth'
+import { isEmail, isRequired } from '../../utils/validator'
+import Input from '../../components/Input'
+import ErrorMsg from '../../components/ErrorMsg'
+import Button from '../../components/Button'
 
 export const validate = (values) => {
-  const errors = {};
-  const { email } = values;
+  const errors = {}
+  const { email } = values
 
-  errors.email = isRequired(email) || isEmail(email);
-  return errors;
-};
+  errors.email = isRequired(email) || isEmail(email)
+  return errors
+}
 
 export class ForgotPasswordComponent extends Component {
   static propTypes = {
@@ -28,18 +28,18 @@ export class ForgotPasswordComponent extends Component {
   };
 
   constructor() {
-    super();
-    this.handleSend = this.handleSend.bind(this);
+    super()
+    this.handleSend = this.handleSend.bind(this)
   }
 
   handleSend(values) {
-    const { dispatch } = this.props;
-    return dispatch(forgotPasswordFetch(values));
+    const { dispatch } = this.props
+    return dispatch(forgotPasswordFetch(values))
   }
 
   render() {
     const { error, form, handleSubmit, submitSucceeded, submitting } =
-      this.props;
+      this.props
 
     return (
       <main>
@@ -58,11 +58,11 @@ export class ForgotPasswordComponent extends Component {
         </form>
         <Link to="/login"><a>Log in</a></Link>
       </main>
-    );
+    )
   }
 }
 
 export default connect()(reduxForm({
   form: 'ForgotPassword',
   validate,
-})(ForgotPasswordComponent));
+})(ForgotPasswordComponent))

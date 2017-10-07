@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { profileUpdateFetch, changeEmailFetch, changePasswordFetch }
-  from '../../actions/profile';
-import ProfileForm from '../../components/ProfileForm';
-import ChangeEmailForm from '../../components/ChangeEmailForm';
-import ChangePasswordForm from '../../components/ChangePasswordForm';
+  from '../../actions/profile'
+import ProfileForm from '../../components/ProfileForm'
+import ChangeEmailForm from '../../components/ChangeEmailForm'
+import ChangePasswordForm from '../../components/ChangePasswordForm'
 
 export class EditProfileComponent extends Component {
   static propTypes = {
@@ -14,27 +14,27 @@ export class EditProfileComponent extends Component {
   };
 
   constructor() {
-    super();
-    this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
+    super()
+    this.handleProfileUpdate = this.handleProfileUpdate.bind(this)
+    this.handleChangeEmail = this.handleChangeEmail.bind(this)
+    this.handleChangePassword = this.handleChangePassword.bind(this)
   }
 
   handleProfileUpdate(values) {
-    const { dispatch, userId } = this.props;
-    return dispatch(profileUpdateFetch(values, userId));
+    const { dispatch, userId } = this.props
+    return dispatch(profileUpdateFetch(values, userId))
   }
 
   handleChangeEmail(values) {
-    const { dispatch, userId } = this.props;
-    return dispatch(changeEmailFetch(values, userId));
+    const { dispatch, userId } = this.props
+    return dispatch(changeEmailFetch(values, userId))
   }
 
   handleChangePassword(values) {
-    const { dispatch, userId } = this.props;
+    const { dispatch, userId } = this.props
 
-    const newValues = { ...values, confirmation: undefined };
-    return dispatch(changePasswordFetch(newValues, userId));
+    const newValues = { ...values, confirmation: undefined }
+    return dispatch(changePasswordFetch(newValues, userId))
   }
 
   render() {
@@ -44,10 +44,10 @@ export class EditProfileComponent extends Component {
         <ChangeEmailForm handleChangeEmail={this.handleChangeEmail} />
         <ChangePasswordForm handleChangePassword={this.handleChangePassword} />
       </main>
-    );
+    )
   }
 }
 
 export default connect(state => ({
   userId: state.user.id,
-}))(EditProfileComponent);
+}))(EditProfileComponent)
