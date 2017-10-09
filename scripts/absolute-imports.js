@@ -53,8 +53,8 @@ function processJSFile(dirName, filePath) {
   const newCode = pathTokens.reduceRight((code, t) => {
     let v = t.value;
     if (isRelative(v)) { v = path.join(dirName, v).replace(/\/+$/, '') }
-    if (conflictsWithChild(v)) { v = 'node_modules/' + v }
-    if (v === t.value) { return code }
+    else if (conflictsWithChild(v)) { v = 'node_modules/' + v }
+    else { return code }
     return code.slice(0, t.start + 1) + v + code.slice(t.end - 1)
   }, code)
 
