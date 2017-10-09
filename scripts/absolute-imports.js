@@ -30,20 +30,18 @@ function traverse(root, ignoreChildJS) {
       continue
     }
 
-    const absPath = path.join(__dirname, fullPath)
-
-    if (fs.lstatSync(absPath).isDirectory()) {
+    if (fs.lstatSync(fullPath).isDirectory()) {
       traverse(fullPath)
     }
 
     if (!ignoreChildJS && name.endsWith('.js')) {
-      processJSFile(root, fullPath, absPath)
+      processJSFile(root, fullPath)
     }
   }
 }
 
-function processJSFile(dirName, filePath, absPath) {
-  const code = fs.readFileSync(absPath, { encoding: 'utf-8' })
+function processJSFile(dirName, filePath) {
+  const code = fs.readFileSync(filePath, { encoding: 'utf-8' })
 
   const parsed = babylon.parse(code, {
     sourceType: 'module',
@@ -54,7 +52,7 @@ function processJSFile(dirName, filePath, absPath) {
 
   const newCode = pathTokens.reduceRight((code, t) => {
     let v = t.value;
-    if (isRelative(v)) { v = path.join(dirName, v).replace(/\/+$/, '') }
+    if (isRelative(v)) { v = `${dirName}/${v}`.replace(/\/+$/, '') }
     else if (conflictsWithChild(v)) { v = 'node_modules/' + v }
     else { return code }
     return code.slice(0, t.start + 1) + v + code.slice(t.end - 1)
