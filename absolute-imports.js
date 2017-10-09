@@ -13,6 +13,12 @@ const IGNORE = new Set([
   'next-style-loader',
 ])
 
+const CHILD = new Set(fs.readdirSync('.').map(it => it.replace(/\.js$/, '')))
+
+const isRelative = path => /^\.\.?\//.test(path)
+
+const conflictsWithChild = path => CHILD.has(path.split('/')[0])
+
 function traverse(root, ignoreChildJS) {
   // console.log(root)
   const names = fs.readdirSync(root)
@@ -44,20 +50,20 @@ function processJSFile(dirName, filePath, absPath) {
     plugins: ['jsx', 'objectRestSpread', 'decorators', 'classProperties', 'exportExtensions', 'asyncGenerators', 'dynamicImport', 'throwExpressions'],
   })
 
-  const relPathTokens = extractPathTokens(parsed.tokens)
-  .filter(t => t.value[0] === '.' && t.value.includes('/'))
+  const pathTokens = extractPathTokens(parsed.tokens)
 
-  if (relPathTokens.length === 0) {
-    return
-  }
-
-  console.log(filePath, relPathTokens.length)
-
-  const newCode = relPathTokens.reduceRight((code, t) => {
-    return code.slice(0, t.start + 1) + path.join(dirName, t.value) + code.slice(t.end - 1)
+  const newCode = pathTokens.reduceRight((code, t) => {
+    let v = t.value;
+    if (isRelative(v)) { v = path.join(dirName, v).replace(/\/+$/, '') }
+    else if (conflictsWithChild(v)) { v = 'node_modules/' + v }
+    else { return code }
+    return code.slice(0, t.start + 1) + v + code.slice(t.end - 1)
   }, code)
 
-  fs.writeFileSync(filePath, newCode, { encoding: 'utf-8' })
+  if (newCode !== code) {
+    // console.log(filePath)
+    fs.writeFileSync(filePath, newCode, { encoding: 'utf-8' })
+  }
 }
 
 function extractPathTokens(tokens) {
