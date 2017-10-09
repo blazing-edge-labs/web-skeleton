@@ -1,6 +1,6 @@
 import validator from 'validator'
 import { CONFIRM_PASSWORD_MSG, EMAIL_MSG, PASSWORD_MSG, REQUIRED_MSG,
-  USED_EMAIL_MSG } from '../constants/errors'
+  USED_EMAIL_MSG } from 'constants/errors'
 
 export const hasError = meta => meta.touched && meta.error
 

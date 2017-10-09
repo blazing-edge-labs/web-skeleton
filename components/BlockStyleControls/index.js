@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BLOCK_TYPES } from '../../constants/richTextEditor'
-import StyleButton from '../StyleButton'
+import { BLOCK_TYPES } from 'constants/richTextEditor'
+import StyleButton from 'components/StyleButton'
 
 const BlockStyleControls = (props) => {
   const { editorState, onToggle } = props

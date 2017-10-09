@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Link, Router } from '../../routes'
-import { signupFetch } from '../../actions/auth'
-import { isEmail, isPassword, isRequired } from '../../utils/validator'
-import Input from '../../components/Input'
-import ErrorMsg from '../../components/ErrorMsg'
-import Button from '../../components/Button'
+import { Link, Router } from 'routes'
+import { signupFetch } from 'actions/auth'
+import { isEmail, isPassword, isRequired } from 'utils/validator'
+import Input from 'components/Input'
+import ErrorMsg from 'components/ErrorMsg'
+import Button from 'components/Button'
 
 export const validate = (values) => {
   const errors = {}

@@ -1,5 +1,5 @@
-import { PROFILE_UPDATE_SUCCESS } from '../constants/actions'
-import api from '../utils/api'
+import { PROFILE_UPDATE_SUCCESS } from 'constants/actions'
+import api from 'utils/api'
 
 export const profileUpdateSuccess = user => ({
   type: PROFILE_UPDATE_SUCCESS,

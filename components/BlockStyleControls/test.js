@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import BlockStyleControls from './'
+import BlockStyleControls from 'components/BlockStyleControls'
 
 describe('BlockStyleControls component snapshot', () => {
   it('renders basic required data', () => {

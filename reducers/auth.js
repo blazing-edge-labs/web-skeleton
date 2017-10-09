@@ -1,5 +1,5 @@
 import { EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING,
-  EMAIL_RESEND_SUCCESS, EMAIL_RESEND_FAILED } from '../constants/actions'
+  EMAIL_RESEND_SUCCESS, EMAIL_RESEND_FAILED } from 'constants/actions'
 
 const initialState = {
   emailConfirmationError: null,

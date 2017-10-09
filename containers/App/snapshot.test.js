@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { AppComponent } from './'
+import { AppComponent } from 'containers/App'
 
 describe('App component snapshot', () => {
   it('renders', () => {

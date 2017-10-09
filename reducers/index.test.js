@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
-import { LOGOUT_SUCCESS } from '../constants/actions'
-import rootReducer from './'
+import { LOGOUT_SUCCESS } from 'constants/actions'
+import rootReducer from 'reducers'
 
 describe('root reducer', () => {
   const initialState = {

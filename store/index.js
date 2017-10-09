@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import thunk from 'redux-thunk'
-import rootReducer from '../reducers'
+import rootReducer from 'reducers'
 
 export function configureStore(env, initialState) {
   const dev = env === 'development'

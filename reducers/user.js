@@ -1,5 +1,5 @@
 import { SIGNUP_LOGIN_SUCCESS, EMAIL_CONFIRM_SUCCESS, PROFILE_UPDATE_SUCCESS }
-  from '../constants/actions'
+  from 'constants/actions'
 
 const initialState = {}
 

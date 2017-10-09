@@ -1,5 +1,5 @@
 import * as redux from 'redux'
-import { configureStore } from './'
+import { configureStore } from 'store'
 
 describe('store', () => {
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connectPage } from '../utils/page'
-import RecoverPassword from '../containers/RecoverPassword'
+import { connectPage } from 'utils/page'
+import RecoverPassword from 'containers/RecoverPassword'
 
 const RecoverPasswordPage = ({ url }) => (
   <RecoverPassword params={url.query} />

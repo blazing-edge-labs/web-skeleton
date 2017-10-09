@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ProfileComponent } from './'
-import * as Actions from '../../actions/profile'
+import { ProfileComponent } from 'containers/Profile'
+import * as Actions from 'actions/profile'
 
 describe('Profile component', () => {
   const mockDispatch = jest.fn(z => z)

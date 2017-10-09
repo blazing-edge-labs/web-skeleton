@@ -4,15 +4,15 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { compose } from 'redux'
 
-import Button from '../../components/Button'
-import Checkbox from '../../components/Checkbox'
-import Input from '../../components/Input'
-import Select from '../../components/Select'
-import Radio from '../../components/Radio'
-import { alwaysError } from '../../utils/validator'
+import Button from 'components/Button'
+import Checkbox from 'components/Checkbox'
+import Input from 'components/Input'
+import Select from 'components/Select'
+import Radio from 'components/Radio'
+import { alwaysError } from 'utils/validator'
 
-import applyStyles from '../../next-style-loader/applyStyles'
-import s from './style.scss'
+import applyStyles from 'next-style-loader/applyStyles'
+import s from 'containers/FormExample/style.scss'
 
 const options = [
   { label: 'One', value: 1 },

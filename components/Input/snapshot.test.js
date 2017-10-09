@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Input from './'
+import Input from 'components/Input'
 
 describe('Input component snapshot', () => {
   it('renders basic required data', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Pagination from './'
+import Pagination from 'components/Pagination'
 
 describe('Pagination component snapshot', () => {
   it('renders data with current page 1', () => {

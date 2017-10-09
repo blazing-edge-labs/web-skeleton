@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import StyleButton from './'
+import StyleButton from 'components/StyleButton'
 
 describe('StyleButton component', () => {
   const onToggle = jest.fn()

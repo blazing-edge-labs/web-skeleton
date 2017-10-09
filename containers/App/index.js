@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Router, Link } from '../../routes'
-import { logoutAction } from '../../actions/auth'
+import { Router, Link } from 'routes'
+import { logoutAction } from 'actions/auth'
 
 export class AppComponent extends Component {
   static propTypes = {

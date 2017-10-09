@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { AppComponent } from './'
-import * as Actions from '../../actions/auth'
-import { Router } from '../../routes'
+import { AppComponent } from 'containers/App'
+import * as Actions from 'actions/auth'
+import { Router } from 'routes'
 
 describe('App component', () => {
   const children = <div>Test</div>
