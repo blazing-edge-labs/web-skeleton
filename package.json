@@ -91,7 +91,9 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.js",
-      "!setupTests.js"
+      "!setupTests.js",
+      "!scripts/**",
+      "!next-style-loader/**"
     ],
     "coverageDirectory": "./.test/coverage",
     "coverageThreshold": {
