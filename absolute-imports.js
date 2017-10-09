@@ -45,7 +45,7 @@ function processJSFile(dirName, filePath, absPath) {
   })
 
   const relPathTokens = extractPathTokens(parsed.tokens)
-  .filter(t => t.value[0] && t.value.includes('/'))
+  .filter(t => t.value[0] === '.' && t.value.includes('/'))
 
   if (relPathTokens.length === 0) {
     return
