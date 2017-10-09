@@ -1,6 +1,7 @@
 {
   "presets": ["next/babel", "es2015", "stage-0", "react"],
   "plugins": [
-    "transform-inline-environment-variables"
+    "transform-inline-environment-variables",
+    ["module-resolver", { "root": "." }]
   ]
 }
