@@ -1,0 +1,14 @@
+exports[`Button component snapshot renders basic required data 1`] = `
+<button
+  className="button ">
+  Login
+</button>
+`;
+
+exports[`Button component snapshot renders empty button 1`] = `
+<button
+  className="button "
+  empty={true}>
+  Login
+</button>
+`;

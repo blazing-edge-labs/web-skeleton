@@ -1,0 +1,27 @@
+.root {
+
+  :global(.is-focused) > :global(.Select-control) {
+    border-color: $color-input-border;
+    box-shadow: $focus-box-shadow;
+  }
+
+  :global(.is-disabled) > :global(.Select-control) {
+    border-color: $color-disabled-input-border;
+    background-color: $color-disabled-input-background;
+
+    :global(.Select-value-label) {
+      color: $color-disabled-input-text;
+    }
+  }
+
+  :global(.Select-control) {
+    border: 1px solid $color-input-border;
+    border-radius: 1px;
+
+  }
+}
+
+.root.error :global(.Select-control) {
+  border-color: $color-error;
+}
+

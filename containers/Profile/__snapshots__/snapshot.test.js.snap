@@ -1,0 +1,61 @@
+exports[`Profile component snapshot render all data 1`] = `
+<main>
+  <dl>
+    <dt>
+      Profile Image
+    </dt>
+    <dd>
+      <img
+        alt="Personal Profile"
+        src="http://linkToImage" />
+    </dd>
+    <dt>
+      Email
+    </dt>
+    <dd>
+      test@email.com
+    </dd>
+    <dt>
+      First Name
+    </dt>
+    <dd>
+      John
+    </dd>
+    <dt>
+      Last Name
+    </dt>
+    <dd>
+      Doe
+    </dd>
+    <dt>
+      Bio
+    </dt>
+    <dd>
+      My bio
+    </dd>
+  </dl>
+  <a
+    href="/editProfile"
+    onClick={[Function]}>
+    Edit Profile
+  </a>
+</main>
+`;
+
+exports[`Profile component snapshot render only required email 1`] = `
+<main>
+  <dl>
+    <dt>
+      Email
+    </dt>
+    <dd>
+      test@email.com
+    </dd>
+  </dl>
+  <a
+    href="/editProfile"
+    onClick={[Function]}>
+    Edit Profile
+  </a>
+</main>
+`;

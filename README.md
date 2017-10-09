@@ -94,14 +94,6 @@ To start further development process from this skeleton there are few manual ste
 ### package.json
 Some data should be changed corresponding to your project. Generic information like *name*, *description*, *author* and *license* should probably be changed to information that closely describes a specific project. Global variables for Jest configuration can be changed if needed, but they don't really produce any value for tests.
 
-### webpack.config.js | webpack.prod.config.js
-
-    new webpack.DefinePlugin({
-      __API_URL__: JSON.stringify('http://192.168.50.4:3000'),
-    }),
-
-These lines define global variables that get passed to bundled project. We are passing *__API_URL__* as global variable which we use inside the application as Web and API constant. These constants are valid if the local setup has been done through [Skeleton](https://github.com/EastCoastProduct/skeleton), in any other case these global variables should be manually updated to corresponding ones.
-
 ### src/index.tpl.html
 Title inside template should be updated to the corresponding one instead of generic one. Favicon link doesn't exist with skeleton example which should probably be added manually.
 
@@ -175,8 +167,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * babel-preset-react - preset to install all React plugins
 * babel-preset-react-hmre - preset for React hot module replacement
 * babel-preset-stage-0 - preset to install future and experimental plugins that polyfill potential JS language proposals
-* connect-history-api-fallback - always serves *index.html* file from express without depending on manual route changes in URL
-* css-loader - Webpack CSS loader, resolves imports and URL in CSS
 * enzyme - testing utility for React, allows us to test components and it's functions
 * eslint - linting utility for JS
 * eslint-config-airbnb - Airbnb Eslint configuration
@@ -190,12 +180,10 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * file-loader - Webpack file loader, constructs MD5 hash filename and emits files
 * html-webpack-plugin - simplifies creation of *index.html* file through Webpack
 * jest - JS testing framework, best tool to rest React/Redux applications
-* postcss-js - PostCss library for CSS-in-JS default styles
 * postcss-loader - Webpack PostCss loader
 * react-addons-test-utils - package provides React TestUtils add-on, it is also dependency of Enzyme
 * react-test-renderer - React package used for snapshot testing
 * redux-mock-store - library to mock Redux store for test environment
-* style-loader - Webpack style loader, adds CSS to DOM by injecting style tags
 * url-loader - Webpack URL loader, returns Data URL if file is smaller than limit
 * webpack - JS bundler for tasks automation
 * webpack-dev-middleware - dev middleware for Webpack, arguments live bundle to a directory
@@ -211,7 +199,6 @@ Modules list is defined in *package.json*. Purpose of each module in project is 
 * react - JS framework for building user interfaces
 * react-dom - React package, allows working with DOM, used to hook up React application to template DOM served by *index.html*
 * react-redux - React bindings for Redux
-* react-router - React routing library
 * redux - persistent state management library
 * redux-form - HOC wrapper for form components, allows basic form functionality and reduces boilerplate
 * redux-thunk - Redux middleware which allows async actions

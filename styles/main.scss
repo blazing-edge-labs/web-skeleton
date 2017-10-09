@@ -1,0 +1,36 @@
+@import '~font-awesome/css/font-awesome';
+@import '~normalize.css';
+
+@import 'variables';
+@import 'typography';
+
+body {
+  background-color: $color-background;
+  box-sizing: border-box;
+  color: $color-font;
+  font-family: $fonts-family;
+  font-size: $fonts-size;
+  font-weight: 400;
+  -moz-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+  font-weight: inherit;
+  line-height: 1.5;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: $fonts-family;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+*:focus {
+  outline: 0;
+}

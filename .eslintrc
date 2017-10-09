@@ -8,9 +8,6 @@
     "jest": true,
     "jasmine": true
   },
-  "globals": {
-    "__API_URL__": true
-  },
   "plugins": [
     "react"
   ],
@@ -39,10 +36,11 @@
       "functions": "ignore"
     }],
     "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["server.js", "src/setupTests.js", "**/*.test.js", "**/test.js"]
+      "devDependencies": ["*", "next-style-loader/index.js", "setupTests.js", "**/*.test.js", "**/test.js"]
     }],
     "arrow-body-style": 0,
     "react/style-prop-object": 0,
-    "jsx-a11y/no-static-element-interactions": 0
+    "jsx-a11y/no-static-element-interactions": 0,
+    "import/prefer-default-export": 0,
   }
 }
