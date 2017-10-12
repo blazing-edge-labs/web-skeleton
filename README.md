@@ -36,9 +36,9 @@ The repository contains simple startup application with authentication and user 
 
 ## INSTALLATION
 
-Recommended way to run this project would be to pull [Skeleton](https://github.com/EastCoastProduct/skeleton) repository and follow instructions to setup local environment through Docker. Following those steps wouldn't require a user to make any manual steps to run this project.
+Recommended way to run this project would be to pull [Skeleton](https://github.com/blazing-edge-labs/skeleton) repository and follow instructions to setup local environment through Docker. Following those steps wouldn't require a user to make any manual steps to run this project.
 
-This project can also be run as standalone but it depends on existing [API](https://github.com/EastCoastProduct/api-skeleton) to make requests. API should be pulled, installed and configured along with this repository or all requests should be replaced. API requests are held inside */src/actions* folder.
+This project can also be run as standalone but it depends on existing [API](https://github.com/blazing-edge-labs/api-skeleton) to make requests. API should be pulled, installed and configured along with this repository or all requests should be replaced. API requests are held inside */src/actions* folder.
 
 In case of standalone setup, machine needs to have installed:
 * Node (version 6)
