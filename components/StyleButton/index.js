@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class StyleButton extends Component {
   static propTypes = {
@@ -9,22 +9,22 @@ export default class StyleButton extends Component {
   }
 
   constructor() {
-    super();
-    this.onToggle = this.onToggle.bind(this);
+    super()
+    this.onToggle = this.onToggle.bind(this)
   }
 
   onToggle(e) {
-    const { onToggle, style } = this.props;
+    const { onToggle, style } = this.props
 
-    e.preventDefault();
-    onToggle(style);
+    e.preventDefault()
+    onToggle(style)
   }
 
   render() {
-    const { label } = this.props;
+    const { label } = this.props
 
     return (
       <span onMouseDown={this.onToggle}>{label}</span>
-    );
+    )
   }
 }

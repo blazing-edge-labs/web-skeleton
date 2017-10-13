@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import { ProfileComponent } from './';
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { ProfileComponent } from './'
 
 describe('Profile component snapshot', () => {
   it('render all data', () => {
@@ -15,10 +15,10 @@ describe('Profile component snapshot', () => {
           lastname: 'Doe',
         }}
       />
-    );
+    )
 
-    expect(tree.toJSON()).toMatchSnapshot();
-  });
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
 
   it('render only required email', () => {
     const tree = renderer.create(
@@ -26,8 +26,8 @@ describe('Profile component snapshot', () => {
         dispatch={() => {}}
         user={{ email: 'test@email.com' }}
       />
-    );
+    )
 
-    expect(tree.toJSON()).toMatchSnapshot();
-  });
-});
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+})

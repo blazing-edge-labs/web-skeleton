@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Router, Link } from '../../routes';
-import { loginFetch } from '../../actions/auth';
-import { isEmail, isRequired } from '../../utils/validator';
-import Input from '../../components/Input';
-import ErrorMsg from '../../components/ErrorMsg';
-import Button from '../../components/Button';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { Router, Link } from '../../routes'
+import { loginFetch } from '../../actions/auth'
+import { isEmail, isRequired } from '../../utils/validator'
+import Input from '../../components/Input'
+import ErrorMsg from '../../components/ErrorMsg'
+import Button from '../../components/Button'
 
 export const validate = (values) => {
-  const errors = {};
-  const { email, password } = values;
+  const errors = {}
+  const { email, password } = values
 
-  errors.email = isRequired(email) || isEmail(email);
-  errors.password = isRequired(password);
-  return errors;
-};
+  errors.email = isRequired(email) || isEmail(email)
+  errors.password = isRequired(password)
+  return errors
+}
 
 export class LoginComponent extends Component {
   static propTypes = {
@@ -28,17 +28,17 @@ export class LoginComponent extends Component {
   };
 
   constructor() {
-    super();
-    this.handleLogin = this.handleLogin.bind(this);
+    super()
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
   handleLogin(values) {
-    const { dispatch } = this.props;
-    return dispatch(loginFetch(values)).then(() => Router.pushRoute('/'));
+    const { dispatch } = this.props
+    return dispatch(loginFetch(values)).then(() => Router.pushRoute('/'))
   }
 
   render() {
-    const { error, form, handleSubmit, submitting } = this.props;
+    const { error, form, handleSubmit, submitting } = this.props
 
     return (
       <main>
@@ -65,7 +65,7 @@ export class LoginComponent extends Component {
         <Link to="/forgotPassword"><a>Forgot Password?</a></Link>
         <Link to="/signup"><a>Sign up here</a></Link>
       </main>
-    );
+    )
   }
 }
 
@@ -74,4 +74,4 @@ export default connect()(
     form: 'Login',
     validate,
   })(LoginComponent),
-);
+)

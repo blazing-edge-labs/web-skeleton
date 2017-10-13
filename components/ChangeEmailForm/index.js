@@ -1,26 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 import { isEmail, isPassword, isRequired, isUsedEmail }
-  from '../../utils/validator';
-import Input from '../Input';
-import ErrorMsg from '../ErrorMsg';
-import Button from '../Button';
+  from '../../utils/validator'
+import Input from '../Input'
+import ErrorMsg from '../ErrorMsg'
+import Button from '../Button'
 
 export const validate = (values, { currentEmail }) => {
-  const { newEmail, password } = values;
-  const errors = {};
+  const { newEmail, password } = values
+  const errors = {}
 
   errors.newEmail = isRequired(newEmail) || isEmail(newEmail) ||
-    isUsedEmail(newEmail, currentEmail);
-  errors.password = isRequired(password) || isPassword(password);
-  return errors;
-};
+    isUsedEmail(newEmail, currentEmail)
+  errors.password = isRequired(password) || isPassword(password)
+  return errors
+}
 
 export const ChangeEmailFormComponent = (props) => {
   const { error, form, handleChangeEmail, handleSubmit, submitSucceeded,
-    submitting } = props;
+    submitting } = props
 
   return (
     <form onSubmit={handleSubmit(handleChangeEmail)} noValidate>
@@ -44,8 +44,8 @@ export const ChangeEmailFormComponent = (props) => {
       {error && <ErrorMsg>{error}</ErrorMsg>}
       <Button type="submit" disabled={submitting}>Change</Button>
     </form>
-  );
-};
+  )
+}
 
 ChangeEmailFormComponent.propTypes = {
   error: PropTypes.string,
@@ -54,11 +54,11 @@ ChangeEmailFormComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-};
+}
 
 export default connect(state => ({
   currentEmail: state.user.email,
 }))(reduxForm({
   form: 'ChangeEmailForm',
   validate,
-})(ChangeEmailFormComponent));
+})(ChangeEmailFormComponent))

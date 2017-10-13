@@ -1,7 +1,7 @@
-require('./env');
+require('./env')
 
-const { FormData, File, FileList } = require('file-api');
+const { FormData, File, FileList } = require('file-api')
 
-global.FormData = FormData;
-global.File = File;
-global.FileList = FileList;
+global.FormData = FormData
+global.File = File
+global.FileList = FileList

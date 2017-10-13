@@ -1,28 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { compose } from 'redux'
 
-import Button from '../../components/Button';
-import Checkbox from '../../components/Checkbox';
-import Input from '../../components/Input';
-import Select from '../../components/Select';
-import Radio from '../../components/Radio';
-import { alwaysError } from '../../utils/validator';
+import Button from '../../components/Button'
+import Checkbox from '../../components/Checkbox'
+import Input from '../../components/Input'
+import Select from '../../components/Select'
+import Radio from '../../components/Radio'
+import { alwaysError } from '../../utils/validator'
 
-import applyStyles from '../../next-style-loader/applyStyles';
-import s from './style.scss';
+import applyStyles from '../../next-style-loader/applyStyles'
+import s from './style.scss'
 
 const options = [
   { label: 'One', value: 1 },
   { label: 'Two', value: 2 },
   { label: 'Three', value: 3 },
-];
+]
 
 const theSubmitFunction = (values) => {
   // eslint-disable-next-line
   console.log(values)
-};
+}
 
 const FormExample = ({ handleSubmit }) => (
   <div className={s.formContainer}>
@@ -116,16 +117,20 @@ const FormExample = ({ handleSubmit }) => (
       <Button>Test</Button>
     </form>
   </div>
-);
+)
 
 FormExample.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-};
+}
 
-export default connect(() => ({
+const mapStateToProps = () => ({
   initialValues: {
     shortTextInputDisabled: 'Ready only value',
   },
-}))(reduxForm({
-  form: 'formExample',
-})(applyStyles(s)(FormExample)));
+})
+
+export default compose(
+  connect(mapStateToProps),
+  reduxForm({ form: 'formExample' }),
+  applyStyles(s)
+)(FormExample)

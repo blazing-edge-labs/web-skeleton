@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import StyleButton from './';
+import React from 'react'
+import renderer from 'react-test-renderer'
+import StyleButton from './'
 
 describe('StyleButton component snapshot', () => {
   it('renders basic required data', () => {
@@ -10,8 +10,8 @@ describe('StyleButton component snapshot', () => {
         onToggle={() => {}}
         style="header-one"
       />
-    );
+    )
 
-    expect(tree.toJSON()).toMatchSnapshot();
-  });
-});
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+})

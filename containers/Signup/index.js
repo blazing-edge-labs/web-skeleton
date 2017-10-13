@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Link, Router } from '../../routes';
-import { signupFetch } from '../../actions/auth';
-import { isEmail, isPassword, isRequired } from '../../utils/validator';
-import Input from '../../components/Input';
-import ErrorMsg from '../../components/ErrorMsg';
-import Button from '../../components/Button';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { Link, Router } from '../../routes'
+import { signupFetch } from '../../actions/auth'
+import { isEmail, isPassword, isRequired } from '../../utils/validator'
+import Input from '../../components/Input'
+import ErrorMsg from '../../components/ErrorMsg'
+import Button from '../../components/Button'
 
 export const validate = (values) => {
-  const errors = {};
-  const { email, password } = values;
+  const errors = {}
+  const { email, password } = values
 
-  errors.email = isRequired(email) || isEmail(email);
-  errors.password = isRequired(password) || isPassword(password);
-  return errors;
-};
+  errors.email = isRequired(email) || isEmail(email)
+  errors.password = isRequired(password) || isPassword(password)
+  return errors
+}
 
 export class SignupComponent extends Component {
   static propTypes = {
@@ -28,17 +28,17 @@ export class SignupComponent extends Component {
   };
 
   constructor() {
-    super();
-    this.handleSignup = this.handleSignup.bind(this);
+    super()
+    this.handleSignup = this.handleSignup.bind(this)
   }
 
   handleSignup(values) {
-    const { dispatch } = this.props;
-    return dispatch(signupFetch(values)).then(() => Router.pushRoute('/'));
+    const { dispatch } = this.props
+    return dispatch(signupFetch(values)).then(() => Router.pushRoute('/'))
   }
 
   render() {
-    const { error, form, handleSubmit, submitting } = this.props;
+    const { error, form, handleSubmit, submitting } = this.props
 
     return (
       <main>
@@ -64,7 +64,7 @@ export class SignupComponent extends Component {
         </form>
         <p>Already have an account? <Link to="/login">L<a>og in here</a></Link></p>
       </main>
-    );
+    )
   }
 }
 
@@ -73,4 +73,4 @@ export default connect()(
     form: 'Signup',
     validate,
   })(SignupComponent),
-);
+)

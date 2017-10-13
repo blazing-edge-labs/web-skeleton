@@ -1,25 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
-import Input from '../Input';
-import ErrorMsg from '../ErrorMsg';
-import Button from '../Button';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Field, reduxForm } from 'redux-form'
+import { isPassword, isRequired, isSamePassword } from '../../utils/validator'
+import Input from '../Input'
+import ErrorMsg from '../ErrorMsg'
+import Button from '../Button'
 
 export const validate = (values) => {
-  const { oldPassword, newPassword, confirmation } = values;
-  const errors = {};
+  const { oldPassword, newPassword, confirmation } = values
+  const errors = {}
 
-  errors.oldPassword = isRequired(oldPassword) || isPassword(oldPassword);
-  errors.newPassword = isRequired(newPassword) || isPassword(newPassword);
+  errors.oldPassword = isRequired(oldPassword) || isPassword(oldPassword)
+  errors.newPassword = isRequired(newPassword) || isPassword(newPassword)
   errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||
-    isSamePassword(confirmation, newPassword);
-  return errors;
-};
+    isSamePassword(confirmation, newPassword)
+  return errors
+}
 
 export const ChangePasswordFormComponent = (props) => {
   const { error, form, handleChangePassword, handleSubmit, submitSucceeded,
-    submitting } = props;
+    submitting } = props
 
   return (
     <form onSubmit={handleSubmit(handleChangePassword)} noValidate>
@@ -51,8 +51,8 @@ export const ChangePasswordFormComponent = (props) => {
       {error && <ErrorMsg>{error}</ErrorMsg>}
       <Button type="submit" disabled={submitting}>Change</Button>
     </form>
-  );
-};
+  )
+}
 
 ChangePasswordFormComponent.propTypes = {
   error: PropTypes.string,
@@ -61,9 +61,9 @@ ChangePasswordFormComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-};
+}
 
 export default reduxForm({
   form: 'ChangePasswordForm',
   validate,
-})(ChangePasswordFormComponent);
+})(ChangePasswordFormComponent)

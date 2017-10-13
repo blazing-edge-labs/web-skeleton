@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Link, Router } from '../../routes';
-import { recoverPasswordFetch } from '../../actions/auth';
-import { isPassword, isRequired, isSamePassword } from '../../utils/validator';
-import { REDIRECTION } from '../../constants/application';
-import Input from '../../components/Input';
-import ErrorMsg from '../../components/ErrorMsg';
-import Button from '../../components/Button';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { Link, Router } from '../../routes'
+import { recoverPasswordFetch } from '../../actions/auth'
+import { isPassword, isRequired, isSamePassword } from '../../utils/validator'
+import { REDIRECTION } from '../../constants/application'
+import Input from '../../components/Input'
+import ErrorMsg from '../../components/ErrorMsg'
+import Button from '../../components/Button'
 
 export const validate = (values) => {
-  const errors = {};
-  const { password, confirmation } = values;
+  const errors = {}
+  const { password, confirmation } = values
 
-  errors.password = isRequired(password) || isPassword(password);
+  errors.password = isRequired(password) || isPassword(password)
   errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||
-    isSamePassword(confirmation, password);
-  return errors;
-};
+    isSamePassword(confirmation, password)
+  return errors
+}
 
 export class RecoverPasswordComponent extends Component {
   static propTypes = {
@@ -32,23 +32,23 @@ export class RecoverPasswordComponent extends Component {
   };
 
   constructor() {
-    super();
-    this.handleRecoverPassword = this.handleRecoverPassword.bind(this);
+    super()
+    this.handleRecoverPassword = this.handleRecoverPassword.bind(this)
   }
 
   handleRecoverPassword(values) {
-    const { dispatch, params: { code } } = this.props;
+    const { dispatch, params: { code } } = this.props
 
-    const newValues = { ...values, confirmation: undefined };
+    const newValues = { ...values, confirmation: undefined }
 
     return dispatch(recoverPasswordFetch(newValues, code, () =>
       setTimeout(() => Router.pushRoute('/login'), REDIRECTION),
-    ));
+    ))
   }
 
   render() {
     const { error, form, handleSubmit, submitSucceeded, submitting } =
-      this.props;
+      this.props
 
     return (
       <main>
@@ -75,7 +75,7 @@ export class RecoverPasswordComponent extends Component {
         </form>
         <Link to="/login"><a>Log In</a></Link>
       </main>
-    );
+    )
   }
 }
 
@@ -84,4 +84,4 @@ export default connect()(
     form: 'ChangePassword',
     validate,
   })(RecoverPasswordComponent),
-);
+)

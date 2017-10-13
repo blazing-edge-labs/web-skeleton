@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Button from '../Button';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Button from '../Button'
 
 export default class Pagination extends Component {
   static propTypes = {
@@ -11,50 +11,50 @@ export default class Pagination extends Component {
   };
 
   componentWillMount() {
-    this.calculatePagination();
+    this.calculatePagination()
   }
 
   componentWillReceiveProps(nextProps) {
-    this.calculatePagination(nextProps);
+    this.calculatePagination(nextProps)
   }
 
   calculatePagination(nextProps) {
-    const { itemsPerPage, total } = nextProps || this.props;
-    this.numOfPages = Math.ceil(total / itemsPerPage);
+    const { itemsPerPage, total } = nextProps || this.props
+    this.numOfPages = Math.ceil(total / itemsPerPage)
   }
 
   handleChangePage(page) {
-    const { onPaginationChange } = this.props;
-    onPaginationChange(page);
+    const { onPaginationChange } = this.props
+    onPaginationChange(page)
   }
 
   clickHandler(i) {
-    return () => this.handleChangePage(i);
+    return () => this.handleChangePage(i)
   }
 
   renderPages() {
-    if (this.numOfPages < 2) return false;
-    const { currentPage } = this.props;
-    const elems = [];
-    let i;
-    let j;
+    if (this.numOfPages < 2) return false
+    const { currentPage } = this.props
+    const elems = []
+    let i
+    let j
 
     // calculate start/end of pagination numbers if pagination has over 5 pages
     if (currentPage - 2 < 1) {
-      i = 1;
-      j = 5;
+      i = 1
+      j = 5
     } else if (currentPage + 2 > this.numOfPages) {
-      i = this.numOfPages - 4;
-      j = this.numOfPages;
+      i = this.numOfPages - 4
+      j = this.numOfPages
     } else {
-      i = currentPage - 2;
-      j = currentPage + 2;
+      i = currentPage - 2
+      j = currentPage + 2
     }
 
     // calculate if pagination has 5 or less pages, reset previous calculations
     if (this.numOfPages <= 5) {
-      i = 1;
-      j = this.numOfPages;
+      i = 1
+      j = this.numOfPages
     }
 
     for (i; i <= j; i += 1) {
@@ -68,26 +68,26 @@ export default class Pagination extends Component {
             >{i}</Button> : i
           }
         </li>,
-      );
+      )
     }
 
-    return elems;
+    return elems
   }
 
   renderPaginationInfo() {
-    const { currentPage, itemsPerPage, total } = this.props;
+    const { currentPage, itemsPerPage, total } = this.props
 
-    if (total === 1) return 'Showing 1 result';
-    if (this.numOfPages <= 1) return `Showing all of ${total} results`;
+    if (total === 1) return 'Showing 1 result'
+    if (this.numOfPages <= 1) return `Showing all of ${total} results`
 
-    const currentStart = 1 + ((currentPage - 1) * itemsPerPage);
-    let currentEnd = itemsPerPage + ((currentPage - 1) * itemsPerPage);
-    currentEnd = currentEnd > total ? total : currentEnd;
-    return `Showing ${currentStart}-${currentEnd} of ${total} results`;
+    const currentStart = 1 + ((currentPage - 1) * itemsPerPage)
+    let currentEnd = itemsPerPage + ((currentPage - 1) * itemsPerPage)
+    currentEnd = currentEnd > total ? total : currentEnd
+    return `Showing ${currentStart}-${currentEnd} of ${total} results`
   }
 
   render() {
-    const { currentPage, total } = this.props;
+    const { currentPage, total } = this.props
 
     return (
       total > 0 &&
@@ -143,6 +143,6 @@ export default class Pagination extends Component {
             </ul>
           }
         </div>
-    );
+    )
   }
 }

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { INLINE_STYLES } from '../../constants/richTextEditor';
-import StyleButton from '../StyleButton';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { INLINE_STYLES } from '../../constants/richTextEditor'
+import StyleButton from '../StyleButton'
 
 const InlineStyleControls = (props) => {
-  const { editorState, onToggle } = props;
-  const currentStyle = editorState.getCurrentInlineStyle();
+  const { editorState, onToggle } = props
+  const currentStyle = editorState.getCurrentInlineStyle()
 
   return (
     <div>
@@ -19,12 +19,12 @@ const InlineStyleControls = (props) => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
 InlineStyleControls.propTypes = {
   editorState: PropTypes.object.isRequired,
   onToggle: PropTypes.func.isRequired,
-};
+}
 
-export default InlineStyleControls;
+export default InlineStyleControls

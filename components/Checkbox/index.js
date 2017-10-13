@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-import applyStyles from '../../next-style-loader/applyStyles';
-import s from './style.scss';
+import applyStyles from '../../next-style-loader/applyStyles'
+import s from './style.scss'
 
 class Checkbox extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.changeValue = this.changeValue.bind(this);
-    this.changeFocus = this.changeFocus.bind(this);
-    this.onKeyPressed = this.onKeyPressed.bind(this);
+    this.changeValue = this.changeValue.bind(this)
+    this.changeFocus = this.changeFocus.bind(this)
+    this.onKeyPressed = this.onKeyPressed.bind(this)
 
     this.state = {
       focused: false,
-    };
+    }
   }
 
   onKeyPressed(e) {
-    if (e.key === 'Enter') this.changeValue();
+    if (e.key === 'Enter') this.changeValue()
   }
 
   changeFocus() {
-    const { focused } = this.state;
+    const { focused } = this.state
 
-    this.setState({ focused: !focused });
+    this.setState({ focused: !focused })
   }
 
   changeValue() {
-    const { input } = this.props;
-    const { value } = input;
-    input.onChange(!value || false);
+    const { input } = this.props
+    const { value } = input
+    input.onChange(!value || false)
   }
 
   render() {
-    const { label, input } = this.props;
-    const { focused } = this.state;
+    const { label, input } = this.props
+    const { focused } = this.state
 
     return (
       <div
@@ -57,13 +57,13 @@ class Checkbox extends Component {
         </span>
         <label htmlFor={input.name}>{label}</label>
       </div>
-    );
+    )
   }
 }
 
 Checkbox.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
-};
+}
 
-export default applyStyles(s)(Checkbox);
+export default applyStyles(s)(Checkbox)

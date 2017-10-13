@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import Input from '../Input';
-import ErrorMsg from '../ErrorMsg';
-import Button from '../Button';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import Input from '../Input'
+import ErrorMsg from '../ErrorMsg'
+import Button from '../Button'
 
 export const ProfileFormComponent = (props) => {
   const { error, form, handleProfileUpdate, handleSubmit, submitSucceeded,
-    submitting } = props;
+    submitting } = props
 
   return (
     <form onSubmit={handleSubmit(handleProfileUpdate)} noValidate>
@@ -50,8 +50,8 @@ export const ProfileFormComponent = (props) => {
       {error && <ErrorMsg>{error}</ErrorMsg>}
       <Button type="submit" disabled={submitting}>Update</Button>
     </form>
-  );
-};
+  )
+}
 
 ProfileFormComponent.propTypes = {
   error: PropTypes.string,
@@ -60,7 +60,7 @@ ProfileFormComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-};
+}
 
 export default connect(state => ({
   initialValues: {
@@ -70,4 +70,4 @@ export default connect(state => ({
 }))(reduxForm({
   enableReinitialize: true,
   form: 'ProfileForm',
-})(ProfileFormComponent));
+})(ProfileFormComponent))

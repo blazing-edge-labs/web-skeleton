@@ -21,7 +21,7 @@
   "rules": {
     "no-unused-vars": [2, {
       "vars": "local",
-      "varsIgnorePattern": "^_|^ss$",
+      "varsIgnorePattern": "^_",
       "args": "after-used",
       "argsIgnorePattern": "^_"
     }],
@@ -42,5 +42,6 @@
     "react/style-prop-object": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "import/prefer-default-export": 0,
+    "semi": [2, "never"]
   }
 }

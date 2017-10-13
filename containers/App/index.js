@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Router, Link } from '../../routes';
-import { logoutAction } from '../../actions/auth';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Router, Link } from '../../routes'
+import { logoutAction } from '../../actions/auth'
 
 export class AppComponent extends Component {
   static propTypes = {
@@ -11,19 +11,19 @@ export class AppComponent extends Component {
   };
 
   constructor() {
-    super();
-    this.handleLogout = this.handleLogout.bind(this);
+    super()
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleLogout(e) {
-    const { dispatch } = this.props;
+    const { dispatch } = this.props
 
-    e.preventDefault();
-    dispatch(logoutAction()).then(() => Router.pushRoute('/login'));
+    e.preventDefault()
+    dispatch(logoutAction()).then(() => Router.pushRoute('/login'))
   }
 
   render() {
-    const { children } = this.props;
+    const { children } = this.props
 
     return (
       <div>
@@ -35,8 +35,8 @@ export class AppComponent extends Component {
         </nav>
         <div>{children}</div>
       </div>
-    );
+    )
   }
 }
 
-export default connect()(AppComponent);
+export default connect()(AppComponent)

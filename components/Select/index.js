@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactSelect from 'react-select';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ReactSelect from 'react-select'
 
-import selectStyle from 'react-select/dist/react-select.css';
-import s from './style.scss';
-import applyStyles from '../../next-style-loader/applyStyles';
+import selectStyle from 'react-select/dist/react-select.css'
+import s from './style.scss'
+import applyStyles from '../../next-style-loader/applyStyles'
 
-import InlineError from '../InlineError';
-import { hasError } from '../../utils/validator';
+import InlineError from '../InlineError'
+import { hasError } from '../../utils/validator'
 
 
 const Select = (props) => {
-  const { label, input, meta, ...rest } = props;
-  const { name } = input;
+  const { label, input, meta, ...rest } = props
+  const { name } = input
 
   const selectProps = {
     ...rest,
@@ -21,7 +21,7 @@ const Select = (props) => {
     inputProps: {
       id: name,
     },
-  };
+  }
 
   return (
     <div className={`${s.root} ${hasError(meta) ? s.error : ''}`}>
@@ -31,14 +31,14 @@ const Select = (props) => {
       <ReactSelect {...selectProps} />
       <InlineError meta={meta} />
     </div>
-  );
-};
+  )
+}
 
 Select.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object,
   options: PropTypes.array,
-};
+}
 
-export default applyStyles([selectStyle, s])(Select);
+export default applyStyles([selectStyle, s])(Select)

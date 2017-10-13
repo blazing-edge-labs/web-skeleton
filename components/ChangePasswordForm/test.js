@@ -1,6 +1,6 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { ChangePasswordFormComponent, validate } from './';
+import React from 'react'
+import { shallow } from 'enzyme'
+import { ChangePasswordFormComponent, validate } from './'
 
 describe('ChangePasswordForm component', () => {
   it('validate function success', () => {
@@ -8,29 +8,29 @@ describe('ChangePasswordForm component', () => {
       oldPassword: 'Aa123456',
       newPassword: 'Bb123456',
       confirmation: 'Bb123456',
-    };
-    const errors = validate(values);
+    }
+    const errors = validate(values)
 
     expect(errors).toEqual({
       oldPassword: null, newPassword: null, confirmation: null,
-    });
-  });
+    })
+  })
 
   it('validate function failed', () => {
     const values = {
       oldPassword: 'wrong',
       newPassword: undefined,
       confirmation: 'Cc123456',
-    };
-    const errors = validate(values);
+    }
+    const errors = validate(values)
 
     expect(errors).toEqual({
       oldPassword: 'Password has to be at least 8 characters long and contain' +
         ' at least one uppercase, lowercase and numeric character.',
       newPassword: 'Required field.',
       confirmation: 'Confirmation Password has to be equal.',
-    });
-  });
+    })
+  })
 
   it('renders and submits on click', () => {
     const reduxFormProps = {
@@ -40,14 +40,14 @@ describe('ChangePasswordForm component', () => {
       handleSubmit: jest.fn(cb => cb()),
       submitSucceeded: false,
       submitting: false,
-    };
+    }
     const wrapper = shallow(
       <ChangePasswordFormComponent {...reduxFormProps} />
-    );
-    wrapper.find('form').simulate('submit');
+    )
+    wrapper.find('form').simulate('submit')
 
     expect(reduxFormProps.handleSubmit)
-      .toHaveBeenCalledWith(reduxFormProps.handleChangePassword);
-    expect(reduxFormProps.handleChangePassword).toHaveBeenCalled();
-  });
-});
+      .toHaveBeenCalledWith(reduxFormProps.handleChangePassword)
+    expect(reduxFormProps.handleChangePassword).toHaveBeenCalled()
+  })
+})

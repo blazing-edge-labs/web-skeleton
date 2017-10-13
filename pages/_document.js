@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-import Document, { Head, Main, NextScript } from 'next/document';
-import addStyles, { flush } from '../next-style-loader/addStyles';
+import Document, { Head, Main, NextScript } from 'next/document'
+import addStyles, { flush } from '../next-style-loader/addStyles'
 
-import mainStyle from '../styles/main.scss';
+import mainStyle from '../styles/main.scss'
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
-    addStyles(mainStyle);
-    const props = renderPage();
-    props.nextStyle = flush();
-    return props;
+    addStyles(mainStyle)
+    const props = renderPage()
+    props.nextStyle = flush()
+    return props
   }
 
   render() {
@@ -25,6 +25,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </html>
-    );
+    )
   }
 }
