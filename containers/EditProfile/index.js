@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { profileUpdateFetch, changeEmailFetch, changePasswordFetch }
-  from '../../actions/profile'
-import ProfileForm from '../../components/ProfileForm'
-import ChangeEmailForm from '../../components/ChangeEmailForm'
-import ChangePasswordForm from '../../components/ChangePasswordForm'
+  from 'actions/profile'
+import ProfileForm from 'components/ProfileForm'
+import ChangeEmailForm from 'components/ChangeEmailForm'
+import ChangePasswordForm from 'components/ChangePasswordForm'
 
 export class EditProfileComponent extends Component {
   static propTypes = {

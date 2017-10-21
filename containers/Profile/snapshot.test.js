@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { ProfileComponent } from './'
+import { ProfileComponent } from 'containers/Profile'
 
 describe('Profile component snapshot', () => {
   it('render all data', () => {

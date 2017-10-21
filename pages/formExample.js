@@ -1,7 +1,7 @@
 import React from 'react'
-import { connectPage } from '../utils/page'
-import App from '../containers/App'
-import FormExample from '../containers/FormExample'
+import { connectPage } from 'utils/page'
+import App from 'containers/App'
+import FormExample from 'containers/FormExample'
 
 const FormExamplePage = () => (
   <App>

@@ -1,11 +1,11 @@
 import fetchMock from 'fetch-mock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import store from 'store'
-import * as auth from './auth'
+import store from 'node_modules/store'
+import * as auth from 'actions/auth'
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
-  EMAIL_RESEND_FAILED } from '../constants/actions'
+  EMAIL_RESEND_FAILED } from 'constants/actions'
 
 const { API_URL } = process.env
 

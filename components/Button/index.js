@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import applyStyles from '../../next-style-loader/applyStyles'
-import s from './style.scss'
+import applyStyles from 'next-style-loader/applyStyles'
+import s from 'components/Button/style.scss'
 
 const Button = ({ children, className, ...rest }) =>
   <button

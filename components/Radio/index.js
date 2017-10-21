@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import applyStyles from '../../next-style-loader/applyStyles'
-import s from './style.scss'
+import applyStyles from 'next-style-loader/applyStyles'
+import s from 'components/Radio/style.scss'
 
 class Radio extends Component {
   constructor(props) {

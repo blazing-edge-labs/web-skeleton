@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { INLINE_STYLES } from '../../constants/richTextEditor'
-import StyleButton from '../StyleButton'
+import { INLINE_STYLES } from 'constants/richTextEditor'
+import StyleButton from 'components/StyleButton'
 
 const InlineStyleControls = (props) => {
   const { editorState, onToggle } = props

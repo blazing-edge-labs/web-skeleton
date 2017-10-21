@@ -1,6 +1,6 @@
 import 'whatwg-fetch'
-import store from 'store'
-import { Router } from '../routes'
+import store from 'node_modules/store'
+import { Router } from 'routes'
 
 const { API_URL } = process.env
 

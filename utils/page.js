@@ -1,5 +1,5 @@
 import withRedux from 'next-redux-wrapper'
-import { makeStore } from '../store'
+import { makeStore } from 'store'
 
 export const connectPage = withRedux.bind(null, makeStore)
 

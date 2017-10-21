@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ForgotPasswordComponent, validate } from './'
-import * as Actions from '../../actions/auth'
+import { ForgotPasswordComponent, validate } from 'containers/ForgotPassword'
+import * as Actions from 'actions/auth'
 
 describe('ForgotPassword component', () => {
   const mockDispatch = jest.fn(z => z)

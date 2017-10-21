@@ -1,7 +1,7 @@
 import React from 'react'
 import { RichUtils } from 'draft-js'
 import { shallow } from 'enzyme'
-import RichTextEditor from './'
+import RichTextEditor from 'components/RichTextEditor'
 
 describe('RichTextEditor component', () => {
   const wrapper = shallow(<RichTextEditor />)

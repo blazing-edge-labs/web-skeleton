@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ChangeEmailFormComponent, validate } from './'
+import { ChangeEmailFormComponent, validate } from 'components/ChangeEmailForm'
 
 describe('ChangeEmailForm component', () => {
   it('validate function success', () => {

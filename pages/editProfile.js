@@ -1,7 +1,7 @@
 import React from 'react'
-import { connectPage } from '../utils/page'
-import App from '../containers/App'
-import EditProfile from '../containers/EditProfile'
+import { connectPage } from 'utils/page'
+import App from 'containers/App'
+import EditProfile from 'containers/EditProfile'
 
 const EditProfilePage = () => (
   <App>

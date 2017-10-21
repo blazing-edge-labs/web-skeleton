@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Button from './'
+import Button from 'components/Button'
 
 describe('Button component snapshot', () => {
   it('renders basic required data', () => {

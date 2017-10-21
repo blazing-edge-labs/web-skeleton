@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
-import { isPassword, isRequired, isSamePassword } from '../../utils/validator'
-import Input from '../Input'
-import ErrorMsg from '../ErrorMsg'
-import Button from '../Button'
+import { isPassword, isRequired, isSamePassword } from 'utils/validator'
+import Input from 'components/Input'
+import ErrorMsg from 'components/ErrorMsg'
+import Button from 'components/Button'
 
 export const validate = (values) => {
   const { oldPassword, newPassword, confirmation } = values

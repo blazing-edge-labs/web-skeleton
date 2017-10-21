@@ -1,8 +1,8 @@
-import store from 'store'
+import store from 'node_modules/store'
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
-  EMAIL_RESEND_FAILED } from '../constants/actions'
-import api from '../utils/api'
+  EMAIL_RESEND_FAILED } from 'constants/actions'
+import api from 'utils/api'
 
 export const signupLoginSuccess = () => ({
   type: SIGNUP_LOGIN_SUCCESS,

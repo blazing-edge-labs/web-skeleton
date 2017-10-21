@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import InlineStyleControls from './'
+import InlineStyleControls from 'components/InlineStyleControls'
 
 describe('InlineStyleControls component snapshot', () => {
   it('renders basic required data', () => {

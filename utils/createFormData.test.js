@@ -1,5 +1,5 @@
 import { FileList, FormData, File } from 'file-api'
-import createFormData from './createFormData'
+import createFormData from 'utils/createFormData'
 
 describe('createFormData util', () => {
   it('returns FormData object with File', () => {

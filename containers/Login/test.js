@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { LoginComponent, validate } from './'
-import * as Actions from '../../actions/auth'
-import { Router } from '../../routes'
+import { LoginComponent, validate } from 'containers/Login'
+import * as Actions from 'actions/auth'
+import { Router } from 'routes'
 
 describe('Login component', () => {
   const mockDispatch = jest.fn(z => z)

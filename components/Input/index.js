@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import InlineError from '../InlineError'
-import { hasError } from '../../utils/validator'
+import InlineError from 'components/InlineError'
+import { hasError } from 'utils/validator'
 
-import applyStyles from '../../next-style-loader/applyStyles'
-import s from './style.scss'
+import applyStyles from 'next-style-loader/applyStyles'
+import s from 'components/Input/style.scss'
 
 const Input = (props) => {
   const { label, input, meta, textarea, className, ...rest } = props

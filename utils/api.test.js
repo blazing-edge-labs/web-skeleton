@@ -1,7 +1,7 @@
-import store from 'store'
-import { Router } from '../routes'
-import createFormData from './createFormData'
-import api from './api'
+import store from 'node_modules/store'
+import { Router } from 'routes'
+import createFormData from 'utils/createFormData'
+import api from 'utils/api'
 
 const { API_URL } = process.env
 

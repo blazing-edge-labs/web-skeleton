@@ -18,6 +18,11 @@
       "impliedStrict": true
     }
   },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "rules": {
     "no-unused-vars": [2, {
       "vars": "local",

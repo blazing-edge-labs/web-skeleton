@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ProfileFormComponent } from './'
+import { ProfileFormComponent } from 'components/ProfileForm'
 
 describe('ProfileForm component', () => {
   it('renders and submits on click', () => {

@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import Input from '../Input'
-import ErrorMsg from '../ErrorMsg'
-import Button from '../Button'
+import Input from 'components/Input'
+import ErrorMsg from 'components/ErrorMsg'
+import Button from 'components/Button'
 
 export const ProfileFormComponent = (props) => {
   const { error, form, handleProfileUpdate, handleSubmit, submitSucceeded,

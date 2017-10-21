@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import ErrorMsg from './'
+import ErrorMsg from 'components/ErrorMsg'
 
 describe('ErrorMsg component snapshot', () => {
   it('renders basic required data', () => {

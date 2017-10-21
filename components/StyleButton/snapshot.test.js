@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import StyleButton from './'
+import StyleButton from 'components/StyleButton'
 
 describe('StyleButton component snapshot', () => {
   it('renders basic required data', () => {

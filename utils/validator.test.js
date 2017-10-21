@@ -1,5 +1,5 @@
 import { isEqual, isRequired, isEmail, isPassword, isSamePassword,
-  isUsedEmail } from './validator'
+  isUsedEmail } from 'utils/validator'
 
 describe('validator util', () => {
   it('isEqual method returns true', () => {

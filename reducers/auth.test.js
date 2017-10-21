@@ -1,6 +1,6 @@
-import reducer from './auth'
+import reducer from 'reducers/auth'
 import { EMAIL_CONFIRM_SUCCESS, EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING,
-  EMAIL_RESEND_SUCCESS, EMAIL_RESEND_FAILED } from '../constants/actions'
+  EMAIL_RESEND_SUCCESS, EMAIL_RESEND_FAILED } from 'constants/actions'
 
 describe('auth reducer', () => {
   it('should return initial state', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ChangePasswordFormComponent, validate } from './'
+import { ChangePasswordFormComponent, validate } from 'components/ChangePasswordForm'
 
 describe('ChangePasswordForm component', () => {
   it('validate function success', () => {

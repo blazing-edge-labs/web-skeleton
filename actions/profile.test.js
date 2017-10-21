@@ -1,8 +1,8 @@
 import fetchMock from 'fetch-mock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import * as profile from './profile'
-import { PROFILE_UPDATE_SUCCESS } from '../constants/actions'
+import * as profile from 'actions/profile'
+import { PROFILE_UPDATE_SUCCESS } from 'constants/actions'
 
 const { API_URL } = process.env
 
