@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import store from 'node_modules/store'
+import store from 'store-package'
 import * as auth from 'actions/auth'
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,

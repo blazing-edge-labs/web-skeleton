@@ -1,4 +1,4 @@
-import store from 'node_modules/store'
+import store from 'store-package'
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
   EMAIL_RESEND_FAILED } from 'constants/actions'

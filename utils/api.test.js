@@ -1,4 +1,4 @@
-import store from 'node_modules/store'
+import store from 'store-package'
 import { Router } from 'routes'
 import createFormData from 'utils/createFormData'
 import api from 'utils/api'
