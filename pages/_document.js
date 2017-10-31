@@ -9,7 +9,6 @@ import mainStyle from 'styles/main.scss'
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage, req }) {
     if (req && req.universalCookies) {
-      console.log('------------------------ req.universalCookies', req.universalCookies)
       Object.assign(cookies, req.universalCookies)
     }
     addStyles(mainStyle)
