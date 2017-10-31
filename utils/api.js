@@ -1,5 +1,5 @@
 import 'whatwg-fetch'
-import store from 'store-package'
+import cookies from 'utils/cookies'
 import { Router } from 'routes'
 
 const { API_URL } = process.env
@@ -33,7 +33,7 @@ const getApiUrl = (path, query) => {
 
 const getOptions = (options) => {
   const defaultHeaders = {
-    Authorization: store.get('token') || '',
+    Authorization: cookies.get('token') || '',
   }
 
   let { body } = options

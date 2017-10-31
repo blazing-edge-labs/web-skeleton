@@ -3,6 +3,7 @@
 require('./env')
 
 const express = require('express')
+const cookiesMiddleware = require('universal-cookie-express')
 const path = require('path')
 const next = require('next')
 const routes = require('./routes')
@@ -21,6 +22,8 @@ app.prepare()
     const p = path.normalize(req.params[0])
     res.sendFile(path.join(__dirname, p))
   })
+
+  server.use(cookiesMiddleware())
 
   server.use(handler)
 

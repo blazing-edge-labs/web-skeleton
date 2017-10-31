@@ -1,4 +1,4 @@
-import store from 'store-package'
+import cookies from 'utils/cookies'
 import { Router } from 'routes'
 import createFormData from 'utils/createFormData'
 import api from 'utils/api'
@@ -17,11 +17,11 @@ describe('fetchApi util', () => {
     delete global.fetch
   })
 
-  const storeGet = store.get
-  store.get = jest.fn(() => 'Bearer this.is.token')
+  const cookiesGet = cookies.get
+  cookies.get = jest.fn(() => 'Bearer this.is.token')
 
   afterAll(() => {
-    store.get = storeGet
+    cookies.get = cookiesGet
   })
 
   it('Call with json content', () => {

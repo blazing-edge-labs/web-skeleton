@@ -1,4 +1,4 @@
-import store from 'store-package'
+import cookies from 'utils/cookies'
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
   EMAIL_RESEND_FAILED } from 'constants/actions'
@@ -39,7 +39,7 @@ export const authenticate = values =>
   (dispatch) => {
     return api.post('auth', values)
     .then((data) => {
-      store.set('token', `Bearer ${data.token}`)
+      cookies.set('token', `Bearer ${data.token}`)
       dispatch(signupLoginSuccess())
     })
   }
@@ -56,7 +56,7 @@ export const loginFetch = authenticate
 
 export const logoutAction = () =>
   (dispatch) => {
-    store.clear()
+    cookies.remove('token')
     dispatch(logoutSuccess())
     return Promise.resolve()
   }

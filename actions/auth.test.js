@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import store from 'store-package'
+import cookies from 'utils/cookies'
 import * as auth from 'actions/auth'
 import { SIGNUP_LOGIN_SUCCESS, LOGOUT_SUCCESS, EMAIL_CONFIRM_SUCCESS,
   EMAIL_CONFIRM_FAILED, EMAIL_RESEND_FETCHING, EMAIL_RESEND_SUCCESS,
@@ -85,16 +85,16 @@ describe('auth action creators', () => {
       email: 'test@mail.com',
       password: 'Aa123456',
     }
-    store.set = jest.fn()
+    cookies.set = jest.fn()
     const data = {
       token: 'this.is.token',
     }
     fetchMock.post(`${API_URL}/auth`, { data })
 
     return auth.authenticate(values)(mockDispatch).then(() => {
-      expect(store.set.mock.calls[0])
+      expect(cookies.set.mock.calls[0])
         .toEqual(['token', `Bearer ${data.token}`])
-      expect(store.set).toHaveBeenCalledTimes(1)
+      expect(cookies.set).toHaveBeenCalledTimes(1)
       expect(mockDispatch).toHaveBeenCalledWith(expectedSignupLoginAction)
     })
   })
@@ -155,11 +155,11 @@ describe('auth action creators', () => {
   })
 
   it('should make call to logout action', () => {
-    store.clear = jest.fn()
+    cookies.remove = jest.fn()
     const reduxStore = mockStore({ user: {} })
     reduxStore.dispatch(auth.logoutAction())
 
-    expect(store.clear).toHaveBeenCalled()
+    expect(cookies.remove).toHaveBeenCalledWith('token')
     expect(reduxStore.getActions()[0]).toEqual(expectedLogoutAction)
   })
 
