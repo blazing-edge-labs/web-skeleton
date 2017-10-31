@@ -1,4 +1,4 @@
-import 'whatwg-fetch'
+import 'isomorphic-fetch'
 import cookies from 'utils/cookies'
 import { Router } from 'routes'
 
