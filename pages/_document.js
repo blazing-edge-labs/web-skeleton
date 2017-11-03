@@ -1,16 +1,14 @@
+import 'babel-polyfill'
+
 import React from 'react'
 
 import Document, { Head, Main, NextScript } from 'next/document'
 import addStyles, { flush } from 'next-style-loader/addStyles'
-import cookies from 'utils/cookies'
 
 import mainStyle from 'styles/main.scss'
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage, req }) {
-    if (req && req.universalCookies) {
-      Object.assign(cookies, req.universalCookies)
-    }
+  static getInitialProps({ renderPage }) {
     addStyles(mainStyle)
     const props = renderPage()
     props.nextStyle = flush()
