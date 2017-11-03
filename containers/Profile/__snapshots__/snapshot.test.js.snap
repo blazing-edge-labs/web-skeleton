@@ -15,24 +15,6 @@ exports[`Profile component snapshot render all data 1`] = `
     <dd>
       test@email.com
     </dd>
-    <dt>
-      First Name
-    </dt>
-    <dd>
-      John
-    </dd>
-    <dt>
-      Last Name
-    </dt>
-    <dd>
-      Doe
-    </dd>
-    <dt>
-      Bio
-    </dt>
-    <dd>
-      My bio
-    </dd>
   </dl>
   <a
     href="/editProfile"
