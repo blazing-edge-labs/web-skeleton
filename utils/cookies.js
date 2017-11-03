@@ -9,7 +9,7 @@ function getCookies() {
 }
 
 function castSecureInOptions(options) {
-  if (options && options.secure && process.env.NODE_ENV === 'development') {
+  if (options && options.secure && process.env.NODE_ENV !== 'production') {
     return { ...options, secure: false }
   }
   return options

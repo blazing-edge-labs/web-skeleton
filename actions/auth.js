@@ -39,7 +39,7 @@ export const authenticate = values =>
   (dispatch) => {
     return api.post('auth', values)
     .then((data) => {
-      cookies.set('token', `Bearer ${data.token}`)
+      cookies.set('token', `Bearer ${data.token}`, { secure: true })
       dispatch(signupLoginSuccess())
     })
   }
