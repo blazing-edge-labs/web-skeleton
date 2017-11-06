@@ -1,4 +1,5 @@
-require('./env')
+require('babel-polyfill')
+require('dotenv-safe').load()
 
 const { FormData, File, FileList } = require('file-api')
 

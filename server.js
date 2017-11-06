@@ -1,16 +1,17 @@
 'use strict'
 
-require('./env')
+require('dotenv-safe').load()
 
 const express = require('express')
+const cookiesMiddleware = require('universal-cookie-express')
 const path = require('path')
-const next = require('next')
+const Next = require('next')
 const routes = require('./routes')
 
 const port = process.env.PORT
 const dev = process.env.NODE_ENV !== 'production'
 
-const app = next({ dev })
+const app = Next({ dev })
 const handler = routes.getRequestHandler(app)
 
 app.prepare()
@@ -21,6 +22,8 @@ app.prepare()
     const p = path.normalize(req.params[0])
     res.sendFile(path.join(__dirname, p))
   })
+
+  server.use(cookiesMiddleware())
 
   server.use(handler)
 

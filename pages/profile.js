@@ -3,10 +3,17 @@ import { connectPage } from 'utils/page'
 import App from 'containers/App'
 import Profile from 'containers/Profile'
 
-const HomePage = () => (
+import { profileGetFetch } from 'actions/profile'
+
+const ProfilePage = () => (
   <App>
     <Profile />
   </App>
 )
 
-export default connectPage()(HomePage)
+ProfilePage.getInitialProps = async ({ store, isServer }) => {
+  await store.dispatch(profileGetFetch())
+  return { isServer }
+}
+
+export default connectPage()(ProfilePage)
