@@ -20,7 +20,7 @@ describe('EditProfile component', () => {
     }
     instance.handleProfileUpdate(values)
 
-    expect(Actions.profileUpdateFetch).toHaveBeenCalledWith(values, 1)
+    expect(Actions.profileUpdateFetch).toHaveBeenCalledWith(values)
     expect(mockDispatch).toHaveBeenCalled()
   })
 
@@ -31,7 +31,7 @@ describe('EditProfile component', () => {
     }
     instance.handleChangeEmail(values)
 
-    expect(Actions.changeEmailFetch).toHaveBeenCalledWith(values, 1)
+    expect(Actions.changeEmailFetch).toHaveBeenCalledWith(values)
     expect(mockDispatch).toHaveBeenCalled()
   })
 
@@ -44,7 +44,7 @@ describe('EditProfile component', () => {
     const expected = { ...values, confirmation: undefined }
     instance.handleChangePassword(values)
 
-    expect(Actions.changePasswordFetch).toHaveBeenCalledWith(expected, 1)
+    expect(Actions.changePasswordFetch).toHaveBeenCalledWith(expected)
     expect(mockDispatch).toHaveBeenCalled()
   })
 })
