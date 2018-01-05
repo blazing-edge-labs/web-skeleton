@@ -10,7 +10,6 @@ import ChangePasswordForm from 'components/ChangePasswordForm'
 export class EditProfileComponent extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    userId: PropTypes.number.isRequired,
   };
 
   constructor() {
@@ -21,20 +20,20 @@ export class EditProfileComponent extends Component {
   }
 
   handleProfileUpdate(values) {
-    const { dispatch, userId } = this.props
-    return dispatch(profileUpdateFetch(values, userId))
+    const { dispatch } = this.props
+    return dispatch(profileUpdateFetch(values))
   }
 
   handleChangeEmail(values) {
-    const { dispatch, userId } = this.props
-    return dispatch(changeEmailFetch(values, userId))
+    const { dispatch } = this.props
+    return dispatch(changeEmailFetch(values))
   }
 
   handleChangePassword(values) {
-    const { dispatch, userId } = this.props
+    const { dispatch } = this.props
 
     const newValues = { ...values, confirmation: undefined }
-    return dispatch(changePasswordFetch(newValues, userId))
+    return dispatch(changePasswordFetch(newValues))
   }
 
   render() {
@@ -48,6 +47,4 @@ export class EditProfileComponent extends Component {
   }
 }
 
-export default connect(state => ({
-  userId: state.user.id,
-}))(EditProfileComponent)
+export default connect()(EditProfileComponent)
