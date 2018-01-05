@@ -82,7 +82,7 @@ const handler = ({ response, body = {} }) => {
 const handle401 = (error) => {
   if (error && error.status === 401) {
     Router.pushRoute('/login')
-    return new Promise(() => {})
+    // return new Promise(() => {})
   }
   throw error
 }
