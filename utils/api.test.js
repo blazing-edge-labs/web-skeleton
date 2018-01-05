@@ -1,3 +1,4 @@
+import fetchMock from 'fetch-mock'
 import cookies from 'utils/cookies'
 import { Router } from 'routes'
 import createFormData from 'utils/createFormData'
@@ -5,16 +6,9 @@ import api from 'utils/api'
 
 const { API_URL } = process.env
 
-function fakeResponseWithBody(body, response = {}) {
-  return Promise.resolve({
-    ...response,
-    json: () => Promise.resolve(body),
-  })
-}
-
 describe('fetchApi util', () => {
   afterEach(() => {
-    delete global.fetch
+    delete fetchMock.restore()
   })
 
   const cookiesGet = cookies.get
@@ -31,17 +25,17 @@ describe('fetchApi util', () => {
       lastname: 'Doe',
     }
 
-    global.fetch = jest.fn(() => fakeResponseWithBody({}))
+    fetchMock.mock(`${API_URL}/test`, {})
 
     const check = method =>
-      expect(global.fetch).toHaveBeenLastCalledWith(`${API_URL}/test`, {
+      expect(fetchMock.lastCall()).toEqual([`${API_URL}/test`, {
         method,
         body: '{"bio":"This is my bio.","firstname":"John","lastname":"Doe"}',
         headers: {
           Authorization: 'Bearer this.is.token',
           'Content-Type': 'application/json',
         },
-      })
+      }])
 
     api.fetch('/test', { method: 'POST', body })
     check('POST')
@@ -66,16 +60,16 @@ describe('fetchApi util', () => {
       lastname: 'Doe',
     })
 
-    global.fetch = jest.fn(() => fakeResponseWithBody({}))
+    fetchMock.mock(`${API_URL}/test`, {})
 
     const check = () =>
-      expect(global.fetch).toHaveBeenLastCalledWith(`${API_URL}/test`, {
+      expect(fetchMock.lastCall()).toEqual([`${API_URL}/test`, {
         method: 'POST',
         body: formData,
         headers: {
           Authorization: 'Bearer this.is.token',
         },
-      })
+      }])
 
     api.fetch('test', { method: 'POST', body: formData })
     check()
@@ -86,16 +80,17 @@ describe('fetchApi util', () => {
 
   it('api.fetch API data', () => {
     const data = { test: 123 }
-    global.fetch = jest.fn(() => fakeResponseWithBody({ data }))
+
+    fetchMock.get('*', { data })
 
     const expectedUrl = `${API_URL}/self?flag=true&s=Hello%20world%21`
 
     const check = () =>
-      expect(global.fetch).toHaveBeenLastCalledWith(expectedUrl, {
+      expect(fetchMock.lastCall()).toEqual([expectedUrl, {
         headers: {
           Authorization: 'Bearer this.is.token',
         },
-      })
+      }])
 
     const p1 = api.fetch('/self', { query: { flag: true, s: 'Hello world!' } })
     .then((fetchedData) => {
@@ -119,7 +114,9 @@ describe('fetchApi util', () => {
   })
 
   it('api.fetch API with 401 error', () => {
-    global.fetch = jest.fn(() => fakeResponseWithBody({ error: 'foo', status: 401 }))
+    const responseBody = { error: 'foo', status: 401 }
+    fetchMock.get(`${API_URL}/self`, { body: responseBody })
+
     Router.pushRoute = jest.fn()
 
     return api.fetch('/self', {}).then(fail, (reason) => {
@@ -129,11 +126,10 @@ describe('fetchApi util', () => {
   })
 
   it('api.fetch with no response', () => {
-    const error = { status: 404 }
-    global.fetch = jest.fn(() => Promise.reject(error))
+    fetchMock.get(`${API_URL}/self`, { status: 404, body: {} })
 
     return api.fetch('/self', {}).then(fail, (reason) => {
-      expect(reason).toEqual(error)
+      expect(reason.status).toEqual(404)
     })
   })
 })
