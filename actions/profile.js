@@ -24,7 +24,7 @@ export const profileUpdateFetch = values =>
 
 export const changeEmailFetch = values =>
   () => {
-    return api.put('self/emai', values)
+    return api.put('self/email', values)
   }
 
 export const changePasswordFetch = values =>
