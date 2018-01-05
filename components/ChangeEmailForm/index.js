@@ -19,7 +19,7 @@ export const validate = (values, { currentEmail }) => {
 }
 
 export const ChangeEmailFormComponent = (props) => {
-  const { error, form, handleChangeEmail, handleSubmit, submitSucceeded,
+  const { error, handleChangeEmail, handleSubmit, submitSucceeded,
     submitting } = props
 
   return (
@@ -27,7 +27,6 @@ export const ChangeEmailFormComponent = (props) => {
       <Field
         name="newEmail"
         component={Input}
-        id={form}
         label="New Email"
         type="email"
         placeholder="New Email"
@@ -35,7 +34,6 @@ export const ChangeEmailFormComponent = (props) => {
       <Field
         name="password"
         component={Input}
-        id={form}
         label="Password"
         type="password"
         placeholder="Password"
@@ -49,7 +47,6 @@ export const ChangeEmailFormComponent = (props) => {
 
 ChangeEmailFormComponent.propTypes = {
   error: PropTypes.string,
-  form: PropTypes.string.isRequired,
   handleChangeEmail: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,

@@ -7,7 +7,7 @@ import ErrorMsg from 'components/ErrorMsg'
 import Button from 'components/Button'
 
 export const ProfileFormComponent = (props) => {
-  const { error, form, handleProfileUpdate, handleSubmit, submitSucceeded,
+  const { error, handleProfileUpdate, handleSubmit, submitSucceeded,
     submitting } = props
 
   return (
@@ -15,14 +15,12 @@ export const ProfileFormComponent = (props) => {
       <Field
         name="image"
         component={Input}
-        id={form}
         label="Profile Image"
         type="file"
       />
       <Field
         name="firstname"
         component={Input}
-        id={form}
         label="First Name"
         type="text"
         placeholder="First Name"
@@ -31,7 +29,6 @@ export const ProfileFormComponent = (props) => {
       <Field
         name="lastname"
         component={Input}
-        id={form}
         label="Last Name"
         type="text"
         placeholder="Last Name"
@@ -40,7 +37,6 @@ export const ProfileFormComponent = (props) => {
       <Field
         name="bio"
         component={Input}
-        id={form}
         label="Bio"
         placeholder="Bio"
         maxLength="1000"
@@ -55,7 +51,6 @@ export const ProfileFormComponent = (props) => {
 
 ProfileFormComponent.propTypes = {
   error: PropTypes.string,
-  form: PropTypes.string.isRequired,
   handleProfileUpdate: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitSucceeded: PropTypes.bool.isRequired,
