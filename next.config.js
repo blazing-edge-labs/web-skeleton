@@ -103,6 +103,22 @@ module.exports = {
       // },
     )
 
+    if (!dev) {
+      // eslint-disable-next-line
+      config.plugins = config.plugins.filter(p =>
+        p.constructor.name !== 'UglifyJsPlugin'
+      )
+
+      // eslint-disable-next-line
+      const Uglify = require('uglifyjs-webpack-plugin')
+      config.plugins.push(
+        new Uglify({
+          parallel: true,
+          sourceMap: true,
+        })
+      )
+    }
+
     return config
   },
 }
