@@ -31,7 +31,7 @@ export class AppComponent extends Component {
           <Link to="/"><a>Home</a></Link>
           <Link to="/formExample"><a>Components</a></Link>
           <Link to="/profile"><a>Profile</a></Link>
-          <a href onClick={this.handleLogout}>Logout</a>
+          <a onClick={this.handleLogout}>Logout</a>
         </nav>
         <div>{children}</div>
       </div>

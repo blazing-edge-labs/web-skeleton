@@ -1,7 +1,7 @@
 {
   "name": "web-skeleton",
   "version": "1.0.0",
-  "description": "ECP skeleton for React/Redux web application",
+  "description": "Blazing Edge skeleton for React/Redux web applications",
   "scripts": {
     "lint": "eslint . --ignore-pattern '/node_modules/*'",
     "test:only": "jest",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blazing-edge-labs/web-skeleton-v2"
+    "url": "https://github.com/blazing-edge-labs/web-skeleton"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
