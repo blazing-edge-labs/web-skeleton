@@ -8,7 +8,7 @@ export function configureStore(env, initialState) {
 
   const store = compose(
     applyMiddleware(thunk),
-    (__CLIENT__ && dev && window.devToolsExtension) ? window.devToolsExtension() : f => f,
+    (global.__CLIENT__ && dev && window.devToolsExtension) ? window.devToolsExtension() : f => f,
   )(createStore)(rootReducer, initialState)
 
   if (dev && module.hot) {
