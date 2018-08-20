@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`StyleButton component snapshot renders basic required data 1`] = `
 <span
-  onMouseDown={[Function]}>
+  onMouseDown={[Function]}
+>
   H1
 </span>
 `;
