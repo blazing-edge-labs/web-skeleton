@@ -1,12 +1,12 @@
 import withRedux from 'next-redux-wrapper'
 import { makeStore } from 'store'
 import { compose } from 'redux'
-import { setPageContext } from 'utils/page-context'
 
-function trackContext(Component) {
+function enhancePage(Component) {
   const { getInitialProps } = Component
   Component.getInitialProps = function (ctx) { //eslint-disable-line
-    setPageContext(ctx)
+    // Put here additional common logic
+
     if (!getInitialProps) return {}
     return getInitialProps.apply(this, arguments) //eslint-disable-line
   }
@@ -15,5 +15,5 @@ function trackContext(Component) {
 
 export const connectPage = (...args) => compose(
   withRedux(makeStore, ...args),
-  trackContext
+  enhancePage
 )

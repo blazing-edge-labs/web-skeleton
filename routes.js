@@ -1,5 +1,3 @@
-const Router = require('./utils/next-router')
-
-module.exports = require('next-routes')({ Router })
-.add('home', '/', 'home')
-.add('recoverPassword', '/recoverPassword/:code', 'recoverPassword')
+module.exports = require('next-routes')()
+.add('home', '/')
+.add('recoverPassword', '/recoverPassword/:code')

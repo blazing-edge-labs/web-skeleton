@@ -17,7 +17,6 @@ exports[`App component snapshot renders 1`] = `
       Profile
     </a>
     <a
-      href={true}
       onClick={[Function]}>
       Logout
     </a>

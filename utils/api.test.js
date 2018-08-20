@@ -12,7 +12,7 @@ describe('fetchApi util', () => {
   })
 
   const cookiesGet = cookies.get
-  cookies.get = jest.fn(() => 'Bearer this.is.token')
+  cookies.get = jest.fn(() => 'this.is.token')
 
   afterAll(() => {
     cookies.get = cookiesGet
@@ -119,7 +119,7 @@ describe('fetchApi util', () => {
 
     Router.pushRoute = jest.fn()
 
-    return api.fetch('/self', {}).then(fail, (reason) => {
+    return api.fetch('/self').then(fail, (reason) => {
       expect(reason.status).toEqual(401)
       expect(Router.pushRoute).toHaveBeenCalledWith('/login')
     })

@@ -6,9 +6,9 @@ export const profileUpdateSuccess = user => ({
   user,
 })
 
-export const profileGetFetch = () =>
+export const profileGetFetch = ctx =>
   (dispatch) => {
-    return api.get('self')
+    return api.get('self', null, { ctx })
     .then((user) => {
       return dispatch(profileUpdateSuccess(user))
     })
