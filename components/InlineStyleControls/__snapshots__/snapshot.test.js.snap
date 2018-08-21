@@ -1,19 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`InlineStyleControls component snapshot renders basic required data 1`] = `
 <div>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     Bold
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     Italic
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     Underline
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     Monospace
   </span>
 </div>

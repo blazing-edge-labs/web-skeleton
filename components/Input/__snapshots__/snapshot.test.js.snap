@@ -1,25 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Input component snapshot renders basic required data 1`] = `
 <div
-  className="">
+  className=""
+>
   <label
     className="label"
-    htmlFor="email" />
+    htmlFor="email"
+  />
   <input
     className="input "
     id="Form"
     name="email"
-    value="" />
+    value=""
+  />
   <div
-    className="inlineError" />
+    className="inlineError"
+  />
 </div>
 `;
 
 exports[`Input component snapshot renders extra info and it is active and invalid 1`] = `
 <div
-  className="error">
+  className="error"
+>
   <label
     className="label"
-    htmlFor="email">
+    htmlFor="email"
+  >
     Email
   </label>
   <input
@@ -28,9 +36,11 @@ exports[`Input component snapshot renders extra info and it is active and invali
     name="email"
     placeholder="Email"
     type="email"
-    value="notAnEmail" />
+    value="notAnEmail"
+  />
   <div
-    className="inlineError">
+    className="inlineError"
+  >
     Input is invalid
   </div>
 </div>
@@ -38,19 +48,23 @@ exports[`Input component snapshot renders extra info and it is active and invali
 
 exports[`Input component snapshot renders label and input is invalid 1`] = `
 <div
-  className="error">
+  className="error"
+>
   <label
     className="label"
-    htmlFor="email">
+    htmlFor="email"
+  >
     Email
   </label>
   <input
     className="input "
     id="Form"
     name="email"
-    value="notAnEmail" />
+    value="notAnEmail"
+  />
   <div
-    className="inlineError">
+    className="inlineError"
+  >
     Input is invalid
   </div>
 </div>
@@ -58,19 +72,23 @@ exports[`Input component snapshot renders label and input is invalid 1`] = `
 
 exports[`Input component snapshot renders label and input is required 1`] = `
 <div
-  className="error">
+  className="error"
+>
   <label
     className="label"
-    htmlFor="email">
+    htmlFor="email"
+  >
     Email
   </label>
   <input
     className="input "
     id="Form"
     name="email"
-    value="" />
+    value=""
+  />
   <div
-    className="inlineError">
+    className="inlineError"
+  >
     Input required
   </div>
 </div>
@@ -78,18 +96,22 @@ exports[`Input component snapshot renders label and input is required 1`] = `
 
 exports[`Input component snapshot renders label and is focused 1`] = `
 <div
-  className="">
+  className=""
+>
   <label
     className="label"
-    htmlFor="email">
+    htmlFor="email"
+  >
     Email
   </label>
   <input
     className="input "
     id="Form"
     name="email"
-    value="test@email.com" />
+    value="test@email.com"
+  />
   <div
-    className="inlineError" />
+    className="inlineError"
+  />
 </div>
 `;

@@ -1,43 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`BlockStyleControls component snapshot renders basic required data 1`] = `
 <div>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     H1
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     H2
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     H3
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     H4
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     H5
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     H6
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     Blockquote
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     UL
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     OL
   </span>
   <span
-    onMouseDown={[Function]}>
+    onMouseDown={[Function]}
+  >
     Code Block
   </span>
 </div>

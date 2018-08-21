@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Profile component snapshot render all data 1`] = `
 <main>
   <dl>
@@ -7,7 +9,8 @@ exports[`Profile component snapshot render all data 1`] = `
     <dd>
       <img
         alt="Personal Profile"
-        src="http://linkToImage" />
+        src="http://linkToImage"
+      />
     </dd>
     <dt>
       Email
@@ -18,7 +21,8 @@ exports[`Profile component snapshot render all data 1`] = `
   </dl>
   <a
     href="/editProfile"
-    onClick={[Function]}>
+    onClick={[Function]}
+  >
     Edit Profile
   </a>
 </main>
@@ -36,7 +40,8 @@ exports[`Profile component snapshot render only required email 1`] = `
   </dl>
   <a
     href="/editProfile"
-    onClick={[Function]}>
+    onClick={[Function]}
+  >
     Edit Profile
   </a>
 </main>

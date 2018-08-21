@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Pagination component snapshot doesn't render anything for 0 items 1`] = `null`;
 
 exports[`Pagination component snapshot renders data with current page 1 1`] = `
@@ -14,7 +16,8 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         2
       </button>
     </li>
@@ -23,7 +26,8 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         3
       </button>
     </li>
@@ -32,7 +36,8 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         4
       </button>
     </li>
@@ -41,7 +46,8 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         5
       </button>
     </li>
@@ -50,9 +56,11 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-right" />
+          className="fa fa-angle-right"
+        />
       </button>
     </li>
     <li>
@@ -60,9 +68,11 @@ exports[`Pagination component snapshot renders data with current page 1 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-double-right" />
+          className="fa fa-angle-double-right"
+        />
       </button>
     </li>
   </ul>
@@ -80,9 +90,11 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-double-left" />
+          className="fa fa-angle-double-left"
+        />
       </button>
     </li>
     <li>
@@ -90,9 +102,11 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-left" />
+          className="fa fa-angle-left"
+        />
       </button>
     </li>
     <li>
@@ -100,7 +114,8 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         3
       </button>
     </li>
@@ -109,7 +124,8 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         4
       </button>
     </li>
@@ -121,7 +137,8 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         6
       </button>
     </li>
@@ -130,7 +147,8 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         7
       </button>
     </li>
@@ -139,9 +157,11 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-right" />
+          className="fa fa-angle-right"
+        />
       </button>
     </li>
     <li>
@@ -149,9 +169,11 @@ exports[`Pagination component snapshot renders data with current page 5 1`] = `
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-double-right" />
+          className="fa fa-angle-double-right"
+        />
       </button>
     </li>
   </ul>
@@ -169,9 +191,11 @@ exports[`Pagination component snapshot renders data with current page being last
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-double-left" />
+          className="fa fa-angle-double-left"
+        />
       </button>
     </li>
     <li>
@@ -179,9 +203,11 @@ exports[`Pagination component snapshot renders data with current page being last
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-left" />
+          className="fa fa-angle-left"
+        />
       </button>
     </li>
     <li>
@@ -189,7 +215,8 @@ exports[`Pagination component snapshot renders data with current page being last
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         4
       </button>
     </li>
@@ -198,7 +225,8 @@ exports[`Pagination component snapshot renders data with current page being last
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         5
       </button>
     </li>
@@ -207,7 +235,8 @@ exports[`Pagination component snapshot renders data with current page being last
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         6
       </button>
     </li>
@@ -216,7 +245,8 @@ exports[`Pagination component snapshot renders data with current page being last
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         7
       </button>
     </li>
@@ -238,9 +268,11 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-left" />
+          className="fa fa-angle-left"
+        />
       </button>
     </li>
     <li>
@@ -248,7 +280,8 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         1
       </button>
     </li>
@@ -260,7 +293,8 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         3
       </button>
     </li>
@@ -269,9 +303,11 @@ exports[`Pagination component snapshot renders data with less than 5 pages 1`] =
         className="button "
         empty={true}
         onClick={[Function]}
-        type="button">
+        type="button"
+      >
         <i
-          className="fa fa-angle-right" />
+          className="fa fa-angle-right"
+        />
       </button>
     </li>
   </ul>
