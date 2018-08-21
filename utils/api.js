@@ -1,8 +1,8 @@
 import 'isomorphic-fetch'
 import cookies from 'utils/cookies'
-import { Router } from 'routes'
+import { redirect } from 'utils/universal'
 
-const { API_URL } = process.env
+const API_URL = process.env.API_URL
 
 const encodeComponent = str =>
   encodeURIComponent(str)
@@ -13,8 +13,7 @@ export const buildQuery = params =>
   .map(key => `${encodeComponent(key)}=${encodeComponent(params[key])}`)
   .join('&')
 
-
-const getApiUrl = (path, query) => {
+export const getApiUrl = (path, query) => {
   let queryPrefix = ''
   let queryStr = ''
 
@@ -31,9 +30,11 @@ const getApiUrl = (path, query) => {
   return `${API_URL}/${fixedPath}${queryPrefix}${queryStr}`
 }
 
-const getOptions = (options) => {
+const getOptions = (options, ctx) => {
+  const token = cookies.get('token', { ctx })
+
   const defaultHeaders = {
-    Authorization: cookies.get('token') || '',
+    Authorization: token ? `Bearer ${token}` : '',
   }
 
   let { body } = options
@@ -57,43 +58,48 @@ const getOptions = (options) => {
   }
 }
 
-const jsonParser = response =>
-  response.json()
-  .then(body => ({ response, body }))
+const responseChecker = response => (data) => {
+  if (response.status < 200 || response.status >= 300) {
+    const error = new Error(response.statusText)
+    error.status = response.status
+    throw error
+  }
+  return data
+}
 
-
-const handler = ({ response, body = {} }) => {
+const dataFromJsonGetter = response => (body) => {
   if (body.error) {
     const error = new Error(body.error)
     error.code = body.code
     error.status = body.status || response.status
     throw error
   }
-
-  if (response.status < 200 || response.status >= 300) {
-    const error = new Error(response.statusText)
-    error.status = response.status
-    throw error
-  }
-
   return body.data
 }
 
-const handle401 = (error) => {
+const blobHandler = response =>
+  response.blob()
+  .then(responseChecker(response))
+
+const jsonHandler = response =>
+  response.json()
+  .then(dataFromJsonGetter(response))
+  .then(responseChecker(response))
+
+const handle401 = ctx => (error) => {
   if (error && error.status === 401) {
-    Router.pushRoute('/login')
+    redirect(ctx, '/login')
     // return new Promise(() => {})
   }
   throw error
 }
 
 function fetchApi(path, options = {}) {
-  const { query, ...opts } = options
+  const { query, raw, ctx, ...opts } = options
 
-  return fetch(getApiUrl(path, query), getOptions(opts))
-    .then(jsonParser)
-    .then(handler)
-    .catch(handle401)
+  return fetch(getApiUrl(path, query), getOptions(opts, ctx))
+  .then(raw ? blobHandler : jsonHandler)
+  .catch(handle401(ctx))
 }
 
 const getApi = (path, query, options) =>

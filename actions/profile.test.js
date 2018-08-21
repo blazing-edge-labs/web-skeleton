@@ -33,7 +33,7 @@ describe('profile action creators', () => {
     fetchMock.get(`${API_URL}/self`, { data })
     const reduxStore = mockStore({ user: {} })
 
-    return reduxStore.dispatch(profile.profileGetFetch(userId)).then(() => {
+    return reduxStore.dispatch(profile.profileGetFetch()).then(() => {
       expect(reduxStore.getActions()[0]).toEqual(expectedAction)
     })
   })

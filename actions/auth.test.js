@@ -93,7 +93,7 @@ describe('auth action creators', () => {
 
     return auth.authenticate(values)(mockDispatch).then(() => {
       expect(cookies.set.mock.calls[0])
-        .toEqual(['token', `Bearer ${data.token}`, { secure: true }])
+        .toEqual(['token', data.token, { path: '/', secure: true }])
       expect(cookies.set).toHaveBeenCalledTimes(1)
       expect(mockDispatch).toHaveBeenCalledWith(expectedSignupLoginAction)
     })

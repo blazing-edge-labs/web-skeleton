@@ -1,12 +1,9 @@
 import Cookies from 'universal-cookie'
-import { getPageContext } from 'utils/page-context'
+import { isServer } from 'utils/universal'
 
-const browserCookies = new Cookies()
+const browserCookies = !isServer ? new Cookies() : null
 
-function getCookies() {
-  const { req } = getPageContext() || {}
-  return req && req.universalCookies || browserCookies // eslint-disable-line
-}
+const getCookies = ctx => browserCookies || ctx.req.universalCookies
 
 function castSecureInOptions(options) {
   if (options && options.secure && process.env.NODE_ENV !== 'production') {
@@ -16,15 +13,15 @@ function castSecureInOptions(options) {
 }
 
 export default {
-  get(name, options) {
-    return getCookies().get(name, options)
+  get(name, { ctx, ...options } = {}) {
+    return getCookies(ctx).get(name, options)
   },
 
-  set(name, value, options) {
-    return getCookies().set(name, value, castSecureInOptions(options))
+  set(name, value, { ctx, ...options } = {}) {
+    return getCookies(ctx).set(name, value, castSecureInOptions(options))
   },
 
-  remove(name, options) {
-    return getCookies().remove(name, castSecureInOptions(options))
+  remove(name, { ctx, ...options } = {}) {
+    return getCookies(ctx).remove(name, castSecureInOptions(options))
   },
 }
