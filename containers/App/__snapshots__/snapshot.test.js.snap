@@ -1,23 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`App component snapshot renders 1`] = `
 <div>
   <nav>
     <a
       href="/"
-      onClick={[Function]}>
+      onClick={[Function]}
+    >
       Home
     </a>
     <a
       href="/formExample"
-      onClick={[Function]}>
+      onClick={[Function]}
+    >
       Components
     </a>
     <a
       href="/profile"
-      onClick={[Function]}>
+      onClick={[Function]}
+    >
       Profile
     </a>
     <a
-      onClick={[Function]}>
+      onClick={[Function]}
+    >
       Logout
     </a>
   </nav>
