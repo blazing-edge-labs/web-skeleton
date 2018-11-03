@@ -1,11 +1,16 @@
-FROM node:6.7
+FROM node:8
 
-RUN useradd --user-group --create-home --shell /bin/bash app
-RUN npm install -g --silent webpack
-RUN npm install -g --silent webpack-dev-server
+EXPOSE 80
+ENV \
+  PORT=80 \
+  NODE_ENV=production
 
-RUN mkdir /home/app/src
+WORKDIR /node
+COPY . /node
+RUN \
+  yarn install && \
+  yarn run build
 
-COPY . /home/app/src
-WORKDIR /home/app/src
-RUN chmod 767 docker-start.sh
+CMD yarn run start
+
+HEALTHCHECK --timeout=3s CMD curl -f http://localhost:$PORT || exit 1
