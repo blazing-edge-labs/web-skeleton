@@ -85,7 +85,8 @@
     "validator": "^6.1.0"
   },
   "engines": {
-    "node": "8"
+    "node": "8",
+    "yarn": "1"
   },
   "jest": {
     "cacheDirectory": "./.test/cache",
