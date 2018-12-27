@@ -85,8 +85,9 @@ describe('fetchApi util', () => {
 
     const expectedUrl = `${API_URL}/self?flag=true&s=Hello%20world%21`
 
-    const check = () =>
+    const check = method =>
       expect(fetchMock.lastCall()).toEqual([expectedUrl, {
+        method,
         headers: {
           Authorization: 'Bearer this.is.token',
         },
@@ -102,13 +103,13 @@ describe('fetchApi util', () => {
     .then((fetchedData) => {
       expect(fetchedData).toEqual(data)
     })
-    check()
+    check('GET')
 
     const p3 = api.get('/self', { flag: true, s: 'Hello world!' })
     .then((fetchedData) => {
       expect(fetchedData).toEqual(data)
     })
-    check()
+    check('GET')
 
     return Promise.all([p1, p2, p3])
   })
