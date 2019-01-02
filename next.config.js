@@ -1,5 +1,16 @@
+const runtimeDotenv = require('next-runtime-dotenv')
 const autoprefixer = require('autoprefixer')
 const path = require('path')
+
+const withDotenv = runtimeDotenv({
+  public: [
+    'PORT',
+    'API_URL',
+  ],
+  server: [
+    // SSR only
+  ],
+})
 
 const localStyleCondition = [
   path.join(__dirname, 'containers'),
@@ -59,7 +70,7 @@ function getStyleLoaders({ dev, mode, sass }) {
   return loaders
 }
 
-module.exports = {
+module.exports = withDotenv({
   webpack: (config, { dev }) => {
     config.module.rules.push(
       {
@@ -121,4 +132,4 @@ module.exports = {
 
     return config
   },
-}
+})

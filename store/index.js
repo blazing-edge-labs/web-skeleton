@@ -2,9 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import thunk from 'redux-thunk'
 import rootReducer from 'reducers'
+import env from 'constants/env'
 
-export function configureStore(env, initialState) {
-  const dev = env === 'development'
+export function configureStore(nodeEnv, initialState) {
+  const dev = nodeEnv === 'development'
 
   const store = compose(
     applyMiddleware(thunk),
@@ -22,7 +23,7 @@ export function configureStore(env, initialState) {
 }
 
 export function makeStore(initialState) {
-  return configureStore(process.env.NODE_ENV, initialState)
+  return configureStore(env.NODE_ENV, initialState)
 }
 
 export const connectPage = withRedux.bind(null, makeStore)

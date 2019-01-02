@@ -11,7 +11,6 @@ module.exports = {
     }]
   ],
   plugins: [
-    'inline-dotenv',
     ['module-resolver', {
       root: ['./']
     }]

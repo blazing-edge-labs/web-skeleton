@@ -1,12 +1,13 @@
 import Cookies from 'universal-cookie'
 import { isServer } from 'utils/universal'
+import env from 'constants/env'
 
 const browserCookies = !isServer ? new Cookies() : null
 
 const getCookies = ctx => browserCookies || ctx.req.universalCookies
 
 function castSecureInOptions(options) {
-  if (options && options.secure && process.env.NODE_ENV !== 'production') {
+  if (options && options.secure && env.NODE_ENV !== 'production') {
     return { ...options, secure: false }
   }
   return options
