@@ -10,7 +10,8 @@
     "build": "next build",
     "dev": "node server.js",
     "start": "node server.js",
-    "heroku-postbuild": "run-s -s build"
+    "heroku-postbuild": "run-s -s build",
+    "preinstall": "node preinstall.js"
   },
   "author": "Blazing Edge",
   "license": "MIT",
