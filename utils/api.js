@@ -1,8 +1,7 @@
 import 'isomorphic-fetch'
 import cookies from 'utils/cookies'
 import { redirect } from 'utils/universal'
-
-const API_URL = process.env.API_URL
+import env from 'constants/env'
 
 const encodeComponent = str =>
   encodeURIComponent(str)
@@ -14,7 +13,7 @@ const buildQuery = params =>
     .join('&')
 
 export function getApiUrl(path, query) {
-  let url = API_URL
+  let url = env.API_URL
 
   if (path) {
     if (path[0] !== '/') {
