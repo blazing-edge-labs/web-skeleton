@@ -11,7 +11,8 @@ const ProfilePage = () => (
   </App>
 )
 
-ProfilePage.getInitialProps = async ({ ctx, store, isServer }) => {
+ProfilePage.getInitialProps = async (ctx) => {
+  const { store, isServer } = ctx
   await store.dispatch(profileGetFetch(ctx))
   return { isServer }
 }
