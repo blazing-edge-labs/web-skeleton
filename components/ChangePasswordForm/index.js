@@ -12,8 +12,8 @@ export const validate = (values) => {
 
   errors.oldPassword = isRequired(oldPassword) || isPassword(oldPassword)
   errors.newPassword = isRequired(newPassword) || isPassword(newPassword)
-  errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||
-    isSamePassword(confirmation, newPassword)
+  errors.confirmation = isRequired(confirmation) || isPassword(confirmation)
+    || isSamePassword(confirmation, newPassword)
   return errors
 }
 

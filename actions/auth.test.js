@@ -131,9 +131,9 @@ describe('auth action creators', () => {
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(auth.signupFetch(values))
-    .then(fail, (reason) => {
-      expect(reason).toEqual(new Error('User already exists'))
-    })
+      .then(fail, (reason) => {
+        expect(reason).toEqual(new Error('User already exists'))
+      })
   })
 
   it('should fail to make login fetch', () => {
@@ -149,9 +149,9 @@ describe('auth action creators', () => {
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(auth.loginFetch(values))
-    .then(fail, (reason) => {
-      expect(reason).toEqual(new Error('Wrong password'))
-    })
+      .then(fail, (reason) => {
+        expect(reason).toEqual(new Error('Wrong password'))
+      })
   })
 
   it('should make call to logout action', () => {
@@ -172,9 +172,9 @@ describe('auth action creators', () => {
     fetchMock.post(`${API_URL}/recoverPassword`, { body })
 
     return mockStore({}).dispatch(auth.forgotPasswordFetch({}))
-    .then(fail, (reason) => {
-      expect(reason).toEqual(new Error('Email doesn\'t exist'))
-    })
+      .then(fail, (reason) => {
+        expect(reason).toEqual(new Error('Email doesn\'t exist'))
+      })
   })
 
   it('should make successsful recoverPassword fetch', () => {
@@ -204,8 +204,8 @@ describe('auth action creators', () => {
     const reduxStore = mockStore({ auth: {} })
 
     return reduxStore.dispatch(auth.recoverPasswordFetch(values, code))
-    .then(fail, (reason) => {
-      expect(reason).toEqual(new Error('Password doesn\'t exist'))
-    })
+      .then(fail, (reason) => {
+        expect(reason).toEqual(new Error('Password doesn\'t exist'))
+      })
   })
 })

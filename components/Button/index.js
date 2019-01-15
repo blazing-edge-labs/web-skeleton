@@ -4,13 +4,15 @@ import PropTypes from 'prop-types'
 import applyStyles from 'next-style-loader/applyStyles'
 import s from 'components/Button/style.scss'
 
-const Button = ({ children, className, ...rest }) =>
+const Button = ({ children, className, ...rest }) => (
   <button
+    type="button"
     className={`${s.button} ${className || ''}`}
     {...rest}
   >
     {children}
   </button>
+)
 
 Button.propTypes = {
   className: PropTypes.string,

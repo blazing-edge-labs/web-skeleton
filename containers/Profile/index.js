@@ -16,11 +16,11 @@ export class ProfileComponent extends Component {
       <main>
         <dl>
           {image && <dt>Profile Image</dt>}
-          {image &&
+          {image && (
             <dd>
               <img src={image} alt="Personal Profile" />
             </dd>
-          }
+          )}
           <dt>Email</dt>
           <dd>{email}</dd>
         </dl>

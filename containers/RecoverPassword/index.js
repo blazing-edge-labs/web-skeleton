@@ -15,8 +15,8 @@ export const validate = (values) => {
   const { password, confirmation } = values
 
   errors.password = isRequired(password) || isPassword(password)
-  errors.confirmation = isRequired(confirmation) || isPassword(confirmation) ||
-    isSamePassword(confirmation, password)
+  errors.confirmation = isRequired(confirmation) || isPassword(confirmation)
+    || isSamePassword(confirmation, password)
   return errors
 }
 
@@ -47,8 +47,7 @@ export class RecoverPasswordComponent extends Component {
   }
 
   render() {
-    const { error, form, handleSubmit, submitSucceeded, submitting } =
-      this.props
+    const { error, form, handleSubmit, submitSucceeded, submitting } = this.props
 
     return (
       <main>

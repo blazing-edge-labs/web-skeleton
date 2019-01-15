@@ -66,9 +66,9 @@ describe('profile action creators', () => {
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(profile.profileUpdateFetch(values))
-    .then(fail, (reason) => {
-      expect(reason).toEqual(new Error('Something went wrong'))
-    })
+      .then(fail, (reason) => {
+        expect(reason).toEqual(new Error('Something went wrong'))
+      })
   })
 
   it('should fail to make changePassword fetch', () => {
@@ -84,8 +84,8 @@ describe('profile action creators', () => {
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(profile.changePasswordFetch(values, userId))
-    .then(fail, (reason) => {
-      expect(reason).toEqual(new Error('Wrong password'))
-    })
+      .then(fail, (reason) => {
+        expect(reason).toEqual(new Error('Wrong password'))
+      })
   })
 })

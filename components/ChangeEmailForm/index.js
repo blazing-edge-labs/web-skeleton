@@ -12,8 +12,8 @@ export const validate = (values, { currentEmail }) => {
   const { newEmail, password } = values
   const errors = {}
 
-  errors.newEmail = isRequired(newEmail) || isEmail(newEmail) ||
-    isUsedEmail(newEmail, currentEmail)
+  errors.newEmail = isRequired(newEmail) || isEmail(newEmail)
+    || isUsedEmail(newEmail, currentEmail)
   errors.password = isRequired(password) || isPassword(password)
   return errors
 }

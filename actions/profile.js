@@ -9,17 +9,17 @@ export const profileUpdateSuccess = user => ({
 export const profileGetFetch = ctx =>
   (dispatch) => {
     return api.get('self', null, { ctx })
-    .then((user) => {
-      return dispatch(profileUpdateSuccess(user))
-    })
+      .then((user) => {
+        return dispatch(profileUpdateSuccess(user))
+      })
   }
 
 export const profileUpdateFetch = values =>
   (dispatch) => {
     return api.put('self', values)
-    .then((user) => {
-      return dispatch(profileUpdateSuccess(user))
-    })
+      .then((user) => {
+        return dispatch(profileUpdateSuccess(user))
+      })
   }
 
 export const changeEmailFetch = values =>

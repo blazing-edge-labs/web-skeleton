@@ -13,7 +13,7 @@ const BlockStyleControls = (props) => {
 
   return (
     <div>
-      {BLOCK_TYPES.map(type =>
+      {BLOCK_TYPES.map(type => (
         <StyleButton
           key={type.label}
           active={type.style === blockType}
@@ -21,7 +21,7 @@ const BlockStyleControls = (props) => {
           onToggle={onToggle}
           style={type.style}
         />
-      )}
+      ))}
     </div>
   )
 }

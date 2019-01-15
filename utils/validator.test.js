@@ -31,8 +31,8 @@ describe('validator util', () => {
   })
 
   it('isPassword method returns error', () => {
-    const error = 'Password has to be at least 8 characters long and contain ' +
-      'at least one uppercase, lowercase and numeric character.'
+    const error = 'Password has to be at least 8 characters long and contain '
+      + 'at least one uppercase, lowercase and numeric character.'
 
     expect(isPassword('Aa12345')).toBe(error)
     expect(isPassword('aa123456')).toBe(error)
