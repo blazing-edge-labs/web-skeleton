@@ -38,8 +38,7 @@ export class ForgotPasswordComponent extends Component {
   }
 
   render() {
-    const { error, form, handleSubmit, submitSucceeded, submitting } =
-      this.props
+    const { error, form, handleSubmit, submitSucceeded, submitting } = this.props
 
     return (
       <main>

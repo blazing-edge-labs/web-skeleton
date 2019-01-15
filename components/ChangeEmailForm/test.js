@@ -28,8 +28,8 @@ describe('ChangeEmailForm component', () => {
 
     expect(errors).toEqual({
       newEmail: 'You are already using this email.',
-      password: 'Password has to be at least 8 characters long and contain at' +
-        ' least one uppercase, lowercase and numeric character.',
+      password: 'Password has to be at least 8 characters long and contain at'
+        + ' least one uppercase, lowercase and numeric character.',
     })
   })
 

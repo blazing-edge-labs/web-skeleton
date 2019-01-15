@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import applyStyles from 'next-style-loader/applyStyles'
@@ -16,11 +16,11 @@ const HomeComponent = () => {
 
 // export default HomeComponent;
 
-HomeComponent.propTypes = {
-  auth: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-}
+// HomeComponent.propTypes = {
+//   auth: PropTypes.object.isRequired,
+//   dispatch: PropTypes.func.isRequired,
+//   user: PropTypes.object.isRequired,
+// }
 
 const mapStateToProps = state => ({
   auth: state.auth,

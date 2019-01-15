@@ -3,6 +3,7 @@
 exports[`Button component snapshot renders basic required data 1`] = `
 <button
   className="button "
+  type="button"
 >
   Login
 </button>
@@ -12,6 +13,7 @@ exports[`Button component snapshot renders empty button 1`] = `
 <button
   className="button "
   empty={true}
+  type="button"
 >
   Login
 </button>

@@ -94,21 +94,21 @@ describe('fetchApi util', () => {
       }])
 
     const p1 = api.fetch('/self', { query: { flag: true, s: 'Hello world!' } })
-    .then((fetchedData) => {
-      expect(fetchedData).toEqual(data)
-    })
+      .then((fetchedData) => {
+        expect(fetchedData).toEqual(data)
+      })
     check()
 
     const p2 = api.get('/self?flag=true', { s: 'Hello world!' })
-    .then((fetchedData) => {
-      expect(fetchedData).toEqual(data)
-    })
+      .then((fetchedData) => {
+        expect(fetchedData).toEqual(data)
+      })
     check('GET')
 
     const p3 = api.get('/self', { flag: true, s: 'Hello world!' })
-    .then((fetchedData) => {
-      expect(fetchedData).toEqual(data)
-    })
+      .then((fetchedData) => {
+        expect(fetchedData).toEqual(data)
+      })
     check('GET')
 
     return Promise.all([p1, p2, p3])

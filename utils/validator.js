@@ -18,13 +18,13 @@ export function isEmail(value) {
 }
 
 export function isPassword(value) {
-  return value.length >= 8 && (/[A-Z]/).test(value) && (/[a-z]/).test(value) &&
-    (/[0-9]/).test(value) ? null : PASSWORD_MSG
+  return value.length >= 8 && (/[A-Z]/).test(value) && (/[a-z]/).test(value)
+    && (/[0-9]/).test(value) ? null : PASSWORD_MSG
 }
 
 export function isSamePassword(value, comparison) {
-  return isEqual(String(value), String(comparison)) ? null :
-    CONFIRM_PASSWORD_MSG
+  return isEqual(String(value), String(comparison)) ? null
+    : CONFIRM_PASSWORD_MSG
 }
 
 export function isUsedEmail(newEmail, currentEmail) {

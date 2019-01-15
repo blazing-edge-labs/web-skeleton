@@ -38,18 +38,18 @@ export const emailResendFailed = error => ({
 export const authenticate = values =>
   (dispatch) => {
     return api.post('auth', values)
-    .then((data) => {
-      cookies.set('token', data.token, { path: '/', secure: true })
-      dispatch(signupLoginSuccess())
-    })
+      .then((data) => {
+        cookies.set('token', data.token, { path: '/', secure: true })
+        dispatch(signupLoginSuccess())
+      })
   }
 
 export const signupFetch = values =>
   (dispatch) => {
     return api.post('register', values)
-    .then(() => {
-      return dispatch(authenticate(values))
-    })
+      .then(() => {
+        return dispatch(authenticate(values))
+      })
   }
 
 export const loginFetch = authenticate

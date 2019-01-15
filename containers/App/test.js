@@ -12,7 +12,9 @@ describe('App component', () => {
   const wrapper = shallow(
     <AppComponent
       dispatch={mockDispatch}
-    >{children}</AppComponent>
+    >
+      {children}
+    </AppComponent>
   )
   const instance = wrapper.instance()
   Actions.logoutAction = jest.fn(() => Promise.resolve())

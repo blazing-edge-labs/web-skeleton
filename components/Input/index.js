@@ -24,8 +24,8 @@ const Input = (props) => {
       </label>
       {
         textarea
-        ? <textarea rows={4} {...attributes} />
-        : <input {...attributes} />
+          ? <textarea rows={4} {...attributes} />
+          : <input {...attributes} />
       }
       <InlineError meta={meta} />
     </div>

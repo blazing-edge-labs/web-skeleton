@@ -39,8 +39,8 @@ describe('RecoverPassword component', () => {
     const errors = validate(values)
 
     expect(errors).toEqual({
-      password: 'Password has to be at least 8 characters long and contain at' +
-        ' least one uppercase, lowercase and numeric character.',
+      password: 'Password has to be at least 8 characters long and contain at'
+        + ' least one uppercase, lowercase and numeric character.',
       confirmation: 'Confirmation Password has to be equal.',
     })
   })

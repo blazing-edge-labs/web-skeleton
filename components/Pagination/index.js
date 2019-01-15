@@ -60,12 +60,15 @@ export default class Pagination extends Component {
     for (i; i <= j; i += 1) {
       elems.push(
         <li key={i}>
-          {i !== currentPage ?
-            <Button
-              empty
-              type="button"
-              onClick={this.clickHandler(i)}
-            >{i}</Button> : i
+          {i !== currentPage
+            ? (
+              <Button
+                empty
+                type="button"
+                onClick={this.clickHandler(i)}
+              >{i}
+              </Button>
+            ) : i
           }
         </li>,
       )
@@ -90,12 +93,15 @@ export default class Pagination extends Component {
     const { currentPage, total } = this.props
 
     return (
-      total > 0 &&
+      total > 0
+        && (
         <div>
           <p>{this.renderPaginationInfo()}</p>
-          {this.numOfPages > 1 &&
+          {this.numOfPages > 1
+            && (
             <ul>
-              { currentPage > 3 && this.numOfPages > 5 &&
+              { currentPage > 3 && this.numOfPages > 5
+                && (
                 <li>
                   <Button
                     empty
@@ -105,8 +111,10 @@ export default class Pagination extends Component {
                     <i className="fa fa-angle-double-left" />
                   </Button>
                 </li>
+                )
               }
-              { currentPage !== 1 &&
+              { currentPage !== 1
+                && (
                 <li>
                   <Button
                     empty
@@ -116,9 +124,11 @@ export default class Pagination extends Component {
                     <i className="fa fa-angle-left" />
                   </Button>
                 </li>
+                )
               }
               {this.renderPages()}
-              {currentPage !== this.numOfPages &&
+              {currentPage !== this.numOfPages
+                && (
                 <li>
                   <Button
                     empty
@@ -128,8 +138,10 @@ export default class Pagination extends Component {
                     <i className="fa fa-angle-right" />
                   </Button>
                 </li>
+                )
               }
-              {currentPage < this.numOfPages - 2 && this.numOfPages > 5 &&
+              {currentPage < this.numOfPages - 2 && this.numOfPages > 5
+                && (
                 <li>
                   <Button
                     empty
@@ -139,10 +151,13 @@ export default class Pagination extends Component {
                     <i className="fa fa-angle-double-right" />
                   </Button>
                 </li>
+                )
               }
             </ul>
+            )
           }
         </div>
+        )
     )
   }
 }

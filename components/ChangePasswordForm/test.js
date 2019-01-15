@@ -25,8 +25,8 @@ describe('ChangePasswordForm component', () => {
     const errors = validate(values)
 
     expect(errors).toEqual({
-      oldPassword: 'Password has to be at least 8 characters long and contain' +
-        ' at least one uppercase, lowercase and numeric character.',
+      oldPassword: 'Password has to be at least 8 characters long and contain'
+        + ' at least one uppercase, lowercase and numeric character.',
       newPassword: 'Required field.',
       confirmation: 'Confirmation Password has to be equal.',
     })
