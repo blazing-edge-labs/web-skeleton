@@ -19,6 +19,7 @@
     "url": "https://github.com/blazing-edge-labs/web-skeleton"
   },
   "devDependencies": {
+    "@zeit/next-css": "^1.0.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^7.1.0",
     "babel-jest": "^23.4.2",
@@ -48,13 +49,13 @@
     "sass-loader": "^6",
     "sass-resources-loader": "^1.2.1",
     "uglifyjs-webpack-plugin": "^1.1.6",
-    "url-loader": "^0.5.7"
+    "url-loader": "^0.5.7",
+    "webpack": "^4.4.0"
   },
   "dependencies": {
     "@babel/core": "^7",
     "@babel/polyfill": "^7",
     "autoprefixer": "^6.5.3",
-    "babel-loader": "8.0.2",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-react-hmre": "^1.1.1",
     "dotenv-safe": "^4.0.4",
