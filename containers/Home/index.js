@@ -2,7 +2,6 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import applyStyles from 'next-style-loader/applyStyles'
 
 import s from 'containers/Home/style.scss'
 
@@ -29,5 +28,4 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
-  applyStyles(s)
 )(HomeComponent)

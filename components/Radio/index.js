@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import applyStyles from 'next-style-loader/applyStyles'
 import s from 'components/Radio/style.scss'
 
 class Radio extends Component {
@@ -69,4 +68,4 @@ Radio.propTypes = {
   ]),
 }
 
-export default applyStyles(s)(Radio)
+export default Radio

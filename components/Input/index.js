@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import InlineError from 'components/InlineError'
 import { hasError } from 'utils/validator'
 
-import applyStyles from 'next-style-loader/applyStyles'
 import s from 'components/Input/style.scss'
 
 const Input = (props) => {
@@ -40,4 +39,4 @@ Input.propTypes = {
   textarea: PropTypes.bool,
 }
 
-export default applyStyles(s)(Input)
+export default Input

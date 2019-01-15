@@ -1,4 +1,5 @@
 const runtimeDotenv = require('next-runtime-dotenv')
+const cssLoaderConfig = require('@zeit/next-css/css-loader-config')
 const autoprefixer = require('autoprefixer')
 const path = require('path')
 
@@ -18,117 +19,98 @@ const localStyleCondition = [
   path.join(__dirname, 'pages'),
 ]
 
-function getStyleLoaders({ dev, mode, sass }) {
-  const loaders = [
-    'babel-loader',
-    path.join(__dirname, 'next-style-loader'),
-    {
-      loader: 'css-loader',
-      options: {
-        modules: mode === 'local',
-        minimize: !dev,
-        localIdentName: dev
-          ? '[local]__[hash:base64:5]'
-          : '[hash:base64]',
-        url: false,
-        importLoaders: 2,
-      },
+function getStyleLoaders(format, mode, config, { dev, isServer }) {
+  return cssLoaderConfig(config, {
+    extensions: [format],
+    cssModules: mode === 'local',
+    cssLoaderOptions: {
+      // importLoaders: 2,
+      // url: false,
     },
-    {
-      loader: 'postcss-loader',
-      options: {
-        plugins: () => [
-          autoprefixer({ browsers: ['last 2 versions'] }),
-        ],
-      },
-    },
-    'resolve-url-loader',
-  ]
-
-  if (sass) {
-    loaders.push(
+    dev,
+    isServer,
+    loaders: [
       {
-        loader: 'sass-loader',
+        loader: 'postcss-loader',
         options: {
-          sourceMap: true, // needed by resolve-url-loader
-          includePaths: [
-            // path.join(__dirname, 'styles'),
-            // path.join(__dirname, 'node_modules'),
+          plugins: () => [
+            autoprefixer({ browsers: ['last 2 versions'] }),
           ],
         },
-      }, {
-        loader: 'sass-resources-loader',
-        options: {
-          resources: [
-            path.resolve(__dirname, './styles/_variables.scss'),
-          ],
+      },
+      {
+        loader: 'resolve-url-loader',
+        options: {},
+      },
+      ...(format === 'scss' ? [
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true, // needed by resolve-url-loader
+          },
         },
-      }
-    )
-  }
-
-  return loaders
+        {
+          loader: 'sass-resources-loader',
+          options: {
+            sourceMap: true, // needed by resolve-url-loader
+            resources: [
+              path.resolve(__dirname, './styles/_variables.scss'),
+            ],
+          },
+        },
+      ] : []),
+    ],
+  })
 }
 
 module.exports = withDotenv({
-  webpack: (config, { dev }) => {
+  webpack: (config, options) => {
     config.module.rules.push(
       {
-        test: /\.(css|scss)$/,
-        loader: 'emit-file-loader',
+        test: /\.css$/,
+        exclude: localStyleCondition,
+        use: getStyleLoaders('css', 'global', config, options),
+      }, {
+        test: /\.scss$/,
+        exclude: localStyleCondition,
+        use: getStyleLoaders('scss', 'global', config, options),
+      }, {
+        test: /\.css$/,
+        include: localStyleCondition,
+        use: getStyleLoaders('css', 'local', config, options),
+      }, {
+        test: /\.scss$/,
+        include: localStyleCondition,
+        use: getStyleLoaders('scss', 'local', config, options),
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)(\?.*|$)/,
+        loader: 'url-loader',
         options: {
-          name: 'dist/[path][name].[ext]',
+          limit: 8192,
+          fallback: 'file-loader',
+          publicPath: '/_next/static/fonts/',
+          outputPath: 'static/fonts/',
+          name: '[name]-[hash].[ext]',
         },
-      }, {
-        test: /\.css$/,
-        exclude: localStyleCondition,
-        use: getStyleLoaders({ dev, mode: 'global' }),
-      }, {
-        test: /\.scss$/,
-        exclude: localStyleCondition,
-        use: getStyleLoaders({ dev, mode: 'global', sass: true }),
-      }, {
-        test: /\.css$/,
-        include: localStyleCondition,
-        use: getStyleLoaders({ dev, mode: 'local' }),
-      }, {
-        test: /\.scss$/,
-        include: localStyleCondition,
-        use: getStyleLoaders({ dev, mode: 'local', sass: true }),
-      }
-      // }, {
-      //   test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-      // }, {
-      //   test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-      // }, {
-      //   test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
-      // }, {
-      //   test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: 'file-loader',
-      // }, {
-      //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      //   loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
-      // },
+      },
     )
 
-    if (!dev) {
-      // eslint-disable-next-line
-      config.plugins = config.plugins.filter(p =>
-        p.constructor.name !== 'UglifyJsPlugin'
-      )
+    // if (!dev) {
+    //   // eslint-disable-next-line
+    //   config.plugins = config.plugins.filter(
+    //     p => p.constructor.name !== 'UglifyJsPlugin'
+    //   )
 
-      // eslint-disable-next-line
-      const Uglify = require('uglifyjs-webpack-plugin')
-      config.plugins.push(
-        new Uglify({
-          parallel: true,
-          sourceMap: true,
-        })
-      )
-    }
+    //   // eslint-disable-next-line
+    //   const Uglify = require('uglifyjs-webpack-plugin')
+    //   config.plugins.push(
+    //     new Uglify({
+    //       parallel: true,
+    //       sourceMap: true,
+    //     })
+    //   )
+    // }
 
     return config
   },
