@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import applyStyles from 'next-style-loader/applyStyles'
 import s from 'components/Button/style.scss'
 
 const Button = ({ children, className, ...rest }) => (
@@ -23,4 +22,4 @@ Button.propTypes = {
   ]).isRequired,
 }
 
-export default applyStyles(s)(Button)
+export default Button

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import applyStyles from 'next-style-loader/applyStyles'
 import s from 'components/Checkbox/style.scss'
 
-class Checkbox extends Component {
+export default class Checkbox extends Component {
   constructor(props) {
     super(props)
 
@@ -65,5 +64,3 @@ Checkbox.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
 }
-
-export default applyStyles(s)(Checkbox)

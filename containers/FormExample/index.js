@@ -11,7 +11,6 @@ import Select from 'components/Select'
 import Radio from 'components/Radio'
 import { alwaysError } from 'utils/validator'
 
-import applyStyles from 'next-style-loader/applyStyles'
 import s from 'containers/FormExample/style.scss'
 
 const options = [
@@ -132,5 +131,4 @@ const mapStateToProps = () => ({
 export default compose(
   connect(mapStateToProps),
   reduxForm({ form: 'formExample' }),
-  applyStyles(s)
 )(FormExample)

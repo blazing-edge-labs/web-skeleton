@@ -2,9 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactSelect from 'react-select'
 
-import selectStyle from 'react-select/dist/react-select.css'
+import 'react-select/dist/react-select.css'
 import s from 'components/Select/style.scss'
-import applyStyles from 'next-style-loader/applyStyles'
 
 import InlineError from 'components/InlineError'
 import { hasError } from 'utils/validator'
@@ -41,4 +40,4 @@ Select.propTypes = {
   options: PropTypes.array,
 }
 
-export default applyStyles([selectStyle, s])(Select)
+export default Select
