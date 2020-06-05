@@ -62,7 +62,7 @@ describe('profile action creators', () => {
       error: 'Something went wrong',
       status: 404,
     }
-    fetchMock.put(`${API_URL}/self`, { body })
+    fetchMock.put(`${API_URL}/self`, { body, status: 404 })
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(profile.profileUpdateFetch(values))
@@ -80,7 +80,7 @@ describe('profile action creators', () => {
       error: 'Wrong password',
       status: 404,
     }
-    fetchMock.put(`${API_URL}/self/password`, { body })
+    fetchMock.put(`${API_URL}/self/password`, { body, status: 404 })
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(profile.changePasswordFetch(values, userId))
