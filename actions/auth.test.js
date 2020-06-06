@@ -127,7 +127,7 @@ describe('auth action creators', () => {
       error: 'User already exists',
       status: 404,
     }
-    fetchMock.post(`${API_URL}/register`, { body })
+    fetchMock.post(`${API_URL}/register`, { body, status: 404 })
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(auth.signupFetch(values))
@@ -145,7 +145,7 @@ describe('auth action creators', () => {
       error: 'Wrong password',
       status: 404,
     }
-    fetchMock.post(`${API_URL}/auth`, { body })
+    fetchMock.post(`${API_URL}/auth`, { body, status: 404 })
     const reduxStore = mockStore({ user: {} })
 
     return reduxStore.dispatch(auth.loginFetch(values))
@@ -169,7 +169,7 @@ describe('auth action creators', () => {
       status: 404,
     }
 
-    fetchMock.post(`${API_URL}/recoverPassword`, { body })
+    fetchMock.post(`${API_URL}/recoverPassword`, { body, status: 404 })
 
     return mockStore({}).dispatch(auth.forgotPasswordFetch({}))
       .then(fail, (reason) => {
@@ -200,7 +200,7 @@ describe('auth action creators', () => {
       error: 'Password doesn\'t exist',
       status: 404,
     }
-    fetchMock.post(`${API_URL}/changePassword`, { body })
+    fetchMock.post(`${API_URL}/changePassword`, { body, status: 404 })
     const reduxStore = mockStore({ auth: {} })
 
     return reduxStore.dispatch(auth.recoverPasswordFetch(values, code))

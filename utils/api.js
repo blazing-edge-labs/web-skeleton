@@ -64,45 +64,48 @@ function getOptions(options, ctx) {
   }
 }
 
-function fetchApi(path, options = {}) {
+async function fetchApi(path, options = {}) {
   const { query, raw, ctx, ...opts } = options
 
-  let response
+  try {
+    const response = await fetch(getApiUrl(path, query), getOptions(opts, ctx))
 
-  return fetch(getApiUrl(path, query), getOptions(opts, ctx))
-    .then((r) => {
-      response = r
-      return raw ? r.blob() : r.json()
-    })
-    .then((body) => {
-      if (raw) {
-        return body
-      }
+    const body = raw
+      ? await response.blob()
+      : await response.json()
 
-      if (body.error) {
-        const error = new Error(body.error)
+    const { status } = response
+
+    if (!status || status < 200 || status >= 300) {
+      const error = new Error((!raw && body.error) || response.statusText)
+      error.status = status
+      if (!raw) {
         error.code = body.code
-        error.status = body.status || response.status
-        throw error
-      }
-
-      return body.data
-    })
-    .then((data) => {
-      if (response.status < 200 || response.status >= 300) {
-        const error = new Error(response.statusText)
-        error.status = response.status
-        throw error
-      }
-      return data
-    })
-    .catch((error) => {
-      if (error && error.status === 401) {
-        redirect(ctx, '/login')
-        // return new Promise(() => {})
+        error.data = body.data
       }
       throw error
-    })
+    }
+
+    if (raw) return body
+
+    if (!('data' in body)) {
+      if (typeof console !== 'undefined' && console && console.warn) { // eslint-disable-line no-console
+        console.warn('It seems API is not wrapping data any more?! Check the source of this warning...') // eslint-disable-line no-console
+      }
+      return body
+      // If warning above appears in console, you should probably:
+      //   1. replace `return body.data` below with `return body`,
+      //   2. remove this if-block.
+    }
+
+    return body.data
+  } catch (e) {
+    if (e && e.status === 401) {
+      redirect(ctx, '/login')
+      // return new Promise(() => {})
+    }
+    throw e
+  }
 }
 
 export default {

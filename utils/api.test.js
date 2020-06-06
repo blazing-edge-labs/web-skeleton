@@ -116,7 +116,7 @@ describe('fetchApi util', () => {
 
   it('api.fetch API with 401 error', () => {
     const responseBody = { error: 'foo', status: 401 }
-    fetchMock.get(`${API_URL}/self`, { body: responseBody })
+    fetchMock.get(`${API_URL}/self`, { body: responseBody, status: 401 })
 
     Router.pushRoute = jest.fn()
 
