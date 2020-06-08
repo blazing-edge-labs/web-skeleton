@@ -12,7 +12,7 @@ const buildQuery = params =>
     .map(key => `${encodeComponent(key)}=${encodeComponent(params[key])}`)
     .join('&')
 
-export function getApiUrl(path, query) {
+export function resolveURL(path, query) {
   let url = env.API_URL
 
   if (path) {
@@ -65,47 +65,37 @@ function getOptions(options, ctx) {
 }
 
 async function fetchApi(path, options = {}) {
-  const { query, raw, ctx, ...opts } = options
+  const { query, ctx, ...opts } = options
 
-  try {
-    const response = await fetch(getApiUrl(path, query), getOptions(opts, ctx))
+  const response = await fetch(resolveURL(path, query), getOptions(opts, ctx))
+  const body = await response.json()
+  const { status } = response
 
-    const body = raw
-      ? await response.blob()
-      : await response.json()
+  if (!status || status < 200 || status >= 300) {
+    const error = new Error(body.error || response.statusText)
+    error.status = status
+    error.code = body.code
+    error.data = body.data
 
-    const { status } = response
-
-    if (!status || status < 200 || status >= 300) {
-      const error = new Error((!raw && body.error) || response.statusText)
-      error.status = status
-      if (!raw) {
-        error.code = body.code
-        error.data = body.data
-      }
-      throw error
-    }
-
-    if (raw) return body
-
-    if (!('data' in body)) {
-      if (typeof console !== 'undefined' && console && console.warn) { // eslint-disable-line no-console
-        console.warn('It seems API is not wrapping data any more?! Check the source of this warning...') // eslint-disable-line no-console
-      }
-      return body
-      // If warning above appears in console, you should probably:
-      //   1. replace `return body.data` below with `return body`,
-      //   2. remove this if-block.
-    }
-
-    return body.data
-  } catch (e) {
-    if (e && e.status === 401) {
+    if (status === 401) {
       redirect(ctx, '/login')
       // return new Promise(() => {})
     }
-    throw e
+
+    throw error
   }
+
+  if (!('data' in body)) {
+    if (typeof console !== 'undefined' && console && console.warn) { // eslint-disable-line no-console
+      console.warn('It seems API is not wrapping data any more?! Check the source of this warning...') // eslint-disable-line no-console
+    }
+    return body
+    // If warning above appears in console, you should probably:
+    //   1. replace `return body.data` below with `return body`,
+    //   2. remove this if-block.
+  }
+
+  return body.data
 }
 
 export default {
