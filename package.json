@@ -40,7 +40,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.5.0",
     "loader-utils": "^1.1.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.1",
     "postcss-loader": "^3",
     "raw-loader": "^0.5.1",
