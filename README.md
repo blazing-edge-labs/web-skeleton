@@ -1,3 +1,12 @@
+# *DEPRECATED!!!*
+
+This project is outdated and not mainteined anymore.
+
+Some good alternatives:
+- [create-next-app](https://nextjs.org/docs/getting-started)
+- [create-react-app](https://github.com/facebook/create-react-app)
+
+
 # WEB SKELETON
 
 The repository contains simple startup application with authentication and user profile editor. Main technologies in use are:
